@@ -561,15 +561,24 @@
 
   .hero-section {
     flex-direction: column;
-    min-height: auto;
-    padding: 40px 20px;
-    gap: 24px;
+    min-height: 0 !important;
+    height: auto !important;
+    padding: 32px 20px 36px;
+    gap: 20px;
+  }
+
+  /* Remove the full-viewport-height forcing on mobile */
+  #page-home .hero-section {
+    min-height: 0 !important;
   }
 
   .hero-card-wrap--right,
   .hero-card-wrap--left {
     order: -1;
     margin: 0 auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
   }
 
   .hero-content,
@@ -578,6 +587,7 @@
   .hero-desc {
     max-width: 100%;
     margin: 0;
+    width: 100%;
   }
 
   .hero-meta {
@@ -597,6 +607,7 @@
     width: min(100%, 280px);
     height: auto;
     aspect-ratio: 360 / 220;
+    flex-shrink: 0;
   }
 
   .reg-list {
@@ -853,8 +864,8 @@
   }
 
   .hero-section {
-    padding: 32px 18px;
-    gap: 20px;
+    padding: 24px 16px 28px;
+    gap: 16px;
   }
 
   .hero-title {
@@ -947,7 +958,7 @@
   }
 
   .hero-section {
-    padding: 28px 14px;
+    padding: 20px 14px 24px;
   }
 
   .page-header {
@@ -1102,8 +1113,8 @@
   }
 
   .hero-section {
-    padding: 24px 12px;
-    gap: 16px;
+    padding: 16px 12px 20px;
+    gap: 14px;
   }
 
   .metro-card {
@@ -1230,6 +1241,25 @@
   .metro-card {
     width: 280px;
     height: 172px;
+  }
+}
+
+/* Desktop mode on mobile — fix layout when viewport is narrow but desktop CSS is applied */
+@media (max-width: 1023px) and (min-width: 768px) {
+  .hero-section {
+    min-height: auto;
+    padding: 48px 32px;
+    gap: 32px;
+  }
+
+  .metro-card {
+    width: min(300px, 38vw);
+    height: auto;
+    aspect-ratio: 360 / 220;
+  }
+
+  .hero-title {
+    font-size: clamp(24px, 3.5vw, 44px);
   }
 }
 

@@ -292,6 +292,8 @@
   gap: 60px;
   position: relative;
   overflow: hidden;
+  /* Prevent sections from collapsing but allow shrinking on mobile */
+  box-sizing: border-box;
 }
 
 /* Subtle background tint per section */
@@ -597,14 +599,22 @@
   padding: 0;
   background: none !important;
   border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  border-radius: 18px;
+  /* Ensure the face itself is a proper containing block */
+  display: block;
 }
 
 .card-front-img,
 .card-back-img {
+  /* Fill the entire card face — use fill so SVG viewBox doesn't constrain it */
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: fill;
   display: block;
+  border-radius: 17px;
 }
 
 .card-back {
