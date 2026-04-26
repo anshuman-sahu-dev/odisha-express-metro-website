@@ -471,7 +471,8 @@
 ══════════════════════════════════════════════════ */
 .chatbot-fab {
   position: fixed;
-  bottom: 28px; right: 28px;
+  bottom: max(28px, env(safe-area-inset-bottom));
+  right: max(28px, env(safe-area-inset-right));
   z-index: 5000;
   width: 52px; height: 52px;
   background: var(--accent);
@@ -489,10 +490,11 @@
 
 .chatbot-panel {
   position: fixed;
-  bottom: 92px; right: 28px;
+  bottom: max(92px, calc(env(safe-area-inset-bottom) + 92px));
+  right: max(28px, env(safe-area-inset-right));
   z-index: 5000;
-  width: 340px;
-  max-height: 480px;
+  width: min(340px, calc(100vw - 2rem));
+  max-height: min(480px, calc(100vh - 140px));
   background: var(--bg-card);
   border: 1px solid var(--border-primary);
   border-radius: var(--radius-xl);
@@ -621,7 +623,6 @@
 /* iPad Mini and smaller tablets */
 @media (max-width: 768px) {
   .profile-container { max-width: 100%; padding: 24px 20px 80px; }
-  .chatbot-panel { width: 320px; }
 }
 /* Large phones (iPhone XR, 14 Pro Max, Pixel 7) */
 @media (max-width: 575px) {
@@ -632,8 +633,6 @@
   .profile-info-row { grid-template-columns: repeat(3, 1fr); gap: 8px; }
   .profile-info-card { padding: 10px 6px; }
   .pic-value { font-size: 12px; }
-  .chatbot-panel { width: calc(100vw - 32px); right: 16px; bottom: 80px; max-height: 400px; }
-  .chatbot-fab { bottom: 20px; right: 16px; }
   .recharge-options { grid-template-columns: repeat(3, 1fr); }
 }
 /* Small phones (iPhone SE, 12 Pro) */
@@ -643,7 +642,6 @@
   .sos-numbers { grid-template-columns: 1fr; gap: 10px; }
   .recharge-options { grid-template-columns: repeat(2, 1fr); }
   .avatar-options { grid-template-columns: 1fr; gap: 10px; }
-  .chatbot-panel { max-height: 380px; }
   .balance-amount { font-size: 32px; }
 }
 /* Very small phones (Galaxy Z Fold folded, S8+) */
@@ -659,8 +657,6 @@
   .pic-value { font-size: 11px; }
   .profile-menu-item { padding: 13px 14px; }
   .pmi-label { font-size: 11px; }
-  .chatbot-fab { bottom: 14px; right: 12px; width: 46px; height: 46px; }
-  .chatbot-panel { width: calc(100vw - 20px); right: 10px; bottom: 72px; max-height: 360px; }
   .balance-amount { font-size: 28px; }
   .recharge-btn { padding: 12px; font-size: 12px; }
   .sos-number-btn { padding: 16px 12px; font-size: 12px; }

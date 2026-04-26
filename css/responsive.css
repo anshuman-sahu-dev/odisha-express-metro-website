@@ -1,20 +1,17 @@
-/* ═══════════════════════════════════════════════════
-   ODISHA EXPRESS — responsive.css
-   Full responsive design for all 17 device targets
-   Works alongside Bootstrap 5
-   Device coverage:
-     iPhone SE (375) · iPhone XR (414) · iPhone 12 Pro (390)
-     iPhone 14 Pro Max (430) · Pixel 7 (412) · Galaxy S8+ (360)
-     Galaxy S20 Ultra (412) · Galaxy A51/71 (412)
-     iPad Mini (768) · iPad Air (820) · iPad Pro (1024)
-     Surface Pro 7 (912) · Surface Duo (540)
-     Galaxy Z Fold 5 (344/904) · Asus Zenbook Fold (853)
-     Nest Hub (1024×600) · Nest Hub Max (1280×800)
-═══════════════════════════════════════════════════ */
+/*
+  ODISHA EXPRESS - responsive.css
+  Responsive layer for the device set shown in DevTools:
+  iPhone SE, iPhone XR, iPhone 12 Pro, iPhone 14 Pro Max,
+  Pixel 7, Samsung Galaxy S8+, Samsung Galaxy S20 Ultra,
+  iPad Mini, iPad Air, iPad Pro, Surface Pro 7, Surface Duo,
+  Galaxy Z Fold 5, Asus Zenbook Fold, Samsung Galaxy A51/71,
+  Nest Hub, and Nest Hub Max.
 
-/* ══════════════════════════════════════════════════
-   HAMBURGER / MOBILE NAV
-══════════════════════════════════════════════════ */
+  This file is intentionally organized by layout ranges instead of
+  device-by-device patches so the site stays easier to maintain.
+*/
+
+/* Mobile navigation */
 .nav-hamburger {
   display: none;
   flex-direction: column;
@@ -23,11 +20,11 @@
   gap: 5px;
   width: 36px;
   height: 36px;
+  padding: 6px;
   background: transparent;
   border: 1px solid var(--border-secondary);
   border-radius: var(--radius-sm);
   cursor: pointer;
-  padding: 6px;
   transition: all var(--transition);
   flex-shrink: 0;
 }
@@ -40,9 +37,17 @@
   display: block;
   width: 18px;
   height: 2px;
-  background: var(--text-secondary);
   border-radius: 1px;
+  background: var(--text-secondary);
   transition: all 0.3s ease;
+}
+
+.nav-hamburger.active {
+  border-color: var(--accent);
+}
+
+.nav-hamburger.active span {
+  background: var(--accent);
 }
 
 .nav-hamburger.active span:nth-child(1) {
@@ -58,15 +63,6 @@
   transform: translateY(-7px) rotate(-45deg);
 }
 
-.nav-hamburger.active {
-  border-color: var(--accent);
-}
-
-.nav-hamburger.active span {
-  background: var(--accent);
-}
-
-/* Mobile nav drawer */
 .mobile-nav-drawer {
   display: none;
   position: fixed;
@@ -74,11 +70,11 @@
   left: 0;
   right: 0;
   z-index: 1001;
+  padding: 8px 0 12px;
   background: rgba(8, 12, 20, 0.98);
   border-bottom: 1px solid var(--border-secondary);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  padding: 8px 0 12px;
   animation: slideDown 0.25s ease;
 }
 
@@ -87,7 +83,6 @@
 }
 
 .mobile-nav-drawer .mobile-nav-list {
-  list-style: none;
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -99,14 +94,13 @@
   align-items: center;
   gap: 10px;
   padding: 13px 16px;
+  border-radius: var(--radius-md);
   font-family: var(--font-orb);
   font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.08em;
   color: var(--text-secondary);
-  border-radius: var(--radius-md);
   transition: color var(--transition), background var(--transition);
-  border-bottom: none;
 }
 
 .mobile-nav-link:hover,
@@ -145,17 +139,272 @@
   }
 }
 
-/* ══════════════════════════════════════════════════
-   GALAXY Z FOLD 5 FOLDED & VERY SMALL SCREENS
-   max-width: 360px  (covers 344px–360px)
-══════════════════════════════════════════════════ */
-@media (max-width: 360px) {
+/* Shared responsive safety */
+.page-header,
+.page-header-right,
+.hero-section,
+.hero-content,
+.auth-logo-block,
+.route-card-left,
+.route-card-right,
+.fare-uplink-bar,
+.fare-uplink-left,
+.fare-uplink-right,
+.profile-menu-item,
+.profile-info-row,
+.modal-box,
+.metro-card-modal-box,
+.mcm-header,
+.mcm-footer,
+.ticket-header,
+.ticket-footer {
+  min-width: 0;
+}
 
-  /* Status bar */
+.hero-meta,
+.fare-uplink-route,
+.payment-opt-btn,
+.lang-option,
+.route-card-header,
+.fare-card-header {
+  min-width: 0;
+}
+
+.ticket-station,
+.fare-origin-display,
+.fare-dest-display,
+.page-title {
+  overflow-wrap: anywhere;
+}
+
+/* Nest Hub Max and compact desktops */
+@media (max-width: 1279.98px) {
+  .navbar {
+    padding: 0 28px;
+  }
+
+  .hero-section {
+    padding: 72px 48px;
+    gap: 48px;
+  }
+
+  .page-header {
+    padding: 28px 40px 24px;
+  }
+
+  .filter-bar,
+  .tt-live-section,
+  .tt-complete-section,
+  .routes-container,
+  .fare-container {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  .routes-container,
+  .fare-container {
+    padding-bottom: 40px;
+  }
+
+  .home-footer {
+    padding: 28px 40px;
+  }
+
+  .metro-card-modal-box {
+    max-width: min(850px, calc(100vw - 2rem)) !important;
+    max-height: calc(100vh - 2rem);
+  }
+}
+
+/* iPad Pro, Surface Pro 7, foldables, Nest Hub */
+@media (max-width: 1023.98px) {
+  .navbar {
+    padding: 0 24px;
+    gap: 16px;
+  }
+
+  .nav-item {
+    padding: 8px 12px;
+    font-size: 10px;
+  }
+
+  .auth-container {
+    grid-template-columns: 300px 1fr;
+  }
+
+  .auth-container--register {
+    grid-template-columns: 280px 1fr;
+  }
+
+  .auth-left {
+    padding: 56px 24px 40px 32px;
+    gap: 28px;
+  }
+
+  .auth-right {
+    padding: 40px 24px;
+  }
+
+  .auth-right--wide {
+    padding: 32px 18px;
+  }
+
+  .form-panel {
+    padding: 28px;
+  }
+
+  .hero-section {
+    padding: 56px 32px;
+    gap: 36px;
+  }
+
+  .hero-content {
+    max-width: 440px;
+  }
+
+  .metro-card {
+    width: 300px;
+    height: 185px;
+  }
+
+  .page-header {
+    padding: 24px 32px 20px;
+  }
+
+  .page-title {
+    font-size: 28px;
+  }
+
+  .filter-bar {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    padding: 16px 32px;
+  }
+
+  .tt-live-section {
+    padding: 20px 32px;
+  }
+
+  .tt-complete-section {
+    padding: 20px 32px 40px;
+  }
+
+  .routes-container,
+  .fare-container {
+    padding: 18px 32px 40px;
+  }
+
+  .profile-container {
+    padding: 28px 20px 80px;
+  }
+
+  .chatbot-panel {
+    width: min(360px, calc(100vw - 2rem));
+  }
+
+  .metro-card-modal-box {
+    max-width: calc(100vw - 2rem) !important;
+  }
+
+  .mcm-header,
+  .mcm-footer {
+    padding: 20px 28px;
+  }
+
+  .mcm-body {
+    padding: 28px;
+  }
+
+  .card-type-grid {
+    grid-template-columns: repeat(auto-fit, minmax(132px, 1fr));
+  }
+}
+
+/* iPad Mini and small tablets */
+@media (max-width: 819.98px) {
+  .auth-container {
+    grid-template-columns: 260px 1fr;
+  }
+
+  .auth-container--register {
+    grid-template-columns: 250px 1fr;
+  }
+
+  .auth-left {
+    padding: 48px 20px 32px 24px;
+    gap: 24px;
+  }
+
+  .logo-icon {
+    width: 84px;
+    height: 84px;
+  }
+
+  .tagline-line {
+    font-size: 22px;
+  }
+
+  .auth-stats {
+    gap: 14px;
+  }
+
+  .stat-value {
+    font-size: 18px;
+  }
+
+  .hero-section {
+    padding: 48px 28px;
+    gap: 28px;
+  }
+
+  .metro-card {
+    width: 280px;
+    height: 172px;
+  }
+
+  .filter-bar {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    padding: 16px 28px;
+  }
+
+  .tt-live-grid,
+  .tt-schedule-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tt-live-section {
+    padding: 18px 28px;
+  }
+
+  .tt-complete-section {
+    padding: 18px 28px 36px;
+  }
+
+  .routes-container,
+  .fare-container {
+    padding-left: 28px;
+    padding-right: 28px;
+  }
+
+  .mcm-subtitle {
+    line-height: 1.4;
+    letter-spacing: 0.1em;
+  }
+}
+
+/* Phones and Surface Duo panes */
+@media (max-width: 767.98px) {
+  .nav-hamburger {
+    display: flex !important;
+  }
+
+  .nav-links {
+    display: none !important;
+  }
+
   .status-bar {
-    padding: 5px 10px;
-    font-size: 8px;
-    gap: 0;
+    justify-content: center;
+    padding: 5px 12px;
   }
 
   .status-bar .status-item:first-child,
@@ -163,45 +412,502 @@
     display: none;
   }
 
-  /* Navbar */
   .navbar {
-    padding: 0 10px;
-    height: 56px;
-    gap: 6px;
+    height: 60px;
+    padding: 0 16px;
+    gap: 10px;
   }
 
-  .nav-logo-icon {
-    width: 30px;
-    height: 30px;
-  }
-
-  .nav-logo-icon span {
-    font-size: 13px;
+  .nav-brand {
+    flex: 1 1 auto;
+    min-width: 0;
+    gap: 10px;
   }
 
   .nav-brand-text {
-    font-size: 11px;
+    font-size: 12px;
     letter-spacing: 0.04em;
   }
 
+  .nav-actions {
+    margin-left: auto;
+    gap: 6px;
+  }
+
+  .nav-profile .profile-avatar,
+  .nav-btn,
+  .nav-hamburger {
+    width: 34px;
+    height: 34px;
+  }
+
+  .sos-btn {
+    padding: 0 10px;
+    font-size: 10px;
+  }
+
   .page-section {
-    padding-top: 56px;
+    padding-top: 60px;
   }
 
   .mobile-nav-drawer {
-    top: 56px;
+    top: 60px;
+    padding-bottom: calc(12px + env(safe-area-inset-bottom));
   }
 
-  /* Auth pages */
   .auth-container,
   .auth-container--register {
-    padding-top: 24px;
-    padding-bottom: 48px;
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding-top: 28px;
+    padding-bottom: 52px;
   }
 
   .auth-left {
-    padding: 60px 12px 18px;
+    padding: 64px 24px 24px;
+    border-right: none;
+    border-bottom: 1px solid var(--border-secondary);
+    gap: 20px;
+  }
+
+  .auth-logo-block {
     gap: 14px;
+  }
+
+  .auth-stats {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .auth-right {
+    padding: 24px 16px;
+  }
+
+  .auth-right--wide {
+    align-items: stretch;
+    padding: 20px 14px;
+  }
+
+  .form-panel {
+    max-width: 100%;
+    padding: 20px 16px;
+  }
+
+  .panel-title {
+    font-size: 16px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .otp-row {
+    flex-wrap: wrap;
+  }
+
+  .otp-row .btn-otp {
+    width: 100%;
+    height: 40px;
+    border-left: none;
+    border-top: 1px solid var(--border-input);
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+    justify-content: center;
+  }
+
+  .otp-actions {
+    flex-wrap: wrap;
+  }
+
+  .btn-verify,
+  .btn-resend {
+    flex: 1 1 160px;
+    text-align: center;
+  }
+
+  .auth-footer {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    font-size: 9px;
+    padding: 6px 12px;
+  }
+
+  .footer-divider {
+    display: none;
+  }
+
+  .page-header {
+    flex-direction: column;
+    gap: 12px;
+    padding: 18px 16px;
+  }
+
+  .page-header-right {
+    width: 100%;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .page-title {
+    font-size: 24px;
+    line-height: 1.1;
+  }
+
+  .hero-section {
+    flex-direction: column;
+    min-height: auto;
+    padding: 40px 20px;
+    gap: 24px;
+  }
+
+  .hero-card-wrap--right,
+  .hero-card-wrap--left {
+    order: -1;
+    margin: 0 auto;
+  }
+
+  .hero-content,
+  .hero-content--left,
+  .hero-content--right,
+  .hero-desc {
+    max-width: 100%;
+    margin: 0;
+  }
+
+  .hero-meta {
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+
+  .hero-title {
+    font-size: clamp(28px, 7vw, 40px);
+  }
+
+  .hero-desc {
+    font-size: 14px;
+  }
+
+  .metro-card {
+    width: min(100%, 280px);
+    height: auto;
+    aspect-ratio: 360 / 220;
+  }
+
+  .reg-list {
+    grid-template-columns: 1fr;
+  }
+
+  .home-footer {
+    padding: 20px 16px;
+  }
+
+  .filter-bar {
+    grid-template-columns: 1fr;
+    padding: 14px 16px;
+    gap: 12px;
+  }
+
+  .tt-live-grid,
+  .tt-schedule-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .tt-live-section {
+    padding: 16px;
+  }
+
+  .tt-complete-section {
+    padding: 16px 16px 32px;
+  }
+
+  .routes-container,
+  .fare-container {
+    padding: 12px 16px 32px;
+  }
+
+  .route-card-header,
+  .fare-card-header {
+    padding: 14px 16px;
+  }
+
+  .route-card-header {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .route-card-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .route-endpoints {
+    display: none;
+  }
+
+  .route-line-name {
+    white-space: normal;
+    font-size: 12px;
+  }
+
+  .station-track-scroll {
+    padding: 24px 20px 32px;
+  }
+
+  .fare-panel {
+    padding: 16px;
+  }
+
+  .fare-selector-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .fare-uplink-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px;
+  }
+
+  .fare-uplink-right {
+    align-items: flex-start;
+  }
+
+  .fare-uplink-route {
+    flex-wrap: wrap;
+  }
+
+  .fare-station-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .profile-container {
+    padding: 20px 14px 80px;
+  }
+
+  .profile-header-card {
+    padding: 24px 20px 18px;
+  }
+
+  .profile-info-row {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .chatbot-fab {
+    bottom: 20px;
+    right: 16px;
+  }
+
+  .chatbot-panel {
+    width: calc(100vw - 32px);
+    right: 16px;
+    bottom: 80px;
+    max-height: min(420px, calc(100vh - 120px));
+  }
+
+  .modal-overlay {
+    padding: 12px;
+  }
+
+  .modal-box {
+    max-width: calc(100vw - 24px);
+    padding: 22px 16px;
+  }
+
+  .sos-numbers {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .avatar-options {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .recharge-options {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .metro-card-modal-box {
+    max-width: calc(100vw - 24px) !important;
+    max-height: calc(100vh - 24px);
+  }
+
+  .mcm-header {
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px 18px;
+  }
+
+  .mcm-title {
+    font-size: 18px;
+  }
+
+  .mcm-subtitle {
+    font-size: 9px;
+    line-height: 1.4;
+    letter-spacing: 0.08em;
+  }
+
+  .mcm-body {
+    padding: 18px;
+  }
+
+  .mcm-footer {
+    flex-direction: column-reverse;
+    gap: 12px;
+    padding: 16px 18px;
+  }
+
+  .btn-ghost,
+  .btn-submit {
+    width: 100%;
+  }
+
+  .choice-group {
+    flex-wrap: wrap;
+  }
+}
+
+/* Large phones: iPhone XR / 14 Pro Max / Pixel 7 */
+@media (max-width: 575.98px) {
+  .navbar {
+    padding: 0 14px;
+  }
+
+  .nav-logo-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .nav-actions {
+    gap: 5px;
+  }
+
+  .nav-btn,
+  .nav-hamburger {
+    width: 32px;
+    height: 32px;
+  }
+
+  .sos-btn {
+    padding: 0 8px;
+    font-size: 9px;
+  }
+
+  .auth-left {
+    padding: 60px 18px 20px;
+    gap: 18px;
+  }
+
+  .logo-icon {
+    width: 76px;
+    height: 76px;
+  }
+
+  .logo-heading {
+    font-size: 15px;
+    white-space: normal;
+  }
+
+  .logo-sub {
+    white-space: normal;
+    line-height: 1.4;
+  }
+
+  .tagline-line {
+    font-size: 20px;
+  }
+
+  .auth-stats {
+    gap: 10px;
+  }
+
+  .stat-divider {
+    display: none;
+  }
+
+  .field-input {
+    font-size: 11px;
+  }
+
+  .field-icon {
+    width: 40px;
+  }
+
+  .field-toggle {
+    width: 40px;
+    height: 42px;
+  }
+
+  .btn-primary {
+    padding: 12px 16px;
+    font-size: 11px;
+  }
+
+  .hero-section {
+    padding: 32px 18px;
+    gap: 20px;
+  }
+
+  .hero-title {
+    font-size: clamp(26px, 8vw, 34px);
+  }
+
+  .metro-card {
+    width: min(100%, 264px);
+  }
+
+  .fare-preview-table th,
+  .fare-preview-table td {
+    padding: 8px 10px;
+    font-size: 11px;
+  }
+
+  .page-title {
+    font-size: 22px;
+  }
+
+  .payment-opt-btn {
+    padding: 12px 14px;
+  }
+
+  .payment-opt-name {
+    font-size: 12px;
+  }
+}
+
+/* Compact phones: iPhone SE / iPhone 12 Pro / Galaxy A51-71 / Galaxy S20 Ultra */
+@media (max-width: 429.98px) {
+  .nav-brand-text {
+    display: none;
+  }
+
+  .navbar {
+    gap: 8px;
+  }
+
+  .nav-actions {
+    gap: 4px;
+  }
+
+  .sos-btn {
+    min-width: auto;
+    padding: 0 7px;
+  }
+
+  .status-bar {
+    font-size: 8px;
+  }
+
+  .auth-left {
+    padding: 58px 16px 18px;
+  }
+
+  .auth-logo-block {
+    gap: 12px;
   }
 
   .logo-icon {
@@ -209,24 +915,22 @@
     height: 72px;
   }
 
-  .logo-m {
-    font-size: 20px;
-  }
-
-  .logo-heading {
-    font-size: 13px;
-  }
-
-  .logo-sub {
-    font-size: 8px;
-  }
-
   .tagline-line {
     font-size: 18px;
   }
 
   .auth-stats {
-    gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: 100%;
+    gap: 8px;
+  }
+
+  .stat-item {
+    padding: 8px 6px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-secondary);
+    border-radius: var(--radius-sm);
   }
 
   .stat-value {
@@ -237,7 +941,119 @@
     font-size: 8px;
   }
 
-  /* Form */
+  .hero-section {
+    padding: 28px 14px;
+  }
+
+  .page-header {
+    padding: 16px 14px;
+  }
+
+  .routes-container,
+  .fare-container {
+    padding: 10px 12px 28px;
+  }
+
+  .fare-station-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px;
+    padding: 10px;
+  }
+
+  .profile-container {
+    padding: 18px 12px 76px;
+  }
+
+  .profile-info-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .chatbot-panel {
+    width: calc(100vw - 24px);
+    right: 12px;
+    bottom: 74px;
+  }
+
+  .metro-card-modal-box {
+    max-width: calc(100vw - 16px) !important;
+    max-height: calc(100vh - 16px);
+  }
+
+  .mcm-header,
+  .mcm-body,
+  .mcm-footer {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .card-type-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .choice-group {
+    flex-direction: column;
+  }
+
+  .file-upload-box {
+    padding: 16px;
+  }
+}
+
+/* Very small phones and folded devices: Galaxy Z Fold 5 folded / Galaxy S8+ */
+@media (max-width: 379.98px) {
+  .status-bar {
+    padding: 4px 10px;
+  }
+
+  .navbar {
+    height: 56px;
+    padding: 0 10px;
+  }
+
+  .page-section {
+    padding-top: 56px;
+  }
+
+  .mobile-nav-drawer {
+    top: 56px;
+  }
+
+  .nav-logo-icon,
+  .nav-btn,
+  .nav-hamburger {
+    width: 30px;
+    height: 30px;
+  }
+
+  .nav-hamburger span {
+    width: 16px;
+  }
+
+  .sos-btn {
+    padding: 0 6px;
+    font-size: 8px;
+  }
+
+  .auth-container,
+  .auth-container--register {
+    padding-top: 24px;
+    padding-bottom: 48px;
+  }
+
+  .auth-left {
+    padding: 56px 12px 16px;
+    gap: 14px;
+  }
+
+  .auth-stats {
+    display: none;
+  }
+
+  .auth-line-indicators {
+    justify-content: center;
+  }
+
   .auth-right {
     padding: 14px 10px;
   }
@@ -256,8 +1072,8 @@
   }
 
   .field-input {
-    font-size: 11px;
     padding: 10px 10px 10px 0;
+    font-size: 11px;
   }
 
   .field-icon {
@@ -269,54 +1085,25 @@
     height: 40px;
   }
 
-  .btn-primary {
-    padding: 12px 16px;
-    font-size: 10px;
-  }
-
-  .btn-otp {
-    padding: 0 10px;
-    font-size: 9px;
-    height: 40px;
-  }
-
   .gender-btn {
-    padding: 6px 10px;
+    padding: 6px 8px;
     font-size: 9px;
   }
 
-  .form-row {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-
-  /* Auth footer */
   .auth-footer {
-    font-size: 8px;
     gap: 5px;
     padding: 5px 8px;
-    flex-wrap: wrap;
-    justify-content: center;
+    font-size: 8px;
   }
 
-  .footer-divider {
-    display: none;
-  }
-
-  /* Hero sections */
   .hero-section {
     padding: 24px 12px;
-    gap: 18px;
+    gap: 16px;
   }
 
   .metro-card {
-    width: 240px;
-    height: 148px;
+    width: min(100%, 240px);
     border-radius: 12px;
-  }
-
-  .card-face {
-    padding: 16px;
   }
 
   .hero-title {
@@ -327,82 +1114,60 @@
     font-size: 13px;
   }
 
-  .routes-list li {
+  .routes-list li,
+  .reg-list li {
     font-size: 12px;
-  }
-
-  /* Page header */
-  .page-header {
-    padding: 14px 12px;
-    gap: 10px;
-    flex-direction: column;
   }
 
   .page-title {
     font-size: 20px;
   }
 
-  /* Filter bar */
   .filter-bar {
-    grid-template-columns: 1fr;
     padding: 10px 12px;
-    gap: 10px;
   }
 
-  /* Timetable */
   .tt-live-section,
   .tt-complete-section {
     padding: 12px;
-  }
-
-  .tt-live-grid,
-  .tt-schedule-grid {
-    grid-template-columns: 1fr;
   }
 
   .tt-train-card {
     padding: 10px 12px;
   }
 
-  /* Routes */
-  .routes-container {
-    padding: 10px;
+  .routes-container,
+  .fare-container {
+    padding: 10px 10px 24px;
   }
 
   .route-card-header {
-    padding: 12px 12px;
+    padding: 12px;
   }
 
   .route-line-name {
     font-size: 11px;
   }
 
-  /* Fare */
-  .fare-container {
-    padding: 10px;
+  .station-node {
+    width: 64px;
+  }
+
+  .station-name-label {
+    font-size: 9px;
+    max-height: 88px;
   }
 
   .fare-card-header {
     padding: 12px 14px;
   }
 
-  .fare-station-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 6px;
-    padding: 10px;
-  }
-
   .fare-amount {
     font-size: 20px;
   }
 
-  .fare-selector-grid {
-    grid-template-columns: 1fr;
-  }
-
-  /* Profile */
-  .profile-container {
-    padding: 16px 10px 70px;
+  .profile-header-card {
+    padding: 20px 14px 14px;
   }
 
   .profile-avatar-circle {
@@ -414,827 +1179,103 @@
     font-size: 16px;
   }
 
-  /* Chatbot */
   .chatbot-fab {
     bottom: 14px;
-    right: 14px;
+    right: 12px;
     width: 46px;
     height: 46px;
   }
 
-  .chatbot-panel {
-    width: calc(100vw - 20px);
-    right: 10px;
-    bottom: 72px;
-  }
-
-  /* Modal */
   .modal-box {
     padding: 18px 14px;
   }
 
-  /* Recharge */
-  .recharge-options {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* ══════════════════════════════════════════════════
-   ALL PHONES — max-width: 767px
-   Galaxy S8+ (360) · iPhone SE (375) · iPhone 12 Pro (390)
-   Pixel 7 (412) · iPhone XR (414) · iPhone 14 Pro Max (430)
-   Surface Duo (540) · up to tablet boundary
-══════════════════════════════════════════════════ */
-@media (max-width: 767.98px) {
-
-  /* Show hamburger, hide desktop nav */
-  .nav-hamburger {
-    display: flex !important;
-  }
-
-  .nav-links {
-    display: none !important;
-  }
-
-  /* Status bar — center brand only */
-  .status-bar {
-    justify-content: center;
-    padding: 5px 12px;
-  }
-
-  .status-bar .status-item:first-child,
-  .status-bar .status-item:last-child {
-    display: none;
-  }
-
-  /* Navbar compact */
-  .navbar {
-    padding: 0 16px;
-    gap: 10px;
-  }
-
-  .nav-actions {
-    gap: 6px;
-  }
-
-  .nav-profile {
-    margin-left: auto;
-  }
-
-  /* Auth pages — single column */
-  .auth-container,
-  .auth-container--register {
-    grid-template-columns: 1fr;
-    padding-top: 28px;
-    padding-bottom: 52px;
-  }
-
-  .auth-left {
-    padding: 64px 24px 24px;
-    border-right: none;
-    border-bottom: 1px solid var(--border-secondary);
-    gap: 22px;
-  }
-
-  .auth-tagline .tagline-line {
-    font-size: 22px;
-  }
-
-  .auth-right {
-    padding: 24px 16px;
-  }
-
-  .auth-right--wide {
-    padding: 20px 14px;
-  }
-
-  .form-panel {
-    padding: 20px 16px;
-  }
-
-  .panel-title {
+  .mcm-title {
     font-size: 16px;
   }
 
-  .form-row {
-    grid-template-columns: 1fr;
-    gap: 14px;
-  }
-
-  /* Auth footer */
-  .auth-footer {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 6px;
-    font-size: 9px;
-    padding: 6px 12px;
-  }
-
-  .footer-divider {
+  .mcm-subtitle {
     display: none;
   }
 
-  /* Page sections */
-  .page-section {
-    padding-top: 60px;
+  .card-type-grid {
+    grid-template-columns: 1fr;
   }
+}
 
-  .page-header {
-    padding: 18px 16px;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .page-header-right {
-    flex-direction: row;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    width: 100%;
-  }
-
-  .page-title {
-    font-size: 22px;
-  }
-
-  /* Hero sections */
+/* Short-height laptop and smart-display compensation */
+@media (max-height: 700px) and (min-width: 900px) {
   .hero-section {
-    flex-direction: column;
-    padding: 40px 20px;
     min-height: auto;
-    gap: 28px;
+    padding: 40px 48px;
   }
 
-  .hero-card-wrap--right,
-  .hero-card-wrap--left {
-    order: -1;
-    margin: 0 auto;
-  }
-
-  .hero-content--right {
-    margin-left: 0;
-  }
-
-  .hero-content {
-    max-width: 100%;
-  }
-
-  .hero-desc {
-    max-width: 100%;
-    font-size: 14px;
-  }
-
-  .reg-list {
-    grid-template-columns: 1fr;
-    gap: 8px;
-  }
-
-  .home-footer {
-    padding: 20px 16px;
-  }
-
-  /* Filter bar */
-  .filter-bar {
-    grid-template-columns: 1fr;
-    padding: 14px 16px;
-    gap: 12px;
-  }
-
-  /* Timetable */
-  .tt-live-grid {
-    grid-template-columns: 1fr;
-    gap: 14px;
-  }
-
-  .tt-schedule-grid {
-    grid-template-columns: 1fr;
-    gap: 14px;
-  }
-
-  .tt-live-section {
-    padding: 16px;
-  }
-
-  .tt-complete-section {
-    padding: 16px 16px 32px;
-  }
-
-  /* Routes */
-  .routes-container {
-    padding: 12px 16px 32px;
-  }
-
-  .route-card-header {
-    padding: 14px 16px;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .route-endpoints {
-    display: none;
-  }
-
-  .route-line-name {
-    font-size: 12px;
-  }
-
-  .route-count strong {
-    font-size: 16px;
-  }
-
-  /* Fare */
-  .fare-container {
-    padding: 12px 16px 32px;
-  }
-
-  .fare-selector-grid {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-
-  .fare-uplink-bar {
-    flex-direction: column;
-    gap: 12px;
-    padding: 16px;
-  }
-
-  .fare-uplink-right {
-    align-items: flex-start;
-  }
-
-  .fare-amount {
-    font-size: 24px;
-  }
-
-  .fare-station-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  /* Profile */
-  .profile-container {
-    padding: 20px 14px 80px;
-  }
-
-  .profile-info-row {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  /* Chatbot */
-  .chatbot-fab {
-    bottom: 20px;
-    right: 16px;
-  }
-
-  .chatbot-panel {
-    width: calc(100vw - 32px);
-    right: 16px;
-    bottom: 80px;
-  }
-
-  /* Modal */
-  .modal-box {
-    padding: 22px 16px;
-    max-width: calc(100vw - 32px);
-  }
-
-  /* SOS */
-  .sos-numbers {
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
-
-  /* Avatar options */
-  .avatar-options {
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
-
-  /* Recharge */
-  .recharge-options {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* ── Surface Duo specific (540px pane width) ── */
-@media (min-width: 480px) and (max-width: 600px) {
-  .auth-left {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    gap: 16px;
-    padding: 64px 24px 20px;
-  }
-
-  .auth-logo-block {
-    flex: 0 0 auto;
-  }
-
-  .auth-tagline {
-    flex: 1 0 140px;
-  }
-
-  .auth-stats {
-    flex-wrap: wrap;
-  }
-
-  .form-panel {
-    max-width: 460px;
-    margin: 0 auto;
-  }
-
-  .fare-station-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-/* ── iPhone 14 Pro Max & larger phones (430px+) ── */
-@media (min-width: 430px) and (max-width: 767px) {
-  .metro-card {
-    width: 280px;
-    height: 172px;
-  }
-
-  .hero-title {
-    font-size: 28px;
-  }
-
-  .auth-left {
-    padding: 64px 28px 24px;
-  }
-
-  .fare-station-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-/* ── Samsung Galaxy S8+ narrow (360px exactly) ── */
-@media (min-width: 360px) and (max-width: 374px) {
-  .auth-left {
-    padding: 64px 16px 20px;
-  }
-
-  .logo-heading {
-    font-size: 15px;
-  }
-
-  .tagline-line {
-    font-size: 19px;
-  }
-
-  .form-panel {
-    padding: 18px 14px;
-  }
-
-  .metro-card {
-    width: 248px;
-    height: 152px;
-  }
-}
-
-/* ══════════════════════════════════════════════════
-   iPAD MINI — 768px
-   Bootstrap 'md' breakpoint
-══════════════════════════════════════════════════ */
-@media (min-width: 768px) and (max-width: 819px) {
-
-  /* Navbar */
-  .navbar {
-    padding: 0 20px;
-  }
-
-  .nav-brand-text {
-    font-size: 12px;
-  }
-
-  .nav-item {
-    padding: 8px 10px;
-    font-size: 10px;
-  }
-
-  /* Auth */
   .auth-container {
-    grid-template-columns: 270px 1fr;
-  }
-
-  .auth-container--register {
-    grid-template-columns: 260px 1fr;
+    min-height: auto;
   }
 
   .auth-left {
-    padding: 60px 20px 40px 24px;
-    gap: 28px;
-  }
-
-  .tagline-line {
-    font-size: 22px;
+    gap: 18px;
   }
 
   .auth-stats {
-    gap: 14px;
-  }
-
-  .stat-value {
-    font-size: 18px;
-  }
-
-  .auth-right {
-    padding: 40px 20px;
-  }
-
-  .auth-right--wide {
-    padding: 32px 14px;
-  }
-
-  .form-panel {
-    padding: 24px;
-  }
-
-  .auth-right--wide .form-panel {
-    max-width: 100%;
-  }
-
-  /* Hero */
-  .hero-section {
-    padding: 56px 28px;
-    gap: 36px;
+    display: none;
   }
 
   .metro-card {
     width: 280px;
     height: 172px;
   }
-
-  .hero-content {
-    max-width: 380px;
-  }
-
-  /* Page header */
-  .page-header {
-    padding: 24px 28px;
-  }
-
-  .page-title {
-    font-size: 26px;
-  }
-
-  /* Filter bar */
-  .filter-bar {
-    padding: 16px 28px;
-    grid-template-columns: 1fr 1fr;
-  }
-
-  /* Timetable */
-  .tt-live-section {
-    padding: 20px 28px;
-  }
-
-  .tt-complete-section {
-    padding: 20px 28px 40px;
-  }
-
-  .tt-live-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .tt-schedule-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  /* Routes */
-  .routes-container {
-    padding: 16px 28px 40px;
-  }
-
-  .route-endpoints {
-    display: flex;
-  }
-
-  /* Fare */
-  .fare-container {
-    padding: 16px 28px 40px;
-  }
-
-  .fare-selector-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  /* Profile */
-  .profile-container {
-    padding: 28px 20px 80px;
-  }
 }
 
-/* ══════════════════════════════════════════════════
-   iPAD AIR (820) · Asus Zenbook Fold (853)
-   Galaxy Z Fold 5 unfolded (904) · Surface Pro 7 (912)
-   Bootstrap 'lg' range
-══════════════════════════════════════════════════ */
-@media (min-width: 820px) and (max-width: 1023px) {
-
-  /* Navbar */
-  .navbar {
-    padding: 0 24px;
-  }
-
-  .nav-item {
-    padding: 8px 12px;
-    font-size: 11px;
-  }
-
-  /* Auth */
-  .auth-container {
-    grid-template-columns: 300px 1fr;
-  }
-
-  .auth-container--register {
-    grid-template-columns: 290px 1fr;
-  }
-
-  .auth-left {
-    padding: 60px 24px 40px 32px;
-    gap: 30px;
-  }
-
-  .tagline-line {
-    font-size: 24px;
-  }
-
-  .auth-right {
-    padding: 48px 28px;
-  }
-
-  .auth-right--wide {
-    padding: 36px 18px;
-  }
-
-  .form-panel {
-    padding: 28px;
-  }
-
-  /* Hero */
-  .hero-section {
-    padding: 60px 36px;
-    gap: 44px;
-  }
-
-  .metro-card {
-    width: 300px;
-    height: 185px;
-  }
-
-  /* Page header */
-  .page-header {
-    padding: 26px 36px;
-  }
-
-  .page-title {
-    font-size: 28px;
-  }
-
-  /* Filter bar */
-  .filter-bar {
-    padding: 16px 36px;
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  /* Timetable */
-  .tt-live-section {
-    padding: 22px 36px;
-  }
-
-  .tt-complete-section {
-    padding: 22px 36px 44px;
-  }
-
-  /* Routes */
-  .routes-container {
-    padding: 18px 36px 44px;
-  }
-
-  .route-endpoints {
-    display: flex;
-  }
-
-  /* Fare */
-  .fare-container {
-    padding: 18px 36px 44px;
-  }
-
-  /* Profile */
-  .profile-container {
-    padding: 30px 24px 80px;
-  }
-}
-
-/* ══════════════════════════════════════════════════
-   iPAD PRO — 1024px
-   NEST HUB — 1024×600px
-   Bootstrap 'xl' range
-══════════════════════════════════════════════════ */
-@media (min-width: 1024px) and (max-width: 1279px) {
-
-  /* Navbar */
-  .navbar {
-    padding: 0 28px;
-  }
-
-  /* Auth */
-  .auth-container {
-    grid-template-columns: 340px 1fr;
-  }
-
-  .auth-container--register {
-    grid-template-columns: 320px 1fr;
-  }
-
-  .auth-left {
-    padding: 60px 32px 48px 48px;
-    gap: 36px;
-  }
-
-  /* Hero */
-  .hero-section {
-    padding: 68px 48px;
-    gap: 56px;
-  }
-
-  .metro-card {
-    width: 320px;
-    height: 196px;
-  }
-
-  /* Page header */
-  .page-header {
-    padding: 28px 48px;
-  }
-}
-
-/* ══════════════════════════════════════════════════
-   NEST HUB MAX — 1280px × 800px
-   Bootstrap 'xxl' range
-══════════════════════════════════════════════════ */
-@media (min-width: 1280px) {
-  .hero-section {
-    padding: 80px 60px;
-  }
-
-  .navbar {
-    padding: 0 32px;
-  }
-
-  .page-header {
-    padding: 32px 48px 24px;
-  }
-}
-
-/* ══════════════════════════════════════════════════
-   NEST HUB SHORT SCREENS — max-height: 600px
-   (Landscape / hub display compensation)
-══════════════════════════════════════════════════ */
-@media (max-height: 600px) and (min-width: 900px) {
-  .hero-section {
-    min-height: auto;
-    padding: 32px 48px;
-  }
-
-  .auth-container {
-    min-height: auto;
-    padding-top: 28px;
-    padding-bottom: 40px;
-  }
-
-  .auth-left {
-    gap: 16px;
-    padding: 30px 32px 24px 40px;
-  }
-
-  .tagline-line {
-    font-size: 20px;
-  }
-
-  .auth-stats {
-    display: none;
-  }
-
-  .metro-card {
-    width: 260px;
-    height: 160px;
-  }
-
-  .hero-title {
-    font-size: clamp(24px, 3vw, 40px);
-  }
-}
-
-/* ══════════════════════════════════════════════════
-   NEST HUB SHORT + PHONE LANDSCAPE
-   max-height: 480px general
-══════════════════════════════════════════════════ */
-@media (max-height: 480px) and (max-width: 900px) {
+/* Landscape phones and short foldable panes */
+@media (orientation: landscape) and (max-height: 500px) and (max-width: 900px) {
   .auth-left {
     display: none;
   }
 
-  /* Hide branding on landscape phones */
   .auth-container,
   .auth-container--register {
     grid-template-columns: 1fr;
     min-height: 100vh;
-    padding-top: 28px;
+    padding-top: 24px;
     padding-bottom: 40px;
   }
 
   .auth-right {
-    padding: 16px;
     align-items: flex-start;
-  }
-
-  .form-panel {
     padding: 16px;
   }
 
   .hero-section {
     min-height: auto;
     padding: 24px 16px;
-  }
-
-  .metro-card {
-    width: 200px;
-    height: 124px;
-    border-radius: 10px;
   }
 
   .hero-card-wrap {
     display: none;
   }
 
-  /* hide card on landscape phones to save space */
-}
-
-/* ══════════════════════════════════════════════════
-   SURFACE DUO — Foldable dual screen (540px each pane)
-   Uses environment variables for foldable support
-══════════════════════════════════════════════════ */
-@media (min-width: 520px) and (max-width: 560px) {
-
-  .auth-container,
-  .auth-container--register {
-    grid-template-columns: 1fr;
-  }
-
-  .auth-left {
-    padding: 64px 24px 24px;
-    border-right: none;
-    border-bottom: 1px solid var(--border-secondary);
-  }
-
-  .form-panel {
-    max-width: 480px;
-    margin: 0 auto;
-  }
-
-  .metro-card {
-    width: 300px;
-    height: 185px;
-  }
-
-  .hero-section {
-    padding: 48px 28px;
-    gap: 32px;
-  }
-
-  .filter-bar {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .fare-station-grid {
-    grid-template-columns: repeat(4, 1fr);
+  .chatbot-panel {
+    max-height: calc(100vh - 110px);
   }
 }
 
-/* ══════════════════════════════════════════════════
-   BOOTSTRAP UTILITY AUGMENTATION
-   Enhances Bootstrap classes with custom variables
-══════════════════════════════════════════════════ */
-
-/* Bootstrap container widths override to respect our layout */
+/* Bootstrap utility augmentation */
 .container-fluid {
   padding-left: 0;
   padding-right: 0;
 }
 
-/* Ensure Bootstrap row/col don't conflict with grid layouts */
 .form-row.row {
   margin: 0;
 }
 
-.form-row.row>[class*="col"] {
+.form-row.row > [class*="col"] {
   padding-left: 8px;
   padding-right: 8px;
 }
 
-/* Bootstrap modal override — use our custom dark theme */
 .modal-content {
   background: var(--bg-card);
   border: 1px solid var(--border-primary);
@@ -1250,7 +1291,6 @@
   border-top-color: var(--border-secondary);
 }
 
-/* Bootstrap form controls — match our style */
 .form-control,
 .form-select {
   background: var(--bg-input);
@@ -1269,7 +1309,6 @@
   color: var(--text-primary);
 }
 
-/* Bootstrap nav pills — match our theme */
 .nav-pills .nav-link.active {
   background-color: var(--accent);
   color: var(--bg-primary);
@@ -1279,11 +1318,8 @@
   color: var(--text-secondary);
 }
 
-/* ══════════════════════════════════════════════════
-   PRINT MEDIA — Basic print support
-══════════════════════════════════════════════════ */
+/* Print */
 @media print {
-
   .navbar,
   .auth-footer,
   .chatbot-fab,
@@ -1296,12 +1332,12 @@
   }
 
   body {
-    background: white;
-    color: black;
+    background: #fff;
+    color: #000;
   }
 
   .form-panel {
-    box-shadow: none;
     border: 1px solid #ccc;
+    box-shadow: none;
   }
 }
