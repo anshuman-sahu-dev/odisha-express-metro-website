@@ -115,7 +115,7 @@ odisha-express/
 | 🟢 Green Card | Senior Citizens | Green |
 | 🟣 Purple Card | Women | Purple |
 | 🟠 Orange Card | Govt. Employees | Orange |
-| 🥇 Golden Card | Tourists | Gold |
+| 🟡 Golden Card | Tourists | Gold |
 
 ---
 
