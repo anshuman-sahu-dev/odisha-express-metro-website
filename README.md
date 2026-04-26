@@ -2,7 +2,7 @@
 
 > *Odisha's First Metro — Your Cultural Ride Starts Here*
 
-![Odisha Express Logo](assets/PNG/Odisha%20Express%20Logo.png)
+![Odisha Express Logo](assets/PNG/Odisha%20Express%20Logo.jpg)
 
 ---
 
