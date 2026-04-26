@@ -2,7 +2,7 @@
 
 > *Odisha's First Metro — Your Cultural Ride Starts Here*
 
-![Odisha Express Banner](assets/PNG/Odisha Express Logo)
+[![Odisha Express Live](https://img.shields.io/badge/🚇%20Live%20Demo-Odisha%20Express%20Metro-00BFFF?style=for-the-badge)](https://odisha-express-metro-website.vercel.app/)
 
 ---
 
