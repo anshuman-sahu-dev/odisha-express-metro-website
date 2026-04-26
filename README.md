@@ -131,8 +131,8 @@ odisha-express/
 ├── .env                          # Environment config
 │
 ├── assets/
-│   ├── icons/                    # UI icons and SVG assets
-│   └── images/                   # Illustrations, card visuals, backgrounds
+│   ├── PNG/                    # UI icons and SVG assets
+│   └── SVG/                   # Illustrations, card visuals, backgrounds
 │
 ├── CSS/
 │   ├── styles.css                # Global base styles
