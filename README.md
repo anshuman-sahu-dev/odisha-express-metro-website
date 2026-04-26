@@ -24,9 +24,9 @@
 
 ## 📖 About the Project
 
-**Odisha Express** is a fully functional, dark-themed metro transit web application built using **HTML, CSS, and Vanilla JavaScript**. It simulates a real-world metro management system for **Bhubaneswar, Odisha** — India's emerging smart city — with live-style timetables, multi-line route maps, fare matrices, smart card registration, card recharge, and an AI-powered chatbot assistant named **KalingaBot**.
+**Odisha Express** is a fully functional, dark-themed metro transit web application built using **HTML, CSS, and Vanilla JavaScript**. It simulates a real-world metro management system for **Bhubaneswar, Odisha** India's emerging smart city with live-style timetables, multi-line route maps, fare matrices, smart card registration, card recharge, and an AI-powered chatbot assistant named **KalingaBot**.
 
-The project is designed to replicate the experience of a production-grade public transit app with a sleek sci-fi / HUD-inspired UI aesthetic, real JSON-driven data, client-side routing, and modular JavaScript architecture — all without any JavaScript framework or build tools.
+The project is designed to replicate the experience of a production-grade public transit app with a sleek sci-fi / HUD-inspired UI aesthetic, real JSON-driven data, client-side routing, and modular JavaScript architecture all without any JavaScript framework or build tools.
 
 ---
 
