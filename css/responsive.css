@@ -390,6 +390,11 @@
     line-height: 1.4;
     letter-spacing: 0.1em;
   }
+
+  /* Keep chatbot panel compact on small tablets (iPad Mini) */
+  .chatbot-panel {
+    width: min(320px, calc(100vw - 2rem));
+  }
 }
 
 /* Phones and Surface Duo panes */
@@ -696,14 +701,14 @@
   }
 
   .chatbot-fab {
-    bottom: 20px;
-    right: 16px;
+    bottom: max(20px, env(safe-area-inset-bottom));
+    right: max(16px, env(safe-area-inset-right));
   }
 
   .chatbot-panel {
     width: calc(100vw - 32px);
-    right: 16px;
-    bottom: 80px;
+    right: max(16px, env(safe-area-inset-right));
+    bottom: max(80px, calc(env(safe-area-inset-bottom) + 80px));
     max-height: min(420px, calc(100vh - 120px));
   }
 
@@ -880,7 +885,7 @@
 }
 
 /* Compact phones: iPhone SE / iPhone 12 Pro / Galaxy A51-71 / Galaxy S20 Ultra */
-@media (max-width: 429.98px) {
+@media (max-width: 479.98px) {
   .nav-brand-text {
     display: none;
   }
@@ -970,8 +975,8 @@
 
   .chatbot-panel {
     width: calc(100vw - 24px);
-    right: 12px;
-    bottom: 74px;
+    right: max(12px, env(safe-area-inset-right));
+    bottom: max(74px, calc(env(safe-area-inset-bottom) + 74px));
   }
 
   .metro-card-modal-box {
@@ -1001,7 +1006,7 @@
 }
 
 /* Very small phones and folded devices: Galaxy Z Fold 5 folded / Galaxy S8+ */
-@media (max-width: 379.98px) {
+@media (max-width: 380px) {
   .status-bar {
     padding: 4px 10px;
   }
