@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#080c14" />
+  <title>Odisha Express - Login</title>
+  <link rel="icon" type="image/svg+xml" href="assets/images/Odisha Express Logo.svg" />
+  <!-- Bootstrap 5.3 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <!-- Custom CSS (after Bootstrap so we can override) -->
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/auth.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+
+<body class="auth-body">
+
+  <!-- Animated grid background -->
+  <div class="bg-grid"></div>
+  <div class="bg-scanline"></div>
+
+  <!-- Corner decorations -->
+  <div class="corner corner-tl"></div>
+  <div class="corner corner-tr"></div>
+  <div class="corner corner-bl"></div>
+  <div class="corner corner-br"></div>
+
+  <!-- Status bar top -->
+  <div class="status-bar">
+    <span class="status-item">SYSTEM STATUS: <span class="status-online">ONLINE</span></span>
+    <span class="status-item brand-title">ODISHA EXPRESS</span>
+    <span class="status-item">AUTH MODULE: <span class="status-online">ACTIVE</span></span>
+  </div>
+
+  <!-- Main login container -->
+  <main class="auth-container">
+
+    <!-- Left panel — branding -->
+    <div class="auth-left">
+      <div class="auth-logo-block">
+        <div class="logo-icon logo-icon--img">
+          <img src="assets/images/Odisha Express Logo.svg" alt="Odisha Express Logo" class="logo-img" />
+        </div>
+        <div class="logo-text">
+          <h1 class="logo-heading">ODISHA<span class="logo-slash">//</span>EXPRESS</h1>
+          <p class="logo-sub">BHUBANESWAR METRO NETWORK</p>
+        </div>
+      </div>
+
+      <div class="auth-tagline">
+        <p class="tagline-line">ODISHA'S FIRST</p>
+        <p class="tagline-line accent">METRO SYSTEM</p>
+      </div>
+
+      <div class="auth-stats">
+        <div class="stat-item">
+          <span class="stat-value">06</span>
+          <span class="stat-label">LINES</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-value">150</span>
+          <span class="stat-label">STATIONS</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-value">24/7</span>
+          <span class="stat-label">SUPPORT</span>
+        </div>
+      </div>
+
+      <div class="auth-line-indicators">
+        <span class="line-dot" style="background:#00b4ff;" title="Blue Line"></span>
+        <span class="line-dot" style="background:#00e676;" title="Green Line"></span>
+        <span class="line-dot" style="background:#ff9100;" title="Orange Line"></span>
+        <span class="line-dot" style="background:#d500f9;" title="Purple Line"></span>
+        <span class="line-dot" style="background:#ffea00;" title="Yellow Line"></span>
+        <span class="line-dot" style="background:#ff4081;" title="Pink Line"></span>
+      </div>
+    </div>
+
+    <!-- Right panel — login form -->
+    <div class="auth-right">
+      <div class="form-panel">
+
+        <!-- Panel header -->
+        <div class="panel-header">
+          <span class="panel-tag">[AUTH_MODULE]</span>
+          <h2 class="panel-title">USER LOGIN</h2>
+          <div class="panel-underline"></div>
+        </div>
+
+        <!-- Login form -->
+        <form class="login-form" id="loginForm" novalidate>
+
+          <!-- Username field -->
+          <div class="field-group" id="usernameGroup">
+            <label class="field-label" for="username">USERNAME / EMAIL</label>
+            <div class="field-wrapper">
+              <span class="field-icon">
+                <!-- Human icon SVG -->
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
+                </svg>
+              </span>
+              <input type="text" id="username" name="username" class="field-input" placeholder="ENTER USERNAME OR EMAIL"
+                autocomplete="username" required />
+              <span class="field-status" id="usernameStatus"></span>
+            </div>
+            <span class="field-error" id="usernameError"></span>
+          </div>
+
+          <!-- Password field -->
+          <div class="field-group" id="passwordGroup">
+            <label class="field-label" for="password">PASSWORD</label>
+            <div class="field-wrapper">
+              <span class="field-icon">
+                <!-- Lock icon SVG -->
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                </svg>
+              </span>
+              <input type="password" id="password" name="password" class="field-input" placeholder="ENTER PASSWORD"
+                autocomplete="current-password" required />
+              <button type="button" class="field-toggle" id="togglePassword" aria-label="Toggle password visibility">
+                <!-- Eye icon -->
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" id="eyeIcon">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                  <circle cx="12" cy="12" r="3" />
+                </svg>
+              </button>
+            </div>
+            <span class="field-error" id="passwordError"></span>
+          </div>
+
+          <!-- Remember me + Forgot password -->
+          <div class="form-options">
+            <label class="checkbox-label" id="rememberLabel">
+              <input type="checkbox" id="rememberMe" name="rememberMe" class="checkbox-input" />
+              <span class="checkbox-custom"></span>
+              <span class="checkbox-text">REMEMBER ME</span>
+            </label>
+            <a href="#" class="forgot-link" id="forgotPassword">FORGOT PASSWORD?</a>
+          </div>
+
+          <!-- Remember me warning -->
+          <div class="remember-warning" id="rememberWarning" style="display:none;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10" />
+              <line x1="12" y1="8" x2="12" y2="12" />
+              <line x1="12" y1="16" x2="12.01" y2="16" />
+            </svg>
+            YOU MUST ACCEPT TERMS TO PROCEED
+          </div>
+
+          <!-- Login button -->
+          <button type="submit" class="btn-primary" id="loginBtn">
+            <span class="btn-text">INITIALIZE SESSION</span>
+            <span class="btn-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+                <polyline points="10 17 15 12 10 7" />
+                <line x1="15" y1="12" x2="3" y2="12" />
+              </svg>
+            </span>
+          </button>
+
+          <!-- Register link -->
+          <p class="auth-switch">
+            NO ACCOUNT? <a href="register.html" class="auth-link">REGISTER HERE</a>
+          </p>
+
+        </form>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Forgot password modal -->
+  <div class="modal-overlay" id="forgotModal" style="display:none;">
+    <div class="modal-box">
+      <div class="modal-header">
+        <span class="panel-tag">[PASSWORD_RESET]</span>
+        <button class="modal-close" id="closeForgotModal">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+      <h3 class="modal-title">RESET PASSWORD</h3>
+      <p class="modal-desc">ENTER YOUR REGISTERED EMAIL TO RECEIVE A RESET LINK.</p>
+      <div class="field-group">
+        <label class="field-label" for="resetEmail">EMAIL ADDRESS</label>
+        <div class="field-wrapper">
+          <span class="field-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+              <polyline points="22,6 12,13 2,6" />
+            </svg>
+          </span>
+          <input type="email" id="resetEmail" class="field-input" placeholder="your@email.com" />
+        </div>
+      </div>
+      <button class="btn-primary" id="sendResetBtn">SEND RESET LINK</button>
+      <p class="modal-feedback" id="resetFeedback"></p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="auth-footer">
+    <span>&#169; 2025 BHUBANESWAR METRO. ALL RIGHTS RESERVED.</span>
+    <span class="footer-divider">|</span>
+    <span>HELP LINE: <a href="tel:1073" class="footer-link">1073</a> / <a href="tel:1074"
+        class="footer-link">1074</a></span>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/auth.js"></script>
+  <!-- Bootstrap 5.3 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc4s9bIOgUxi8T/jzmE5Q5yKyg5F9+QLpfFpQ7tF9gTWV"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

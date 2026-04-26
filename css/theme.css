@@ -1,0 +1,152 @@
+/* ═══════════════════════════════════════════════════
+   ODISHA EXPRESS — theme.css
+   Dark / light theme system
+═══════════════════════════════════════════════════ */
+
+/* Theme transitions — smooth swap on toggle */
+body,
+.navbar,
+.page-section,
+.filter-bar,
+.route-card,
+.fare-card,
+.tt-schedule-panel,
+.tt-direction-panel,
+.tt-table th,
+.tt-table td,
+.filter-select,
+.fare-station-btn,
+.modal-box {
+  transition:
+    background-color 0.35s ease,
+    border-color 0.35s ease,
+    color 0.25s ease;
+}
+
+/* ── Navbar theme adaptation ─────────────────────── */
+[data-theme="light"] .navbar {
+  background: rgba(240, 244, 248, 0.95);
+  border-bottom-color: rgba(0, 100, 180, 0.15);
+}
+[data-theme="light"] .nav-brand-text { color: #0066cc; }
+[data-theme="light"] .nav-slash { color: #0066cc; }
+[data-theme="light"] .nav-item { color: #4a5568; }
+[data-theme="light"] .nav-item:hover,
+[data-theme="light"] .nav-item.active { color: #0066cc; }
+[data-theme="light"] .nav-item.active::after { background: #0066cc; }
+
+/* ── Page header theme ───────────────────────────── */
+[data-theme="light"] .page-header { border-bottom-color: rgba(0, 100, 180, 0.15); }
+[data-theme="light"] .page-title  { color: #1a202c; }
+[data-theme="light"] .page-tag    { color: #0066cc; }
+[data-theme="light"] .page-underline { background: #0066cc; }
+
+/* ── Filter bar ──────────────────────────────────── */
+[data-theme="light"] .filter-bar {
+  background: #ffffff;
+  border-color: rgba(0, 100, 180, 0.15);
+}
+[data-theme="light"] .filter-label { color: #4a5568; }
+[data-theme="light"] .filter-select {
+  background: #f7fafc;
+  border-color: rgba(0, 100, 180, 0.3);
+  color: #1a202c;
+}
+[data-theme="light"] .filter-select:focus { border-color: #0066cc; box-shadow: 0 0 0 3px rgba(0, 100, 180, 0.1); }
+
+/* ── Route cards ─────────────────────────────────── */
+[data-theme="light"] .route-card {
+  background: #ffffff;
+  border-color: rgba(0, 100, 180, 0.12);
+}
+[data-theme="light"] .route-card-header:hover { background: rgba(0, 100, 180, 0.04); }
+[data-theme="light"] .route-line-name { color: #1a202c; }
+[data-theme="light"] .route-ep { color: #4a5568; background: #f0f4f8; border-color: rgba(0,0,0,0.1); }
+[data-theme="light"] .route-arrow { color: #0066cc; }
+[data-theme="light"] .route-count { color: #4a5568; }
+[data-theme="light"] .route-count-label { color: #a0aec0; }
+[data-theme="light"] .route-toggle-icon { color: #0066cc; }
+
+/* ── Station track ────────────────────────────────── */
+[data-theme="light"] .station-track-line { background: rgba(0, 100, 180, 0.2); }
+[data-theme="light"] .station-dot { border-color: #0066cc; background: #ffffff; }
+[data-theme="light"] .station-dot.active { background: #0066cc; }
+[data-theme="light"] .station-code { color: #0066cc; }
+[data-theme="light"] .station-name-label { color: #1a202c; }
+
+/* ── Timetable ───────────────────────────────────── */
+[data-theme="light"] .tt-live-section,
+[data-theme="light"] .tt-complete-section { background: transparent; }
+[data-theme="light"] .tt-section-title { color: #1a202c; }
+[data-theme="light"] .tt-display-count { color: #0066cc; }
+[data-theme="light"] .tt-direction-panel {
+  background: #ffffff;
+  border-color: rgba(0, 100, 180, 0.12);
+}
+[data-theme="light"] .tt-dir-title { color: #1a202c; }
+[data-theme="light"] .tt-dir-dest { color: #0066cc; }
+[data-theme="light"] .tt-train-card { background: #f0f4f8; border-color: rgba(0, 100, 180, 0.15); }
+[data-theme="light"] .tt-train-time { color: #0066cc; }
+[data-theme="light"] .tt-train-dest { color: #4a5568; }
+[data-theme="light"] .tt-train-mins { color: #0066cc; }
+[data-theme="light"] .tt-schedule-panel {
+  background: #ffffff;
+  border-color: rgba(0, 100, 180, 0.12);
+}
+[data-theme="light"] .tt-sched-title { color: #1a202c; }
+[data-theme="light"] .tt-table th {
+  background: #f0f4f8;
+  color: #0066cc;
+  border-bottom-color: rgba(0, 100, 180, 0.2);
+}
+[data-theme="light"] .tt-table td {
+  color: #1a202c;
+  border-bottom-color: rgba(0, 0, 0, 0.06);
+}
+[data-theme="light"] .tt-table tr:hover td { background: rgba(0, 100, 180, 0.04); }
+
+/* ── Fare cards ──────────────────────────────────── */
+[data-theme="light"] .fare-card {
+  background: #ffffff;
+  border-color: rgba(0, 100, 180, 0.12);
+}
+[data-theme="light"] .fare-card-header:hover { background: rgba(0, 100, 180, 0.04); }
+[data-theme="light"] .fare-line-name { color: #1a202c; }
+[data-theme="light"] .fare-toggle-icon { color: #0066cc; }
+[data-theme="light"] .fare-panel { background: #f7fafc; border-top-color: rgba(0, 100, 180, 0.1); }
+[data-theme="light"] .fare-uplink-bar { background: #edf2f7; border-color: rgba(0, 100, 180, 0.15); }
+[data-theme="light"] .fare-uplink-label { color: #4a5568; }
+[data-theme="light"] .fare-origin-display,
+[data-theme="light"] .fare-dest-display { color: #1a202c; }
+[data-theme="light"] .fare-route-arrow { color: #0066cc; }
+[data-theme="light"] .fare-computed-label { color: #4a5568; }
+[data-theme="light"] .fare-amount { color: #0066cc; }
+[data-theme="light"] .fare-dash { color: #a0aec0; }
+[data-theme="light"] .fare-selector { background: #ffffff; border-color: rgba(0, 100, 180, 0.1); }
+[data-theme="light"] .fare-sel-num { color: #0066cc; }
+[data-theme="light"] .fare-sel-title { color: #1a202c; }
+[data-theme="light"] .fare-station-btn {
+  background: #f0f4f8;
+  border-color: rgba(0, 0, 0, 0.08);
+  color: #1a202c;
+}
+[data-theme="light"] .fare-station-btn:hover { border-color: #0066cc; color: #0066cc; }
+[data-theme="light"] .fare-station-btn.selected { background: rgba(0, 100, 180, 0.08); border-color: #0066cc; color: #0066cc; }
+[data-theme="light"] .fare-station-code { color: #0066cc; }
+
+/* ── Status badges ───────────────────────────────── */
+[data-theme="light"] .status-badge { color: #4a5568; }
+[data-theme="light"] .sb-label { color: #a0aec0; }
+[data-theme="light"] .sb-value { color: #1a202c; }
+[data-theme="light"] .sb-value.online { color: #00994d; }
+
+/* ── Theme toggle icon ───────────────────────────── */
+[data-theme="dark"]  #sunIcon  { display: block; }
+[data-theme="dark"]  #moonIcon { display: none;  }
+[data-theme="light"] #sunIcon  { display: none;  }
+[data-theme="light"] #moonIcon { display: block; }
+
+/* ── Scrollbar light theme ───────────────────────── */
+[data-theme="light"] ::-webkit-scrollbar-track { background: #e2e8f0; }
+[data-theme="light"] ::-webkit-scrollbar-thumb { background: rgba(0, 100, 180, 0.3); }
+[data-theme="light"] ::-webkit-scrollbar-thumb:hover { background: #0066cc; }

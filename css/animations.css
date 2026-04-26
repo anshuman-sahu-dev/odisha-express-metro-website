@@ -1,0 +1,386 @@
+/* ═══════════════════════════════════════════════════
+   ODISHA EXPRESS — animations.css
+   Keyframes, entrance effects, micro-interactions
+═══════════════════════════════════════════════════ */
+
+/* ── Background grid ─────────────────────────────── */
+.bg-grid {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(0, 180, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 180, 255, 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* ── Scanline overlay ────────────────────────────── */
+.bg-scanline {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: repeating-linear-gradient(0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.03) 2px,
+      rgba(0, 0, 0, 0.03) 4px);
+}
+
+/* ── Corner decorations ──────────────────────────── */
+.corner {
+  position: fixed;
+  z-index: 50;
+  width: 32px;
+  height: 32px;
+  pointer-events: none;
+}
+
+.corner-tl {
+  top: 20px;
+  left: 20px;
+  border-top: 2px solid var(--accent);
+  border-left: 2px solid var(--accent);
+}
+
+.corner-tr {
+  top: 20px;
+  right: 20px;
+  border-top: 2px solid var(--accent);
+  border-right: 2px solid var(--accent);
+}
+
+.corner-bl {
+  bottom: 20px;
+  left: 20px;
+  border-bottom: 2px solid var(--accent);
+  border-left: 2px solid var(--accent);
+}
+
+.corner-br {
+  bottom: 20px;
+  right: 20px;
+  border-bottom: 2px solid var(--accent);
+  border-right: 2px solid var(--accent);
+}
+
+/* ── Keyframes ───────────────────────────────────── */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes glowPulse {
+
+  0%,
+  100% {
+    box-shadow: 0 0 8px rgba(0, 180, 255, 0.2);
+  }
+
+  50% {
+    box-shadow: 0 0 24px rgba(0, 180, 255, 0.5);
+  }
+}
+
+@keyframes borderFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes cursorBlink {
+
+  0%,
+  100% {
+    border-right-color: var(--accent);
+  }
+
+  50% {
+    border-right-color: transparent;
+  }
+}
+
+@keyframes trainMove {
+  0% {
+    transform: translateX(-8px);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(8px);
+    opacity: 0;
+  }
+}
+
+@keyframes cardFloat {
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(var(--card-rot, -3deg));
+  }
+
+  50% {
+    transform: translateY(-8px) rotate(var(--card-rot, -3deg));
+  }
+}
+
+@keyframes lineExtend {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes countUp {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes sosAlert {
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 68, 68, 0.6);
+  }
+
+  50% {
+    box-shadow: 0 0 0 10px rgba(255, 68, 68, 0);
+  }
+}
+
+@keyframes dotPulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.4);
+    opacity: 0.7;
+  }
+}
+
+@keyframes trainDot {
+  0% {
+    left: 0%;
+  }
+
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes rotateCard {
+  from {
+    transform: rotateY(0deg);
+  }
+
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
+@keyframes pageIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes underlineGrow {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* ── Entrance animation classes ──────────────────── */
+.anim-fade-up {
+  animation: fadeInUp 0.5s ease both;
+}
+
+.anim-fade-left {
+  animation: fadeInLeft 0.5s ease both;
+}
+
+.anim-fade-right {
+  animation: fadeInRight 0.5s ease both;
+}
+
+/* stagger delays */
+.delay-1 {
+  animation-delay: 0.1s;
+}
+
+.delay-2 {
+  animation-delay: 0.2s;
+}
+
+.delay-3 {
+  animation-delay: 0.3s;
+}
+
+.delay-4 {
+  animation-delay: 0.4s;
+}
+
+.delay-5 {
+  animation-delay: 0.5s;
+}
+
+.delay-6 {
+  animation-delay: 0.6s;
+}
+
+/* ── Page section entrance ───────────────────────── */
+.page-section.active {
+  animation: pageIn 0.4s ease both;
+}
+
+/* ── Glow button effect ──────────────────────────── */
+.glow-btn {
+  animation: glowPulse 2.5s ease-in-out infinite;
+}
+
+/* ── Train position dot on station track ─────────── */
+.train-indicator {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 10px;
+  background: var(--accent);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--accent);
+  animation: trainDot 8s linear infinite;
+  pointer-events: none;
+}
+
+/* ── Loading shimmer (for async content) ─────────── */
+.skeleton {
+  background: linear-gradient(90deg,
+      var(--bg-secondary) 25%,
+      var(--bg-tertiary) 50%,
+      var(--bg-secondary) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: var(--radius-sm);
+}
+
+/* ── Chatbot message entrance ────────────────────── */
+.chatbot-msg {
+  animation: fadeInUp 0.25s ease both;
+}
+
+/* ── Hero section card float ─────────────────────── */
+/* NOTE: JS (home.js) fully controls metro-card transform via drag.
+   CSS animation is intentionally removed here to avoid conflicts.
+   home.js calls card.style.animation = 'none' on init as a safety net. */
+.metro-card {
+  animation: none; /* JS owns the transform — see home.js */
+}
+
+/* ── SOS pulse ───────────────────────────────────── */
+.sos-btn {
+  animation: sosAlert 2s ease-in-out infinite;
+}
+
+/* ── Status dot pulse ────────────────────────────── */
+.chatbot-status-dot {
+  animation: dotPulse 1.5s ease-in-out infinite;
+}
+
+/* ── Page underline grow ─────────────────────────── */
+.page-underline {
+  transform-origin: left center;
+  animation: underlineGrow 0.6s ease both;
+  animation-delay: 0.2s;
+}

@@ -1,0 +1,1900 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#080c14" />
+  <title>Odisha Express Metro App</title>
+  <link rel="icon" type="image/svg+xml" href="assets/images/Odisha Express Logo.svg" />
+  <!-- Bootstrap 5.3 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <!-- Custom CSS (after Bootstrap so we can override) -->
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/theme.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/home.css" />
+  <link rel="stylesheet" href="css/timetable.css" />
+  <link rel="stylesheet" href="css/routes.css" />
+  <link rel="stylesheet" href="css/fare.css" />
+  <link rel="stylesheet" href="css/profile.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="css/metrocard.css" />
+
+</head>
+
+<body class="main-body">
+
+  <!-- ═══════════════════════════════════════════
+       NAVBAR
+  ═══════════════════════════════════════════ -->
+  <nav class="navbar" id="mainNav">
+    <div class="nav-brand">
+      <div class="nav-logo-icon nav-logo-icon--img"><img src="assets/images/Odisha Express Logo.svg"
+          alt="Odisha Express Logo" class="nav-logo-img" /></div>
+      <span class="nav-brand-text">ODISHA<span class="nav-slash">//</span>EXPRESS</span>
+    </div>
+
+    <ul class="nav-links" id="navLinks">
+      <li>
+        <a href="#" class="nav-item active" data-page="home" onclick="navigateTo('home')">
+          <svg class="nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+            <polyline points="9 22 9 12 15 12 15 22" />
+          </svg>
+          HOME
+        </a>
+      </li>
+      <li>
+        <a href="#" class="nav-item" data-page="timetable" onclick="navigateTo('timetable')">
+          <svg class="nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2" />
+            <line x1="16" y1="2" x2="16" y2="6" />
+            <line x1="8" y1="2" x2="8" y2="6" />
+            <line x1="3" y1="10" x2="21" y2="10" />
+          </svg>
+          TIME TABLE
+        </a>
+      </li>
+      <li>
+        <a href="#" class="nav-item" data-page="routes" onclick="navigateTo('routes')">
+          <svg class="nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="5" cy="12" r="2" />
+            <circle cx="19" cy="12" r="2" />
+            <path d="M5 12h14" />
+            <path d="M12 5v14" />
+          </svg>
+          ROUTES
+        </a>
+      </li>
+      <li>
+        <a href="#" class="nav-item" data-page="fare" onclick="navigateTo('fare')">
+          <svg class="nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="1" x2="12" y2="23" />
+            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+          </svg>
+          FARE
+        </a>
+      </li>
+      <li>
+        <a href="#" class="nav-item" id="navMetroCard">
+          <svg class="nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="5" width="20" height="14" rx="2" />
+            <line x1="2" y1="10" x2="22" y2="10" />
+          </svg>
+          METRO CARD
+        </a>
+      </li>
+    </ul>
+
+    <!-- Hamburger button (mobile only) -->
+    <button class="nav-hamburger" id="navHamburger" aria-label="Toggle navigation" aria-expanded="false"
+      aria-controls="mobileNavDrawer">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <div class="nav-actions">
+      <!-- Theme toggle -->
+      <button class="nav-btn theme-toggle" id="themeToggle" title="Toggle theme">
+        <svg id="sunIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5" />
+          <line x1="12" y1="1" x2="12" y2="3" />
+          <line x1="12" y1="21" x2="12" y2="23" />
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+          <line x1="1" y1="12" x2="3" y2="12" />
+          <line x1="21" y1="12" x2="23" y2="12" />
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+        </svg>
+        <svg id="moonIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+        </svg>
+      </button>
+
+      <!-- SOS Button -->
+      <button class="nav-btn sos-btn" id="sosBtn" title="Emergency SOS">
+        SOS
+      </button>
+
+      <!-- Profile -->
+      <a href="#" class="nav-profile" data-page="profile" onclick="navigateTo('profile')" id="navProfile"
+        title="Profile">
+        <div class="profile-avatar" id="navAvatarImg">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+        </div>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Mobile nav overlay -->
+  <div class="mobile-nav-overlay" id="mobileNavOverlay" aria-hidden="true"></div>
+
+  <!-- Mobile nav drawer -->
+  <nav class="mobile-nav-drawer" id="mobileNavDrawer" aria-label="Mobile navigation">
+    <ul class="mobile-nav-list">
+      <li>
+        <a href="#" class="mobile-nav-link active" id="mobileHome" data-page="home"
+          onclick="navigateTo('home');closeMobileNav();">
+          <svg class="nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+            <polyline points="9 22 9 12 15 12 15 22" />
+          </svg>
+          HOME
+        </a>
+      </li>
+      <li>
+        <a href="#" class="mobile-nav-link" id="mobileTimetable" data-page="timetable"
+          onclick="navigateTo('timetable');closeMobileNav();">
+          <svg class="nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2" />
+            <line x1="16" y1="2" x2="16" y2="6" />
+            <line x1="8" y1="2" x2="8" y2="6" />
+            <line x1="3" y1="10" x2="21" y2="10" />
+          </svg>
+          TIME TABLE
+        </a>
+      </li>
+      <li>
+        <a href="#" class="mobile-nav-link" id="mobileRoutes" data-page="routes"
+          onclick="navigateTo('routes');closeMobileNav();">
+          <svg class="nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="5" cy="12" r="2" />
+            <circle cx="19" cy="12" r="2" />
+            <path d="M5 12h14" />
+            <path d="M12 5v14" />
+          </svg>
+          ROUTES
+        </a>
+      </li>
+      <li>
+        <a href="#" class="mobile-nav-link" id="mobileFare" data-page="fare"
+          onclick="navigateTo('fare');closeMobileNav();">
+          <svg class="nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="1" x2="12" y2="23" />
+            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+          </svg>
+          FARE
+        </a>
+      </li>
+      <li>
+        <a href="#" class="mobile-nav-link" id="mobileMetroCard">
+          <svg class="nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="5" width="20" height="14" rx="2" />
+            <line x1="2" y1="10" x2="22" y2="10" />
+          </svg>
+          METRO CARD
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+
+  <!-- ═══════════════════════════════════════════
+       PAGE: HOME
+  ═══════════════════════════════════════════ -->
+  <section class="page-section active" id="page-home">
+
+    <!-- Section 1: Odisha's 1st Metro — Blue Card (card on right) -->
+    <div class="hero-section hero-blue" id="hero1">
+      <div class="hero-content hero-content--left">
+        <h2 class="hero-title" data-i18n="hero1-title">ODISHA'S<br />FIRST METRO</h2>
+        <p class="hero-desc">A new era of urban transit for Bhubaneswar. The Blue Line forms the historic backbone of
+          Odisha's first metro network, connecting the heart of the city.</p>
+        <div class="hero-meta">
+          <span class="hero-tag">NETWORK STATUS:</span>
+          <span class="hero-status blue">BLUE LINE ACTIVE</span>
+        </div>
+      </div>
+      <div class="hero-card-wrap hero-card-wrap--right">
+        <div class="metro-card card-blue" id="metroCard" data-section="1">
+          <div class="card-face card-front has-image">
+            <img src="assets/images/Blue Line Front.svg" alt="Blue Line Metro Card Front" class="card-front-img" />
+          </div>
+          <div class="card-face card-back has-image">
+            <img src="assets/images/Blue Line Back.svg" alt="Blue Line Metro Card Back" class="card-back-img" />
+          </div>
+        </div>
+        <!-- Drag hint -->
+        <p class="card-drag-hint" data-i18n="drag-hint">&#8592; DRAG CARD TO EXPLORE &#8594;</p>
+      </div>
+    </div>
+
+    <!-- Section 2: Expanding Horizons — Green Card (card on left) -->
+    <div class="hero-section hero-green" id="hero2">
+      <div class="hero-card-wrap hero-card-wrap--left">
+        <div class="metro-card card-green" data-section="2">
+          <div class="card-face card-front has-image">
+            <img src="assets/images/Green Line Front.svg" alt="Green Line Metro Card Front" class="card-front-img" />
+          </div>
+          <div class="card-face card-back has-image">
+            <img src="assets/images/Green Line Back.svg" alt="Green Line Metro Card Back" class="card-back-img" />
+          </div>
+        </div>
+      </div>
+      <div class="hero-content hero-content--right">
+        <h2 class="hero-title" data-i18n="hero2-title">EXPANDING<br />HORIZONS</h2>
+        <p class="hero-desc">Connecting the city like never before. The Green Line bridges crucial gaps, bringing all
+          corners of Bhubaneswar closer together.</p>
+        <div class="hero-meta">
+          <span class="hero-tag">NETWORK STATUS:</span>
+          <span class="hero-status green">GREEN LINE ACTIVE</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 3: One Smart Network — Purple Card (card on left) -->
+    <div class="hero-section hero-purple" id="hero3">
+      <div class="hero-content hero-content--left">
+        <h2 class="hero-title" data-i18n="hero3-title">ONE SMART<br />NETWORK</h2>
+        <p class="hero-desc">Blue, Green, Orange, Purple, Yellow or Pink. Navigate the expanding, fully air-conditioned
+          network with a single contactless tap.</p>
+        <div class="hero-meta">
+          <span class="hero-tag">NETWORK STATUS:</span>
+          <span class="hero-status purple">VALID ALL LINES</span>
+        </div>
+      </div>
+      <div class="hero-card-wrap hero-card-wrap--right">
+        <div class="metro-card card-purple" data-section="3">
+          <div class="card-face card-front has-image">
+            <img src="assets/images/Purple Line Front.svg" alt="Purple Line Metro Card Front" class="card-front-img" />
+          </div>
+          <div class="card-face card-back has-image">
+            <img src="assets/images/Purple Line Back.svg" alt="Purple Line Metro Card Back" class="card-back-img" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 4: Network Routes — Orange Card (card on right) -->
+    <div class="hero-section hero-routes" id="hero4">
+      <div class="hero-card-wrap hero-card-wrap--left">
+        <div class="metro-card card-orange" data-section="4">
+          <div class="card-face card-front has-image">
+            <img src="assets/images/Orange Line Front.svg" alt="Orange Line Metro Card Front" class="card-front-img" />
+          </div>
+          <div class="card-face card-back has-image">
+            <img src="assets/images/Orange Line Back.svg" alt="Orange Line Metro Card Back" class="card-back-img" />
+          </div>
+        </div>
+      </div>
+      <div class="hero-content hero-content--right">
+        <h2 class="hero-title" data-i18n="hero4-title">NETWORK<br />ROUTES</h2>
+        <ul class="routes-list">
+          <li><span class="route-dot" style="background:#00b4ff;"></span> Bhubaneswar North &#8596; Bhubaneswar South
+          </li>
+          <li><span class="route-dot" style="background:#00e676;"></span> Airport &#8596; Old Town</li>
+          <li><span class="route-dot" style="background:#d500f9;"></span> AIIMS &#8596; Infocity</li>
+          <li><span class="route-dot" style="background:#ff9100;"></span> Rasulgarh &#8596; Patia</li>
+          <li><span class="route-dot" style="background:#ffea00;"></span> Unit-1 &#8596; Baramunda</li>
+          <li><span class="route-dot" style="background:#ff4081;"></span> Lingaraj &#8596; Jaydev Vihar</li>
+        </ul>
+        <div class="hero-meta">
+          <span class="hero-tag">NETWORK STATUS:</span>
+          <span class="hero-status orange">ORANGE LINE ACTIVE</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 5: Fare Structure — Gold Card (card on left) -->
+    <div class="hero-section hero-gold" id="hero5">
+      <div class="hero-content hero-content--left">
+        <h2 class="hero-title fare-title" data-i18n="hero5-title">FARE<br />STRUCTURE</h2>
+        <p class="hero-desc">Affordable transit for everyone. Use your Smart Card for seamless travel and bonus recharge
+          value.</p>
+        <table class="fare-preview-table">
+          <thead>
+            <tr>
+              <th>DISTANCE (KM)</th>
+              <th>STANDARD FARE</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>0 – 5 km</td>
+              <td>&#8377; 10.00</td>
+            </tr>
+            <tr>
+              <td>5 – 10 km</td>
+              <td>&#8377; 20.00</td>
+            </tr>
+            <tr>
+              <td>10 – 20 km</td>
+              <td>&#8377; 30.00</td>
+            </tr>
+            <tr>
+              <td>20 – 30 km</td>
+              <td>&#8377; 40.00</td>
+            </tr>
+            <tr>
+              <td>Above 30 km</td>
+              <td>+ ₹10 / 10km</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="hero-meta">
+          <span class="hero-tag">NETWORK STATUS:</span>
+          <span class="hero-status gold">GOLDEN LINE ACTIVE</span>
+        </div>
+      </div>
+      <div class="hero-card-wrap hero-card-wrap--right">
+        <div class="metro-card card-gold" data-section="5">
+          <div class="card-face card-front has-image">
+            <img src="assets/images/Golden Line Front.svg" alt="Golden Line Metro Card Front" class="card-front-img" />
+          </div>
+          <div class="card-face card-back has-image">
+            <img src="assets/images/Golden Line Back.svg" alt="Golden Line Metro Card Back" class="card-back-img" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 6: Metro Regulation — Red Card (card on right) -->
+    <div class="hero-section hero-red" id="hero6">
+      <div class="hero-card-wrap hero-card-wrap--left">
+        <div class="metro-card card-red" data-section="6">
+          <div class="card-face card-front has-image">
+            <img src="assets/images/Red Line Front.svg" alt="Red Line Metro Card Front" class="card-front-img" />
+          </div>
+          <div class="card-face card-back has-image">
+            <img src="assets/images/Red Line Back.svg" alt="Red Line Metro Card Back" class="card-back-img" />
+          </div>
+        </div>
+      </div>
+      <div class="hero-content hero-content--right">
+        <h2 class="hero-title reg-title" data-i18n="hero6-title">METRO<br />REGULATIONS</h2>
+        <p class="hero-desc">For the safety and comfort of all passengers, the following items cannot be taken inside
+          metro premises.</p>
+        <ul class="reg-list">
+          <li><span class="reg-x">&#10005;</span> Raw fish, meat</li>
+          <li><span class="reg-x">&#10005;</span> Dynamite, explosives, flammable substances</li>
+          <li><span class="reg-x">&#10005;</span> Petrol, acid, large batteries</li>
+          <li><span class="reg-x">&#10005;</span> Objects longer than 4 feet</li>
+          <li><span class="reg-x">&#10005;</span> Toxic substances, tear gas</li>
+          <li><span class="reg-x">&#10005;</span> Screwdrivers, hammers, knives, saws</li>
+        </ul>
+        <p class="reg-warning" data-i18n="hero6-warning">IF CAUGHT CARRYING THESE, A FINE WILL BE IMPOSED.</p>
+        <div class="hero-meta">
+          <span class="hero-tag">NETWORK STATUS:</span>
+          <span class="hero-status red">RESTRICTED ITEMS</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Home footer -->
+    <footer class="home-footer">
+      <div class="footer-social">
+        <a href="#" class="social-icon" title="Facebook" aria-label="Facebook">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+          </svg>
+        </a>
+        <a href="#" class="social-icon" title="Twitter/X" aria-label="Twitter">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z" />
+          </svg>
+        </a>
+        <a href="#" class="social-icon" title="Instagram" aria-label="Instagram">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+          </svg>
+        </a>
+      </div>
+      <p class="footer-copy">&#169; 2026 BHUBANESWAR METRO. ALL RIGHTS RESERVED. &nbsp;|&nbsp; HELP LINE: <a
+          href="tel:1073">1073</a> / <a href="tel:1074">1074</a></p>
+    </footer>
+
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+       PAGE: TIME TABLE
+  ═══════════════════════════════════════════ -->
+  <section class="page-section" id="page-timetable">
+
+    <div class="page-header">
+      <div class="page-header-left">
+        <h1 class="page-title">TIME_TABLE</h1>
+        <div class="page-subtitle-row">
+          <span class="page-tag" id="ttLineTag">[BLUE_LINE.ACTIVE]</span>
+          <span class="page-cursor"></span>
+        </div>
+        <div class="page-underline"></div>
+      </div>
+      <div class="page-header-right">
+        <div class="status-badge">
+          <span class="sb-label">SYNC STATUS:</span>
+          <span class="sb-value online">LIVE</span>
+        </div>
+        <div class="status-badge">
+          <span class="sb-label">RECORD ENTRIES:</span>
+          <span class="sb-value" id="ttRecordCount">150</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filter bar -->
+    <div class="filter-bar">
+      <div class="filter-group">
+        <label class="filter-label" data-i18n="tt-filter-line">SELECT TRANSIT LINE</label>
+        <select class="filter-select" id="ttLine">
+          <option value="blue">Blue Line</option>
+          <option value="green">Green Line</option>
+          <option value="orange">Orange Line</option>
+          <option value="purple">Purple Line</option>
+          <option value="yellow">Yellow Line</option>
+          <option value="pink">Pink Line</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label class="filter-label" data-i18n="tt-filter-station">SELECT STATION</label>
+        <select class="filter-select" id="ttStation">
+          <!-- Populated dynamically by timetable.js -->
+        </select>
+      </div>
+      <div class="filter-group">
+        <label class="filter-label" data-i18n="tt-filter-day">TEMPORAL CONTEXT</label>
+        <select class="filter-select" id="ttDay">
+          <option value="weekday">Monday to Friday</option>
+          <option value="saturday">Saturday</option>
+          <option value="sunday">Sunday</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Live departures -->
+    <div class="tt-live-section">
+      <div class="tt-section-header">
+        <h3 class="tt-section-title">LIVE DEPARTURES — <span id="ttStationName">BHUBANESWAR NORTH</span></h3>
+        <span class="tt-display-count">DISPLAYING NEXT 10 TRAINS</span>
+      </div>
+
+      <div class="tt-live-grid">
+        <!-- Up Direction -->
+        <div class="tt-direction-panel">
+          <div class="tt-direction-header">
+            <h4 class="tt-dir-title" data-i18n="tt-up-dir">UP DIRECTION</h4>
+            <span class="tt-dir-dest" id="ttUpDest">TOWARDS TERMINAL</span>
+          </div>
+          <div class="tt-trains-list" id="ttUpTrains">
+            <!-- Populated by timetable.js -->
+          </div>
+        </div>
+
+        <!-- Down Direction -->
+        <div class="tt-direction-panel">
+          <div class="tt-direction-header">
+            <h4 class="tt-dir-title" data-i18n="tt-dn-dir">DN DIRECTION</h4>
+            <span class="tt-dir-dest" id="ttDnDest">TOWARDS ORIGIN</span>
+          </div>
+          <div class="tt-trains-list" id="ttDnTrains">
+            <!-- Populated by timetable.js -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Complete timetable -->
+    <div class="tt-complete-section">
+      <div class="tt-section-header">
+        <h3 class="tt-section-title">COMPLETE TIMETABLE — <span id="ttCompleteStation">BHUBANESWAR NORTH</span></h3>
+        <span class="tt-display-count">ALL SCHEDULED SERVICES</span>
+      </div>
+
+      <div class="tt-schedule-grid">
+        <!-- Up Schedule -->
+        <div class="tt-schedule-panel">
+          <div class="tt-schedule-header">
+            <span class="tt-sched-title" data-i18n="tt-up-sched">UP SCHEDULE</span>
+            <span class="tt-sched-count" id="ttUpCount">--</span>
+          </div>
+          <div class="tt-schedule-table-wrap">
+            <table class="tt-table">
+              <thead>
+                <tr>
+                  <th>TRAIN NO.</th>
+                  <th>DEPARTURE</th>
+                  <th>DESTINATION</th>
+                </tr>
+              </thead>
+              <tbody id="ttUpSchedule">
+                <!-- Populated by timetable.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Down Schedule -->
+        <div class="tt-schedule-panel">
+          <div class="tt-schedule-header">
+            <span class="tt-sched-title" data-i18n="tt-dn-sched">DN SCHEDULE</span>
+            <span class="tt-sched-count" id="ttDnCount">--</span>
+          </div>
+          <div class="tt-schedule-table-wrap">
+            <table class="tt-table">
+              <thead>
+                <tr>
+                  <th>TRAIN NO.</th>
+                  <th>DEPARTURE</th>
+                  <th>DESTINATION</th>
+                </tr>
+              </thead>
+              <tbody id="ttDnSchedule">
+                <!-- Populated by timetable.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+       PAGE: ROUTES
+  ═══════════════════════════════════════════ -->
+  <section class="page-section" id="page-routes">
+
+    <div class="page-header">
+      <div class="page-header-left">
+        <h1 class="page-title">ODISHA_METRO</h1>
+        <div class="page-subtitle-row">
+          <span class="page-tag">[AEGIS DB_LINK.ACTIVE]</span>
+          <span class="page-cursor"></span>
+        </div>
+        <div class="page-underline"></div>
+      </div>
+      <div class="page-header-right">
+        <div class="status-badge">
+          <span class="sb-label">NETWORK STATUS:</span>
+          <span class="sb-value online">OPTIMAL</span>
+        </div>
+        <div class="status-badge">
+          <span class="sb-label">ACTIVE NODES:</span>
+          <span class="sb-value">150</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Route lines list -->
+    <div class="routes-container" id="routesContainer">
+
+      <!-- L1 Blue Line -->
+      <div class="route-card" data-line="blue">
+        <div class="route-card-header" onclick="toggleRoute('blue')">
+          <div class="route-card-left">
+            <span class="route-line-badge blue">L1</span>
+            <span class="route-line-name">BLUE LINE</span>
+            <span class="route-endpoints">
+              <span class="route-ep">Bhubaneswar North</span>
+              <span class="route-arrow">&gt;&gt;</span>
+              <span class="route-ep">Bhubaneswar South</span>
+            </span>
+          </div>
+          <div class="route-card-right">
+            <span class="route-count"><strong id="blueActive">25</strong>/25 <span class="route-count-label">ACTIVE /
+                TOTAL</span></span>
+            <span class="route-toggle-icon" id="blueIcon">&#9660;</span>
+          </div>
+        </div>
+        <div class="route-stations-wrap" id="route-blue" style="display:none;">
+          <div class="station-track-scroll">
+            <div class="station-track" id="track-blue">
+              <!-- Populated by routes.js -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- L2 Green Line -->
+      <div class="route-card" data-line="green">
+        <div class="route-card-header" onclick="toggleRoute('green')">
+          <div class="route-card-left">
+            <span class="route-line-badge green">L2</span>
+            <span class="route-line-name">GREEN LINE</span>
+            <span class="route-endpoints">
+              <span class="route-ep">Airport</span>
+              <span class="route-arrow">&gt;&gt;</span>
+              <span class="route-ep">Old Town</span>
+            </span>
+          </div>
+          <div class="route-card-right">
+            <span class="route-count"><strong id="greenActive">25</strong>/25 <span class="route-count-label">ACTIVE /
+                TOTAL</span></span>
+            <span class="route-toggle-icon" id="greenIcon">&#9660;</span>
+          </div>
+        </div>
+        <div class="route-stations-wrap" id="route-green" style="display:none;">
+          <div class="station-track-scroll">
+            <div class="station-track" id="track-green"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- L3 Orange Line -->
+      <div class="route-card" data-line="orange">
+        <div class="route-card-header" onclick="toggleRoute('orange')">
+          <div class="route-card-left">
+            <span class="route-line-badge orange">L3</span>
+            <span class="route-line-name">ORANGE LINE</span>
+            <span class="route-endpoints">
+              <span class="route-ep">Rasulgarh</span>
+              <span class="route-arrow">&gt;&gt;</span>
+              <span class="route-ep">Patia</span>
+            </span>
+          </div>
+          <div class="route-card-right">
+            <span class="route-count"><strong id="orangeActive">25</strong>/25 <span class="route-count-label">ACTIVE /
+                TOTAL</span></span>
+            <span class="route-toggle-icon" id="orangeIcon">&#9660;</span>
+          </div>
+        </div>
+        <div class="route-stations-wrap" id="route-orange" style="display:none;">
+          <div class="station-track-scroll">
+            <div class="station-track" id="track-orange"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- L4 Purple Line -->
+      <div class="route-card" data-line="purple">
+        <div class="route-card-header" onclick="toggleRoute('purple')">
+          <div class="route-card-left">
+            <span class="route-line-badge purple">L4</span>
+            <span class="route-line-name">PURPLE LINE</span>
+            <span class="route-endpoints">
+              <span class="route-ep">AIIMS</span>
+              <span class="route-arrow">&gt;&gt;</span>
+              <span class="route-ep">Infocity</span>
+            </span>
+          </div>
+          <div class="route-card-right">
+            <span class="route-count"><strong id="purpleActive">25</strong>/25 <span class="route-count-label">ACTIVE /
+                TOTAL</span></span>
+            <span class="route-toggle-icon" id="purpleIcon">&#9660;</span>
+          </div>
+        </div>
+        <div class="route-stations-wrap" id="route-purple" style="display:none;">
+          <div class="station-track-scroll">
+            <div class="station-track" id="track-purple"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- L5 Yellow Line -->
+      <div class="route-card" data-line="yellow">
+        <div class="route-card-header" onclick="toggleRoute('yellow')">
+          <div class="route-card-left">
+            <span class="route-line-badge yellow">L5</span>
+            <span class="route-line-name">YELLOW LINE</span>
+            <span class="route-endpoints">
+              <span class="route-ep">Unit-1</span>
+              <span class="route-arrow">&gt;&gt;</span>
+              <span class="route-ep">Baramunda</span>
+            </span>
+          </div>
+          <div class="route-card-right">
+            <span class="route-count"><strong id="yellowActive">25</strong>/25 <span class="route-count-label">ACTIVE /
+                TOTAL</span></span>
+            <span class="route-toggle-icon" id="yellowIcon">&#9660;</span>
+          </div>
+        </div>
+        <div class="route-stations-wrap" id="route-yellow" style="display:none;">
+          <div class="station-track-scroll">
+            <div class="station-track" id="track-yellow"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- L6 Pink Line -->
+      <div class="route-card" data-line="pink">
+        <div class="route-card-header" onclick="toggleRoute('pink')">
+          <div class="route-card-left">
+            <span class="route-line-badge pink">L6</span>
+            <span class="route-line-name">PINK LINE</span>
+            <span class="route-endpoints">
+              <span class="route-ep">Lingaraj</span>
+              <span class="route-arrow">&gt;&gt;</span>
+              <span class="route-ep">Jaydev Vihar</span>
+            </span>
+          </div>
+          <div class="route-card-right">
+            <span class="route-count"><strong id="pinkActive">25</strong>/25 <span class="route-count-label">ACTIVE /
+                TOTAL</span></span>
+            <span class="route-toggle-icon" id="pinkIcon">&#9660;</span>
+          </div>
+        </div>
+        <div class="route-stations-wrap" id="route-pink" style="display:none;">
+          <div class="station-track-scroll">
+            <div class="station-track" id="track-pink"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+       PAGE: FARE
+  ═══════════════════════════════════════════ -->
+  <section class="page-section" id="page-fare">
+
+    <div class="page-header">
+      <div class="page-header-left">
+        <h1 class="page-title">ODISHA METRO</h1>
+        <div class="page-subtitle-row">
+          <span class="page-tag">[FARE]</span>
+          <span class="page-cursor"></span>
+        </div>
+        <div class="page-underline"></div>
+      </div>
+      <div class="page-header-right">
+        <div class="status-badge">
+          <span class="sb-label">MODULE STATUS:</span>
+          <span class="sb-value online">ONLINE</span>
+        </div>
+        <div class="status-badge">
+          <span class="sb-label">LINES INDEXED:</span>
+          <span class="sb-value">06</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fare line accordions -->
+    <div class="fare-container" id="fareContainer">
+
+      <!-- L1 Blue Line Fare -->
+      <div class="fare-card" data-line="blue">
+        <div class="fare-card-header" onclick="toggleFare('blue')">
+          <div class="fare-header-left">
+            <span class="route-line-badge blue">L1</span>
+            <span class="fare-line-name">BLUE LINE MATRIX</span>
+          </div>
+          <span class="fare-toggle-icon" id="fareBlueIcon">&#9660;</span>
+        </div>
+        <div class="fare-panel" id="fare-blue" style="display:none;">
+          <div class="fare-uplink-bar">
+            <div class="fare-uplink-left">
+              <p class="fare-uplink-label">ROUTE UPLINK</p>
+              <p class="fare-uplink-route">
+                <span class="fare-origin-display" id="blueOriginDisplay">AWAITING INPUT</span>
+                <span class="fare-route-arrow">&gt;&gt;</span>
+                <span class="fare-dest-display" id="blueDestDisplay">AWAITING INPUT</span>
+              </p>
+            </div>
+            <div class="fare-uplink-right">
+              <p class="fare-computed-label">COMPUTED FARE</p>
+              <p class="fare-amount" id="blueAmount"><span class="fare-dash">-- --</span></p>
+            </div>
+          </div>
+          <div class="fare-selector-grid">
+            <div class="fare-selector">
+              <div class="fare-selector-header">
+                <span class="fare-sel-num">[01]</span>
+                <span class="fare-sel-title">SELECT ORIGIN</span>
+              </div>
+              <div class="fare-station-grid" id="blueOriginGrid">
+                <!-- Populated by fare.js -->
+              </div>
+            </div>
+            <div class="fare-selector">
+              <div class="fare-selector-header">
+                <span class="fare-sel-num">[02]</span>
+                <span class="fare-sel-title">SELECT TARGET</span>
+              </div>
+              <div class="fare-station-grid" id="blueDestGrid">
+                <!-- Populated by fare.js -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- L2 Green Line Fare -->
+      <div class="fare-card" data-line="green">
+        <div class="fare-card-header" onclick="toggleFare('green')">
+          <div class="fare-header-left">
+            <span class="route-line-badge green">L2</span>
+            <span class="fare-line-name">GREEN LINE MATRIX</span>
+          </div>
+          <span class="fare-toggle-icon" id="fareGreenIcon">&#9660;</span>
+        </div>
+        <div class="fare-panel" id="fare-green" style="display:none;">
+          <div class="fare-uplink-bar">
+            <div class="fare-uplink-left">
+              <p class="fare-uplink-label">ROUTE UPLINK</p>
+              <p class="fare-uplink-route">
+                <span class="fare-origin-display" id="greenOriginDisplay">AWAITING INPUT</span>
+                <span class="fare-route-arrow">&gt;&gt;</span>
+                <span class="fare-dest-display" id="greenDestDisplay">AWAITING INPUT</span>
+              </p>
+            </div>
+            <div class="fare-uplink-right">
+              <p class="fare-computed-label">COMPUTED FARE</p>
+              <p class="fare-amount" id="greenAmount"><span class="fare-dash">-- --</span></p>
+            </div>
+          </div>
+          <div class="fare-selector-grid">
+            <div class="fare-selector">
+              <div class="fare-selector-header"><span class="fare-sel-num">[01]</span><span
+                  class="fare-sel-title">SELECT ORIGIN</span></div>
+              <div class="fare-station-grid" id="greenOriginGrid"></div>
+            </div>
+            <div class="fare-selector">
+              <div class="fare-selector-header"><span class="fare-sel-num">[02]</span><span
+                  class="fare-sel-title">SELECT TARGET</span></div>
+              <div class="fare-station-grid" id="greenDestGrid"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- L3 Orange Line Fare -->
+      <div class="fare-card" data-line="orange">
+        <div class="fare-card-header" onclick="toggleFare('orange')">
+          <div class="fare-header-left">
+            <span class="route-line-badge orange">L3</span>
+            <span class="fare-line-name">ORANGE LINE MATRIX</span>
+          </div>
+          <span class="fare-toggle-icon" id="fareOrangeIcon">&#9660;</span>
+        </div>
+        <div class="fare-panel" id="fare-orange" style="display:none;">
+          <div class="fare-uplink-bar">
+            <div class="fare-uplink-left">
+              <p class="fare-uplink-label">ROUTE UPLINK</p>
+              <p class="fare-uplink-route">
+                <span class="fare-origin-display" id="orangeOriginDisplay">AWAITING INPUT</span>
+                <span class="fare-route-arrow">&gt;&gt;</span>
+                <span class="fare-dest-display" id="orangeDestDisplay">AWAITING INPUT</span>
+              </p>
+            </div>
+            <div class="fare-uplink-right">
+              <p class="fare-computed-label">COMPUTED FARE</p>
+              <p class="fare-amount" id="orangeAmount"><span class="fare-dash">-- --</span></p>
+            </div>
+          </div>
+          <div class="fare-selector-grid">
+            <div class="fare-selector">
+              <div class="fare-selector-header"><span class="fare-sel-num">[01]</span><span
+                  class="fare-sel-title">SELECT ORIGIN</span></div>
+              <div class="fare-station-grid" id="orangeOriginGrid"></div>
+            </div>
+            <div class="fare-selector">
+              <div class="fare-selector-header"><span class="fare-sel-num">[02]</span><span
+                  class="fare-sel-title">SELECT TARGET</span></div>
+              <div class="fare-station-grid" id="orangeDestGrid"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- L4 Purple Line Fare -->
+      <div class="fare-card" data-line="purple">
+        <div class="fare-card-header" onclick="toggleFare('purple')">
+          <div class="fare-header-left">
+            <span class="route-line-badge purple">L4</span>
+            <span class="fare-line-name">PURPLE LINE MATRIX</span>
+          </div>
+          <span class="fare-toggle-icon" id="farePurpleIcon">&#9660;</span>
+        </div>
+        <div class="fare-panel" id="fare-purple" style="display:none;">
+          <div class="fare-uplink-bar">
+            <div class="fare-uplink-left">
+              <p class="fare-uplink-label">ROUTE UPLINK</p>
+              <p class="fare-uplink-route">
+                <span class="fare-origin-display" id="purpleOriginDisplay">AWAITING INPUT</span>
+                <span class="fare-route-arrow">&gt;&gt;</span>
+                <span class="fare-dest-display" id="purpleDestDisplay">AWAITING INPUT</span>
+              </p>
+            </div>
+            <div class="fare-uplink-right">
+              <p class="fare-computed-label">COMPUTED FARE</p>
+              <p class="fare-amount" id="purpleAmount"><span class="fare-dash">-- --</span></p>
+            </div>
+          </div>
+          <div class="fare-selector-grid">
+            <div class="fare-selector">
+              <div class="fare-selector-header"><span class="fare-sel-num">[01]</span><span
+                  class="fare-sel-title">SELECT ORIGIN</span></div>
+              <div class="fare-station-grid" id="purpleOriginGrid"></div>
+            </div>
+            <div class="fare-selector">
+              <div class="fare-selector-header"><span class="fare-sel-num">[02]</span><span
+                  class="fare-sel-title">SELECT TARGET</span></div>
+              <div class="fare-station-grid" id="purpleDestGrid"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- L5 Yellow Line Fare -->
+      <div class="fare-card" data-line="yellow">
+        <div class="fare-card-header" onclick="toggleFare('yellow')">
+          <div class="fare-header-left">
+            <span class="route-line-badge yellow">L5</span>
+            <span class="fare-line-name">YELLOW LINE MATRIX</span>
+          </div>
+          <span class="fare-toggle-icon" id="fareYellowIcon">&#9660;</span>
+        </div>
+        <div class="fare-panel" id="fare-yellow" style="display:none;">
+          <div class="fare-uplink-bar">
+            <div class="fare-uplink-left">
+              <p class="fare-uplink-label">ROUTE UPLINK</p>
+              <p class="fare-uplink-route">
+                <span class="fare-origin-display" id="yellowOriginDisplay">AWAITING INPUT</span>
+                <span class="fare-route-arrow">&gt;&gt;</span>
+                <span class="fare-dest-display" id="yellowDestDisplay">AWAITING INPUT</span>
+              </p>
+            </div>
+            <div class="fare-uplink-right">
+              <p class="fare-computed-label">COMPUTED FARE</p>
+              <p class="fare-amount" id="yellowAmount"><span class="fare-dash">-- --</span></p>
+            </div>
+          </div>
+          <div class="fare-selector-grid">
+            <div class="fare-selector">
+              <div class="fare-selector-header"><span class="fare-sel-num">[01]</span><span
+                  class="fare-sel-title">SELECT ORIGIN</span></div>
+              <div class="fare-station-grid" id="yellowOriginGrid"></div>
+            </div>
+            <div class="fare-selector">
+              <div class="fare-selector-header"><span class="fare-sel-num">[02]</span><span
+                  class="fare-sel-title">SELECT TARGET</span></div>
+              <div class="fare-station-grid" id="yellowDestGrid"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- L6 Pink Line Fare -->
+      <div class="fare-card" data-line="pink">
+        <div class="fare-card-header" onclick="toggleFare('pink')">
+          <div class="fare-header-left">
+            <span class="route-line-badge pink">L6</span>
+            <span class="fare-line-name">PINK LINE MATRIX</span>
+          </div>
+          <span class="fare-toggle-icon" id="farePinkIcon">&#9660;</span>
+        </div>
+        <div class="fare-panel" id="fare-pink" style="display:none;">
+          <div class="fare-uplink-bar">
+            <div class="fare-uplink-left">
+              <p class="fare-uplink-label">ROUTE UPLINK</p>
+              <p class="fare-uplink-route">
+                <span class="fare-origin-display" id="pinkOriginDisplay">AWAITING INPUT</span>
+                <span class="fare-route-arrow">&gt;&gt;</span>
+                <span class="fare-dest-display" id="pinkDestDisplay">AWAITING INPUT</span>
+              </p>
+            </div>
+            <div class="fare-uplink-right">
+              <p class="fare-computed-label">COMPUTED FARE</p>
+              <p class="fare-amount" id="pinkAmount"><span class="fare-dash">-- --</span></p>
+            </div>
+          </div>
+          <div class="fare-selector-grid">
+            <div class="fare-selector">
+              <div class="fare-selector-header"><span class="fare-sel-num">[01]</span><span
+                  class="fare-sel-title">SELECT ORIGIN</span></div>
+              <div class="fare-station-grid" id="pinkOriginGrid"></div>
+            </div>
+            <div class="fare-selector">
+              <div class="fare-selector-header"><span class="fare-sel-num">[02]</span><span
+                  class="fare-sel-title">SELECT TARGET</span></div>
+              <div class="fare-station-grid" id="pinkDestGrid"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+       PAGE: PROFILE
+  ═══════════════════════════════════════════ -->
+  <section class="page-section" id="page-profile">
+
+    <div class="profile-container">
+
+      <!-- Profile header -->
+      <div class="profile-header-card">
+        <!-- Edit button top-right -->
+        <button class="profile-edit-btn" id="openEditProfile" title="Edit Profile">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+          </svg>
+          EDIT
+        </button>
+
+        <!-- Avatar -->
+        <div class="profile-avatar-wrap">
+          <div class="profile-avatar-circle" id="profileAvatarCircle">
+            <img src="" alt="Profile" id="profileAvatarImg" style="display:none;" />
+            <svg class="profile-avatar-icon" id="profileAvatarDefault" width="48" height="48" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
+            </svg>
+          </div>
+          <!-- Avatar edit overlay -->
+          <button class="avatar-edit-btn" id="openAvatarPicker" title="Change Photo">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+              <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- User name -->
+        <h2 class="profile-username" id="profileName">USER NAME</h2>
+        <p class="profile-usertag" id="profileEmail">user@email.com</p>
+
+        <!-- Info cards row -->
+        <div class="profile-info-row">
+          <div class="profile-info-card">
+            <span class="pic-label">GENDER</span>
+            <span class="pic-value" id="profileGender">--</span>
+          </div>
+          <div class="profile-info-card">
+            <span class="pic-label">DATE OF BIRTH</span>
+            <span class="pic-value" id="profileDOB">--</span>
+          </div>
+          <div class="profile-info-card">
+            <span class="pic-label">PHONE</span>
+            <span class="pic-value" id="profilePhone">--</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Profile menu items -->
+      <div class="profile-menu">
+
+        <!-- Your Tickets / Passes -->
+        <button class="profile-menu-item" onclick="showProfileModal('tickets')">
+          <div class="pmi-left">
+            <svg class="pmi-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path
+                d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v2z" />
+            </svg>
+            <span class="pmi-label" data-i18n="profile-tickets">YOUR TICKETS / PASSES</span>
+          </div>
+          <svg class="pmi-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2">
+            <polyline points="9 18 15 12 9 6" />
+          </svg>
+        </button>
+
+        <!-- Card Recharge -->
+        <button class="profile-menu-item" onclick="showProfileModal('recharge')">
+          <div class="pmi-left">
+            <svg class="pmi-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="1" y="4" width="22" height="16" rx="2" ry="2" />
+              <line x1="1" y1="10" x2="23" y2="10" />
+            </svg>
+            <span class="pmi-label" data-i18n="profile-recharge">CARD RECHARGE</span>
+          </div>
+          <svg class="pmi-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2">
+            <polyline points="9 18 15 12 9 6" />
+          </svg>
+        </button>
+
+        <!-- View Balance -->
+        <button class="profile-menu-item" onclick="showProfileModal('balance')">
+          <div class="pmi-left">
+            <svg class="pmi-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="1" x2="12" y2="23" />
+              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+            </svg>
+            <span class="pmi-label" data-i18n="profile-balance">VIEW BALANCE</span>
+          </div>
+          <svg class="pmi-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2">
+            <polyline points="9 18 15 12 9 6" />
+          </svg>
+        </button>
+
+        <!-- App Language -->
+        <button class="profile-menu-item" id="openLanguageModal">
+          <div class="pmi-left">
+            <svg class="pmi-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <line x1="2" y1="12" x2="22" y2="12" />
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+            </svg>
+            <span class="pmi-label" data-i18n="profile-lang">APP LANGUAGE</span>
+          </div>
+          <div class="pmi-right-info">
+            <span class="pmi-current-val" id="currentLang">ENGLISH</span>
+            <svg class="pmi-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+          </div>
+        </button>
+
+        <!-- Support -->
+        <button class="profile-menu-item" onclick="showProfileModal('support')">
+          <div class="pmi-left">
+            <svg class="pmi-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+            </svg>
+            <span class="pmi-label" data-i18n="profile-support">SUPPORT</span>
+          </div>
+          <svg class="pmi-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2">
+            <polyline points="9 18 15 12 9 6" />
+          </svg>
+        </button>
+
+        <!-- Feedback -->
+        <button class="profile-menu-item" onclick="showProfileModal('feedback')">
+          <div class="pmi-left">
+            <svg class="pmi-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3z" />
+              <path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3" />
+            </svg>
+            <span class="pmi-label" data-i18n="profile-feedback">FEEDBACK</span>
+          </div>
+          <svg class="pmi-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2">
+            <polyline points="9 18 15 12 9 6" />
+          </svg>
+        </button>
+
+        <!-- Privacy Policy -->
+        <button class="profile-menu-item" onclick="showProfileModal('privacy')">
+          <div class="pmi-left">
+            <svg class="pmi-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+            <span class="pmi-label" data-i18n="profile-privacy">PRIVACY POLICY</span>
+          </div>
+          <svg class="pmi-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2">
+            <polyline points="9 18 15 12 9 6" />
+          </svg>
+        </button>
+
+        <!-- About App -->
+        <button class="profile-menu-item" onclick="showProfileModal('about')">
+          <div class="pmi-left">
+            <svg class="pmi-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <line x1="12" y1="8" x2="12" y2="12" />
+              <line x1="12" y1="16" x2="12.01" y2="16" />
+            </svg>
+            <span class="pmi-label" data-i18n="profile-about">ABOUT APP</span>
+          </div>
+          <svg class="pmi-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2">
+            <polyline points="9 18 15 12 9 6" />
+          </svg>
+        </button>
+
+        <!-- Logout -->
+        <button class="profile-menu-item profile-menu-item--danger" id="logoutBtn">
+          <div class="pmi-left">
+            <svg class="pmi-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+              <polyline points="16 17 21 12 16 7" />
+              <line x1="21" y1="12" x2="9" y2="12" />
+            </svg>
+            <span class="pmi-label" data-i18n="profile-logout">LOGOUT</span>
+          </div>
+          <svg class="pmi-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2">
+            <polyline points="9 18 15 12 9 6" />
+          </svg>
+        </button>
+
+      </div>
+
+      <!-- Social links -->
+      <div class="profile-social">
+        <a href="#" class="social-icon" title="Facebook" aria-label="Facebook">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+          </svg>
+        </a>
+        <a href="#" class="social-icon" title="Twitter" aria-label="Twitter">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z" />
+          </svg>
+        </a>
+        <a href="#" class="social-icon" title="Instagram" aria-label="Instagram">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+       MODALS
+  ═══════════════════════════════════════════ -->
+
+  <!-- Edit Profile Modal -->
+  <div class="modal-overlay" id="editProfileModal" style="display:none;">
+    <div class="modal-box modal-box--lg">
+      <div class="modal-header">
+        <span class="panel-tag">[EDIT_PROFILE]</span>
+        <button class="modal-close" id="closeEditProfile">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+      <h3 class="modal-title">EDIT PROFILE</h3>
+      <form class="modal-form" id="editProfileForm">
+        <div class="form-row">
+          <div class="field-group">
+            <label class="field-label" for="editName">FULL NAME</label>
+            <div class="field-wrapper"><input type="text" id="editName" class="field-input" placeholder="YOUR NAME" />
+            </div>
+          </div>
+          <div class="field-group">
+            <label class="field-label" for="editDob">DATE OF BIRTH</label>
+            <div class="field-wrapper"><input type="date" id="editDob" class="field-input" /></div>
+          </div>
+        </div>
+        <div class="field-group">
+          <label class="field-label">GENDER</label>
+          <div class="gender-options">
+            <label class="gender-option"><input type="radio" name="editGender" value="male" /><span
+                class="gender-btn">MALE</span></label>
+            <label class="gender-option"><input type="radio" name="editGender" value="female" /><span
+                class="gender-btn">FEMALE</span></label>
+            <label class="gender-option"><input type="radio" name="editGender" value="other" /><span
+                class="gender-btn">OTHER</span></label>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field-group">
+            <label class="field-label" for="editPhone">PHONE NUMBER</label>
+            <div class="field-wrapper"><input type="tel" id="editPhone" class="field-input"
+                placeholder="+91 XXXXXXXXXX" /></div>
+          </div>
+          <div class="field-group">
+            <label class="field-label" for="editEmailField">EMAIL ADDRESS</label>
+            <div class="field-wrapper"><input type="email" id="editEmailField" class="field-input"
+                placeholder="your@email.com" /></div>
+          </div>
+        </div>
+        <button type="submit" class="btn-primary btn-full">SAVE CHANGES</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Avatar Picker Modal -->
+  <div class="modal-overlay" id="avatarPickerModal" style="display:none;">
+    <div class="modal-box">
+      <div class="modal-header">
+        <span class="panel-tag">[AVATAR_SELECT]</span>
+        <button class="modal-close" id="closeAvatarPicker">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+      <h3 class="modal-title">SELECT PHOTO</h3>
+      <div class="avatar-options">
+        <button class="avatar-option-btn" id="openCamera">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
+            <circle cx="12" cy="13" r="4" />
+          </svg>
+          <span>CAMERA</span>
+        </button>
+        <button class="avatar-option-btn" id="openDevice">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+            <line x1="8" y1="21" x2="16" y2="21" />
+            <line x1="12" y1="17" x2="12" y2="21" />
+          </svg>
+          <span>DEVICE</span>
+        </button>
+      </div>
+      <input type="file" id="deviceFileInput" accept="image/*" style="display:none;" />
+    </div>
+  </div>
+
+  <!-- Language Modal -->
+  <div class="modal-overlay" id="languageModal" style="display:none;">
+    <div class="modal-box">
+      <div class="modal-header">
+        <span class="panel-tag">[LANGUAGE_SELECT]</span>
+        <button class="modal-close" id="closeLanguageModal">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+      <h3 class="modal-title">SELECT LANGUAGE</h3>
+      <div class="lang-options">
+        <button class="lang-option active" data-lang="english" id="langEn">
+          <span class="lang-code">EN</span>
+          <span class="lang-name">ENGLISH</span>
+        </button>
+        <button class="lang-option" data-lang="hindi" id="langHi">
+          <span class="lang-code">HI</span>
+          <span class="lang-name">हिन्दी (HINDI)</span>
+        </button>
+        <button class="lang-option" data-lang="odia" id="langOd">
+          <span class="lang-code">OD</span>
+          <span class="lang-name">ଓଡ଼ିଆ (ODIA)</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- General profile modal (tickets, recharge, balance, etc.) -->
+  <div class="modal-overlay" id="profileGenModal" style="display:none;">
+    <div class="modal-box">
+      <div class="modal-header">
+        <span class="panel-tag" id="genModalTag">[MODULE]</span>
+        <button class="modal-close" id="closeGenModal">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+      <h3 class="modal-title" id="genModalTitle">MODULE</h3>
+      <div class="modal-content-body" id="genModalBody">
+        <!-- Populated by profile.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- SOS Modal -->
+  <div class="modal-overlay" id="sosModal" style="display:none;">
+    <div class="modal-box modal-box--danger">
+      <div class="modal-header">
+        <span class="panel-tag danger">[EMERGENCY_SOS]</span>
+        <button class="modal-close" id="closeSosModal">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+      <h3 class="modal-title danger">EMERGENCY ASSISTANCE</h3>
+      <p class="modal-desc">CONTACT BHUBANESWAR METRO EMERGENCY SERVICES IMMEDIATELY.</p>
+      <div class="sos-numbers">
+        <a href="tel:1073" class="sos-number-btn">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path
+              d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11.63 19 19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-2.09-8.09A2 2 0 0 1 4.58 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+          </svg>
+          HELPLINE 1073
+        </a>
+        <a href="tel:1074" class="sos-number-btn">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path
+              d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11.63 19 19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-2.09-8.09A2 2 0 0 1 4.58 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+          </svg>
+          HELPLINE 1074
+        </a>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════
+       AI CHATBOT — KALINGABOT (Floating, Timetable/Routes/Fare only)
+  ═══════════════════════════════════════════ -->
+  <div class="chatbot-fab" id="chatbotFab" title="Ask KalingaBot">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+    </svg>
+  </div>
+
+  <div class="chatbot-panel" id="chatbotPanel" style="display:none;">
+    <div class="chatbot-header">
+      <div class="chatbot-title-row">
+        <span class="chatbot-status-dot"></span>
+        <h3 class="chatbot-title">KalingaBot - Your YatraAI</h3>
+      </div>
+      <button class="chatbot-close" id="closeChatbot">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+    </div>
+    <div class="chatbot-messages" id="chatbotMessages">
+      <div class="chatbot-msg bot">
+        <p>🙏 Namaskar! I’m KalingaBot - Your YatraAI 🚢✨<br />
+          Inspired by the spirit of Odisha, I’m here to make your metro journey smooth and simple.<br />
+          Ask me anything I’ll guide you like your trusted Bandhu 😊</p>
+      </div>
+    </div>
+    <div class="chatbot-input-row">
+      <input type="text" class="chatbot-input" id="chatbotInput" placeholder="Ask KalingaBot..." />
+      <button class="chatbot-send" id="chatbotSend">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="5 3 19 12 5 21 5 3" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+
+  <!-- Payment Modal -->
+  <div class="modal-overlay" id="paymentModal" style="display:none;">
+    <div class="modal-box" style="max-width: 400px;">
+      <div class="modal-header">
+        <span class="panel-tag">[SECURE_PAYMENT]</span>
+        <button class="modal-close" id="closePaymentModal">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+      <h3 class="modal-title">CHOOSE PAYMENT MODE</h3>
+      <p class="modal-desc">SELECT YOUR PREFERRED METHOD TO COMPLETE TRANSACTION.</p>
+      
+      <div class="payment-options">
+        <button class="payment-opt-btn" onclick="processPayment('Google Pay')">
+          <img src="assets/images/google-pay-icon.svg" alt="Google Pay" class="payment-logo" />
+          <span class="payment-opt-name">Google Pay</span>
+        </button>
+        <button class="payment-opt-btn" onclick="processPayment('PhonePe')">
+          <img src="assets/images/phonepe-icon.svg" alt="PhonePe" class="payment-logo" />
+          <span class="payment-opt-name">PhonePe</span>
+        </button>
+        <button class="payment-opt-btn" onclick="processPayment('Paytm')">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Paytm_Logo_%28standalone%29.svg" alt="Paytm" class="payment-logo" />
+          <span class="payment-opt-name">Paytm</span>
+        </button>
+        <button class="payment-opt-btn" onclick="processPayment('RuPay')">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/d/d1/RuPay.svg" alt="RuPay" class="payment-logo" />
+          <span class="payment-opt-name">RuPay</span>
+        </button>
+      </div>
+
+      <div class="payment-footer">
+        <p class="payment-secure-text">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:4px;">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+          SSL ENCRYPTED SECURE TRANSACTION
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Metro Card Registration Modal -->
+
+  <div class="modal-overlay" id="metroCardModal" style="display:none;">
+    <div class="modal-box metro-card-modal-box">
+      <div class="mcm-header">
+        <div class="mcm-title-group">
+          <h3 class="mcm-title">METRO CARD REGISTRATION</h3>
+          <span class="mcm-subtitle">Bhubaneswar Metro Transit System // Registration Portal</span>
+        </div>
+        <button class="modal-close" id="closeMetroCardModal">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="mcm-body">
+        <form id="metroCardForm">
+          <!-- Step 1: Card Type Selection -->
+          <div class="mcm-form-section">
+            <h4 class="mcm-section-title">SELECT METRO CARD TYPE</h4>
+            <div class="card-type-grid">
+              <!-- Blue Card -->
+              <label class="card-type-option">
+                <input type="radio" name="cardType" value="blue" required checked />
+                <div class="card-type-visual">
+                  <div class="card-mini-preview" style="background-image: url('assets/images/Blue Line Front.svg');"></div>
+                  <span class="ct-label">BLUE CARD</span>
+                  <span class="ct-category">College Student</span>
+                </div>
+              </label>
+              <!-- Green Card -->
+              <label class="card-type-option">
+                <input type="radio" name="cardType" value="green" />
+                <div class="card-type-visual">
+                  <div class="card-mini-preview" style="background-image: url('assets/images/Green Line Front.svg');"></div>
+                  <span class="ct-label">GREEN CARD</span>
+                  <span class="ct-category">Senior Citizen</span>
+                </div>
+              </label>
+              <!-- Purple Card -->
+              <label class="card-type-option">
+                <input type="radio" name="cardType" value="purple" />
+                <div class="card-type-visual">
+                  <div class="card-mini-preview" style="background-image: url('assets/images/Purple Line Front.svg');"></div>
+                  <span class="ct-label">PURPLE CARD</span>
+                  <span class="ct-category">Women</span>
+                </div>
+              </label>
+              <!-- Orange Card -->
+              <label class="card-type-option">
+                <input type="radio" name="cardType" value="orange" />
+                <div class="card-type-visual">
+                  <div class="card-mini-preview" style="background-image: url('assets/images/Orange Line Front.svg');"></div>
+                  <span class="ct-label">ORANGE CARD</span>
+                  <span class="ct-category">Govt. Employee</span>
+                </div>
+              </label>
+              <!-- Golden Card -->
+              <label class="card-type-option">
+                <input type="radio" name="cardType" value="golden" />
+                <div class="card-type-visual">
+                  <div class="card-mini-preview" style="background-image: url('assets/images/Golden Line Front.svg');"></div>
+                  <span class="ct-label">GOLDEN CARD</span>
+                  <span class="ct-category">Tourist</span>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- Step 2: Personal Details -->
+          <div class="mcm-form-section">
+            <h4 class="mcm-section-title">PASSENGER DETAILS</h4>
+            <div class="form-grid">
+              <div class="field-group">
+                <label class="field-label">PASSENGER NAME <span class="required">*</span></label>
+                <div class="field-wrapper">
+                  <div class="field-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                  </div>
+                  <input type="text" class="field-input" placeholder="Enter Full Name" required />
+                </div>
+              </div>
+              <div class="field-group">
+                <label class="field-label">MOBILE NUMBER <span class="required">*</span></label>
+                <div class="field-wrapper">
+                  <div class="field-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11.63 19 19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-2.09-8.09A2 2 0 0 1 4.58 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                  </div>
+                  <input type="tel" class="field-input" placeholder="+91 XXXXX XXXXX" required />
+                </div>
+              </div>
+              <div class="field-group">
+                <label class="field-label">EMAIL ID</label>
+                <div class="field-wrapper">
+                  <div class="field-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                  </div>
+                  <input type="email" class="field-input" placeholder="example@email.com" />
+                </div>
+              </div>
+              <div class="field-group">
+                <label class="field-label">DATE OF BIRTH <span class="required">*</span></label>
+                <div class="field-wrapper">
+                  <div class="field-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                  </div>
+                  <input type="date" class="field-input" required />
+                </div>
+              </div>
+              <div class="field-group full-width">
+                <label class="field-label">RESIDENTIAL ADDRESS <span class="required">*</span></label>
+                <div class="field-wrapper" style="align-items: flex-start; padding-top: 8px;">
+                  <div class="field-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                  </div>
+                  <textarea class="field-input" rows="2" placeholder="Full Postal Address" style="resize: none;" required></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 3: Documents -->
+          <div class="mcm-form-section">
+            <h4 class="mcm-section-title">IDENTITY & TRAVEL</h4>
+            <div class="form-grid">
+              <div class="field-group">
+                <label class="field-label">SELECT ID PROOF <span class="required">*</span></label>
+                <div class="field-wrapper">
+                  <div class="field-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                  </div>
+                  <select class="field-input" required style="background: var(--bg-input);">
+                    <option value="">Choose Document Type</option>
+                    <option value="aadhaar">Aadhaar Card</option>
+                    <option value="voter">Voter ID</option>
+                    <option value="passport">Passport</option>
+                    <option value="dl">Driving License</option>
+                  </select>
+                </div>
+              </div>
+              <div class="field-group">
+                <label class="field-label">UPLOAD ID PROOF <span class="required">*</span></label>
+                <label class="file-upload-box" for="idProofFile">
+                  <div class="fub-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                  </div>
+                  <span class="fub-text" id="idProofLabel">Click to Upload (PDF/JPG)</span>
+                  <input type="file" id="idProofFile" hidden required accept=".pdf,.jpg,.jpeg,.png" />
+                </label>
+              </div>
+              <div class="field-group">
+                <label class="field-label">TRAVEL FREQUENCY <span class="required">*</span></label>
+                <div class="field-wrapper">
+                  <div class="field-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4"/><path d="M12 18v4"/><path d="M4.93 4.93l2.83 2.83"/><path d="M16.24 16.24l2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="M4.93 19.07l2.83-2.83"/><path d="M16.24 7.76l2.83-2.83"/></svg>
+                  </div>
+                  <select class="field-input" required style="background: var(--bg-input);">
+                    <option value="daily">Daily</option>
+                    <option value="weekly">Weekly</option>
+                    <option value="occasionally">Occasionally</option>
+                  </select>
+                </div>
+              </div>
+              <div class="field-group">
+                <label class="field-label">INITIAL RECHARGE (₹) <span class="required">*</span></label>
+                <div class="field-wrapper">
+                  <div class="field-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                  </div>
+                  <input type="number" class="field-input" placeholder="Min. ₹100" min="100" required />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 4: Preferences -->
+          <div class="mcm-form-section">
+            <h4 class="mcm-section-title">CARD USAGE & DELIVERY</h4>
+            <div class="form-grid">
+              <div class="field-group">
+                <label class="field-label">AUTO-RECHARGE OPTION</label>
+                <div class="choice-group">
+                  <label class="choice-option">
+                    <input type="radio" name="autoRecharge" value="yes" checked />
+                    <div class="choice-box">YES</div>
+                  </label>
+                  <label class="choice-option">
+                    <input type="radio" name="autoRecharge" value="no" />
+                    <div class="choice-box">NO</div>
+                  </label>
+                </div>
+              </div>
+              <div class="field-group">
+                <label class="field-label">DELIVERY METHOD</label>
+                <div class="choice-group">
+                  <label class="choice-option">
+                    <input type="radio" name="delivery" value="home" checked />
+                    <div class="choice-box">HOME DELIVERY</div>
+                  </label>
+                  <label class="choice-option">
+                    <input type="radio" name="delivery" value="station" />
+                    <div class="choice-box">STATION PICKUP</div>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 5: Final Step -->
+          <div class="mcm-form-section">
+            <h4 class="mcm-section-title">FINAL VERIFICATION</h4>
+            <div class="form-grid">
+              <div class="field-group">
+                <label class="field-label">PHOTOGRAPH (PASSPORT SIZE) <span class="required">*</span></label>
+                <label class="file-upload-box" for="photoFile">
+                  <div class="fub-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                  </div>
+                  <span class="fub-text" id="photoLabel">Upload Photo</span>
+                  <input type="file" id="photoFile" hidden required accept="image/*" />
+                </label>
+              </div>
+              <div class="field-group">
+                <label class="field-label">DIGITAL SIGNATURE / UPLOAD <span class="required">*</span></label>
+                <label class="file-upload-box" for="signatureFile">
+                  <div class="fub-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                  </div>
+                  <span class="fub-text" id="signatureLabel">Upload Signature</span>
+                  <input type="file" id="signatureFile" hidden required accept="image/*" />
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Consent -->
+          <div class="mcm-form-section">
+            <div class="consent-list">
+              <label class="consent-item">
+                <input type="checkbox" required />
+                <span class="consent-text">I confirm all details provided above are correct to the best of my knowledge.</span>
+              </label>
+              <label class="consent-item">
+                <input type="checkbox" required />
+                <span class="consent-text">I agree to the Bhubaneswar Metro Terms and Conditions and privacy policy.</span>
+              </label>
+              <label class="consent-item">
+                <input type="checkbox" required />
+                <span class="consent-text">I provide consent for my data to be used for metro service improvements and legal compliance.</span>
+              </label>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="mcm-footer">
+        <button type="button" class="btn-ghost" id="cancelRegistration">CANCEL</button>
+        <button type="submit" form="metroCardForm" class="btn-primary btn-submit">
+          <span class="btn-text">SUBMIT APPLICATION</span>
+          <span class="btn-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 11 12 14 22 4" />
+              <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+            </svg>
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+
+  <script src="js/config.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/router.js"></script>
+  <script src="js/home.js"></script>
+  <script src="js/timetable.js"></script>
+  <script src="js/routes.js"></script>
+  <script src="js/fare.js"></script>
+  <script src="js/profile.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/chatbot.js"></script>
+  <script src="js/sos.js"></script>
+  <script src="js/metrocard.js"></script>
+
+
+  <!-- Bootstrap 5.3 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc4s9bIOgUxi8T/jzmE5Q5yKyg5F9+QLpfFpQ7tF9gTWV"
+    crossorigin="anonymous"></script>
+
+  <!-- Hamburger / Mobile Nav Toggle -->
+  <script>
+    (function () {
+      const hamburger = document.getElementById('navHamburger');
+      const drawer = document.getElementById('mobileNavDrawer');
+      const overlay = document.getElementById('mobileNavOverlay');
+
+      function openMobileNav() {
+        hamburger.classList.add('active');
+        drawer.classList.add('open');
+        overlay.classList.add('open');
+        hamburger.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+      }
+
+      window.closeMobileNav = function () {
+        hamburger.classList.remove('active');
+        drawer.classList.remove('open');
+        overlay.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      };
+
+      hamburger.addEventListener('click', function () {
+        if (drawer.classList.contains('open')) {
+          closeMobileNav();
+        } else {
+          openMobileNav();
+        }
+      });
+
+      overlay.addEventListener('click', closeMobileNav);
+
+      // Sync mobile nav active state with desktop nav
+      const origNavigateTo = window.navigateTo;
+      if (typeof origNavigateTo === 'function') {
+        window.navigateTo = function (page) {
+          origNavigateTo(page);
+          // Update mobile nav active class
+          document.querySelectorAll('.mobile-nav-link').forEach(function (link) {
+            link.classList.toggle('active', link.dataset.page === page);
+          });
+          // Update desktop nav active class (ensure sync)
+          document.querySelectorAll('.nav-item').forEach(function (item) {
+            item.classList.toggle('active', item.dataset.page === page);
+          });
+        };
+      }
+
+      // Close drawer on resize if screen becomes desktop
+      window.addEventListener('resize', function () {
+        if (window.innerWidth >= 768) {
+          closeMobileNav();
+        }
+      });
+    })();
+  </script>
+
+</body>
+
+</html>

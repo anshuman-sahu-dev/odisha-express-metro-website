@@ -1,0 +1,302 @@
+/* ═══════════════════════════════════════════════════
+   ODISHA EXPRESS — metrocard.css
+   Styles for Metro Card Registration Modal
+   Premium Dark/Futuristic Design
+═══════════════════════════════════════════════════ */
+
+.metro-card-modal-box {
+    max-width: 850px !important;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 0 !important;
+    border-radius: var(--radius-xl) !important;
+}
+
+.mcm-header {
+    background: var(--bg-secondary);
+    padding: 24px 32px;
+    border-bottom: 1px solid var(--border-primary);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mcm-title-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.mcm-title {
+    font-family: var(--font-orb);
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    margin: 0;
+}
+
+.mcm-subtitle {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+.mcm-body {
+    padding: 32px;
+}
+
+/* ── Card Selection Grid ─────────────────────────── */
+.card-type-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.card-type-option {
+    position: relative;
+    cursor: pointer;
+}
+
+.card-type-option input {
+    position: absolute;
+    opacity: 0;
+}
+
+.card-type-visual {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-secondary);
+    border-radius: var(--radius-lg);
+    transition: all var(--transition);
+    text-align: center;
+}
+
+.card-type-option input:checked + .card-type-visual {
+    border-color: var(--accent);
+    background: var(--accent-glow);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 180, 255, 0.2);
+}
+
+.card-mini-preview {
+    width: 100%;
+    aspect-ratio: 1.6/1;
+    border-radius: var(--radius-sm);
+    background-size: cover;
+    background-position: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ct-label {
+    font-family: var(--font-orb);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    letter-spacing: 0.05em;
+}
+
+.card-type-option input:checked + .card-type-visual .ct-label {
+    color: var(--text-primary);
+}
+
+.ct-category {
+    font-family: var(--font-mono);
+    font-size: 8px;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+}
+
+/* ── Form Layout ─────────────────────────────────── */
+.mcm-form-section {
+    margin-bottom: 32px;
+}
+
+.mcm-section-title {
+    font-family: var(--font-orb);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: 0.08em;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.mcm-section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border-secondary);
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.full-width {
+    grid-column: 1 / -1;
+}
+
+/* ── File Upload Styling ─────────────────────────── */
+.file-upload-box {
+    border: 1px dashed var(--border-input);
+    border-radius: var(--radius-md);
+    padding: 20px;
+    text-align: center;
+    background: var(--bg-input);
+    cursor: pointer;
+    transition: all var(--transition);
+}
+
+.file-upload-box:hover {
+    border-color: var(--accent);
+    background: var(--accent-glow);
+}
+
+.fub-icon {
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+
+.fub-text {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-secondary);
+}
+
+/* ── Delivery & Consent ──────────────────────────── */
+.choice-group {
+    display: flex;
+    gap: 12px;
+}
+
+.choice-option {
+    flex: 1;
+    position: relative;
+    cursor: pointer;
+}
+
+.choice-option input {
+    position: absolute;
+    opacity: 0;
+}
+
+.choice-box {
+    padding: 12px;
+    background: var(--bg-input);
+    border: 1px solid var(--border-input);
+    border-radius: var(--radius-md);
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-secondary);
+    transition: all var(--transition);
+}
+
+.choice-option input:checked + .choice-box {
+    border-color: var(--accent);
+    background: var(--accent-glow);
+    color: var(--text-primary);
+}
+
+.consent-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.consent-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    cursor: pointer;
+}
+
+.consent-item input {
+    margin-top: 4px;
+}
+
+.consent-text {
+    font-family: var(--font-raj);
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.4;
+}
+
+/* ── Signature ───────────────────────────────────── */
+.sig-canvas-wrap {
+    background: #fff;
+    border-radius: var(--radius-md);
+    height: 120px;
+    margin-bottom: 8px;
+}
+
+/* ── Footer ──────────────────────────────────────── */
+.mcm-footer {
+    padding: 24px 32px;
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border-secondary);
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px;
+    position: sticky;
+    bottom: 0;
+    z-index: 10;
+}
+
+.btn-ghost {
+    padding: 12px 24px;
+    font-family: var(--font-orb);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-muted);
+    border-radius: var(--radius-md);
+    transition: all var(--transition);
+}
+
+.btn-ghost:hover {
+    color: var(--text-primary);
+    background: var(--bg-hover);
+}
+
+.btn-submit {
+    min-width: 180px;
+}
+
+/* ── Responsive ──────────────────────────────────── */
+@media (max-width: 768px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .mcm-body {
+        padding: 20px;
+    }
+    
+    .mcm-header {
+        padding: 16px 20px;
+    }
+    
+    .mcm-footer {
+        padding: 16px 20px;
+        flex-direction: column-reverse;
+    }
+    
+    .btn-ghost, .btn-submit {
+        width: 100%;
+    }
+}

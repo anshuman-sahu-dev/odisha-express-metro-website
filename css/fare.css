@@ -1,0 +1,368 @@
+/* ═══════════════════════════════════════════════════
+   ODISHA EXPRESS — fare.css
+═══════════════════════════════════════════════════ */
+
+.fare-container {
+  padding: 24px 48px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ── Fare card ───────────────────────────────────── */
+.fare-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-secondary);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: border-color var(--transition);
+}
+.fare-card:hover { border-color: var(--border-primary); }
+
+/* ── Fare card header ────────────────────────────── */
+.fare-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+  cursor: pointer;
+  transition: background var(--transition);
+  gap: 16px;
+}
+.fare-card-header:hover { background: var(--bg-hover); }
+.fare-header-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.fare-line-name {
+  font-family: var(--font-orb);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text-primary);
+}
+.fare-toggle-icon {
+  font-size: 12px;
+  color: var(--accent);
+  transition: transform var(--transition);
+}
+.fare-toggle-icon.open { transform: rotate(180deg); }
+
+/* ── Fare panel ──────────────────────────────────── */
+.fare-panel {
+  border-top: 1px solid var(--border-secondary);
+  background: var(--bg-secondary);
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  animation: fadeInUp 0.25s ease;
+}
+
+/* ── Uplink / result bar ─────────────────────────── */
+.fare-uplink-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-secondary);
+  border-radius: var(--radius-lg);
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.fare-uplink-left { display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.fare-uplink-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  color: var(--text-muted);
+}
+.fare-uplink-route {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.fare-origin-display,
+.fare-dest-display {
+  font-family: var(--font-orb);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--text-primary);
+  transition: color var(--transition);
+}
+.fare-route-arrow {
+  font-family: var(--font-orb);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+}
+.fare-uplink-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+.fare-computed-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  color: var(--text-muted);
+  text-align: right;
+}
+.fare-amount {
+  font-family: var(--font-orb);
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  animation: countUp 0.3s ease;
+}
+.fare-rupee-icon {
+  font-size: 20px;
+  font-weight: 400;
+}
+.fare-dash {
+  font-family: var(--font-mono);
+  font-size: 20px;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+
+/* ── Station selector grid ───────────────────────── */
+.fare-selector-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.fare-selector {
+  background: var(--bg-card);
+  border: 1px solid var(--border-secondary);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.fare-selector-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-secondary);
+}
+.fare-sel-num {
+  font-family: var(--font-orb);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+}
+.fare-sel-title {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--text-secondary);
+}
+.fare-station-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  padding: 14px;
+  max-height: 340px;
+  overflow-y: auto;
+}
+.fare-station-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 10px 6px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-secondary);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.fare-station-btn:hover {
+  border-color: var(--border-primary);
+  background: var(--bg-hover);
+  transform: translateY(-1px);
+}
+.fare-station-btn.selected {
+  border-color: var(--accent);
+  background: var(--accent-glow);
+  box-shadow: 0 0 8px var(--accent-glow);
+}
+.fare-station-code {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
+.fare-station-name {
+  font-family: var(--font-raj);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--text-secondary);
+  text-align: center;
+  line-height: 1.3;
+  word-break: break-word;
+}
+.fare-station-btn.selected .fare-station-name { color: var(--text-primary); }
+
+/* ── Per-line selected colours ───────────────────── */
+.fare-card[data-line="blue"]   .fare-station-btn.selected { border-color: var(--blue);   background: var(--blue-bg);   }
+.fare-card[data-line="green"]  .fare-station-btn.selected { border-color: var(--green);  background: var(--green-bg);  }
+.fare-card[data-line="orange"] .fare-station-btn.selected { border-color: var(--orange); background: var(--orange-bg); }
+.fare-card[data-line="purple"] .fare-station-btn.selected { border-color: var(--purple); background: var(--purple-bg); }
+.fare-card[data-line="yellow"] .fare-station-btn.selected { border-color: var(--yellow); background: var(--yellow-bg); }
+.fare-card[data-line="pink"]   .fare-station-btn.selected { border-color: var(--pink);   background: var(--pink-bg);   }
+
+.fare-card[data-line="blue"]   .fare-station-code { color: var(--blue);   }
+.fare-card[data-line="green"]  .fare-station-code { color: var(--green);  }
+.fare-card[data-line="orange"] .fare-station-code { color: var(--orange); }
+.fare-card[data-line="purple"] .fare-station-code { color: var(--purple); }
+.fare-card[data-line="yellow"] .fare-station-code { color: var(--yellow); }
+.fare-card[data-line="pink"]   .fare-station-code { color: var(--pink);   }
+
+/* ── Collect Ticket Button ───────────────────────── */
+.fare-collect-btn {
+  margin-top: 4px;
+  padding: 8px 18px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-orb);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all var(--transition);
+  box-shadow: 0 4px 12px rgba(0, 180, 255, 0.2);
+}
+
+.fare-collect-btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+  box-shadow: 0 6px 16px rgba(0, 180, 255, 0.3);
+}
+
+.fare-collect-btn:active {
+  transform: translateY(0);
+}
+
+.fare-card[data-line="blue"]   .fare-collect-btn { background: var(--blue);   box-shadow: 0 4px 12px var(--blue-bg);   }
+.fare-card[data-line="green"]  .fare-collect-btn { background: var(--green);  box-shadow: 0 4px 12px var(--green-bg);  }
+.fare-card[data-line="orange"] .fare-collect-btn { background: var(--orange); box-shadow: 0 4px 12px var(--orange-bg); }
+.fare-card[data-line="purple"] .fare-collect-btn { background: var(--purple); box-shadow: 0 4px 12px var(--purple-bg); }
+.fare-card[data-line="yellow"] .fare-collect-btn { background: var(--yellow); box-shadow: 0 4px 12px var(--yellow-bg); }
+.fare-card[data-line="pink"]   .fare-collect-btn { background: var(--pink);   box-shadow: 0 4px 12px var(--pink-bg);   }
+
+/* ── Responsive ──────────────────────────────────── */
+/* Tablet */
+@media (max-width: 900px) {
+  .fare-container { padding: 18px 32px 40px; }
+  .fare-selector-grid { grid-template-columns: 1fr 1fr; }
+  .fare-station-grid { grid-template-columns: repeat(3, 1fr); }
+}
+/* iPad Mini */
+@media (max-width: 768px) {
+  .fare-container { padding: 16px 20px 36px; }
+  .fare-card-header { padding: 16px 20px; }
+  .fare-uplink-bar { padding: 16px 20px; }
+}
+/* Large phones */
+@media (max-width: 575px) {
+  .fare-container { padding: 12px 14px 28px; }
+  .fare-selector-grid { grid-template-columns: 1fr; gap: 12px; }
+  .fare-uplink-bar { flex-direction: column; padding: 14px 16px; gap: 12px; }
+  .fare-uplink-right { align-items: flex-start; }
+  .fare-station-grid { grid-template-columns: repeat(3, 1fr); }
+  .fare-amount { font-size: 24px; }
+}
+/* Small phones */
+@media (max-width: 480px) {
+  .fare-container { padding: 10px 12px 24px; }
+  .fare-card-header { padding: 12px 14px; }
+  .fare-panel { padding: 12px 14px; }
+  .fare-uplink-bar { padding: 12px 14px; flex-direction: column; }
+  .fare-uplink-right { align-items: flex-start; }
+  .fare-station-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; padding: 10px; }
+  .fare-amount { font-size: 22px; }
+  .fare-origin-display, .fare-dest-display { font-size: 14px; }
+}
+/* Very small phones */
+@media (max-width: 380px) {
+  .fare-container { padding: 8px 10px 20px; }
+  .fare-card-header { padding: 10px 12px; }
+  .fare-station-grid { grid-template-columns: repeat(2, 1fr); gap: 5px; padding: 8px; }
+  .fare-station-btn { padding: 8px 4px; }
+  .fare-station-name { font-size: 8px; }
+  .fare-amount { font-size: 20px; }
+}
+/* ── Payment Modal ───────────────────────────────── */
+.payment-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.payment-opt-btn {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 20px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-secondary);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition);
+  text-align: left;
+  width: 100%;
+}
+
+.payment-opt-btn:hover {
+  border-color: var(--accent);
+  background: var(--accent-glow);
+  transform: translateX(4px);
+}
+
+.payment-logo {
+  height: 24px;
+  width: auto;
+  max-width: 60px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+}
+
+.payment-opt-name {
+  font-family: var(--font-orb);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--text-primary);
+}
+
+.payment-footer {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--border-secondary);
+  text-align: center;
+}
+
+.payment-secure-text {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+}

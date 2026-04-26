@@ -1,0 +1,789 @@
+/* ═══════════════════════════════════════════════════
+   ODISHA EXPRESS — auth.css
+   Login & Registration page styles
+═══════════════════════════════════════════════════ */
+
+/* ── Auth body ───────────────────────────────────── */
+.auth-body {
+  background: var(--bg-primary);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Auth container ──────────────────────────────── */
+.auth-container {
+  position: relative;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+  padding-top: 32px;
+  padding-bottom: 40px;
+  padding-bottom: max(40px, env(safe-area-inset-bottom));
+}
+
+.auth-container--register {
+  grid-template-columns: 360px 1fr;
+}
+
+/* ── Left branding panel ─────────────────────────── */
+.auth-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px 48px 60px 60px;
+  border-right: 1px solid var(--border-secondary);
+  gap: 40px;
+}
+
+/* ── Logo block ──────────────────────────────────── */
+.auth-logo-block {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+  /* allow children to shrink */
+}
+
+.logo-icon {
+  width: 100px;
+  height: 100px;
+  background: var(--accent-glow);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+/* Image logo variant — no background tint */
+.logo-icon--img {
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.logo-m {
+  font-family: var(--font-orb);
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.logo-text {
+  min-width: 0;
+  /* allow text to shrink/wrap */
+  overflow: hidden;
+}
+
+.logo-heading {
+  font-family: var(--font-orb);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--text-primary);
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* Fallback: allow break on very small panels */
+  max-width: 100%;
+}
+
+/* On the register page the left panel is narrower — scale down */
+.auth-container--register .logo-heading {
+  font-size: 15px;
+  letter-spacing: 0.04em;
+}
+
+.logo-slash {
+  color: var(--accent);
+}
+
+.logo-sub {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  color: var(--text-muted);
+  margin-top: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Tagline ─────────────────────────────────────── */
+.auth-tagline {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tagline-line {
+  font-family: var(--font-orb);
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  color: var(--text-secondary);
+  line-height: 1.1;
+}
+
+.tagline-line.accent {
+  color: var(--accent);
+}
+
+/* ── Stats row ───────────────────────────────────── */
+.auth-stats {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.stat-value {
+  font-family: var(--font-orb);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.04em;
+}
+
+.stat-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+}
+
+.stat-divider {
+  width: 1px;
+  height: 36px;
+  background: var(--border-secondary);
+}
+
+/* ── Line indicator dots ─────────────────────────── */
+.auth-line-indicators {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.line-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  opacity: 0.8;
+  box-shadow: 0 0 6px currentColor;
+  animation: dotPulse 2s ease-in-out infinite;
+}
+
+.line-dot:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.line-dot:nth-child(2) {
+  animation-delay: 0.3s;
+}
+
+.line-dot:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+.line-dot:nth-child(4) {
+  animation-delay: 0.9s;
+}
+
+.line-dot:nth-child(5) {
+  animation-delay: 1.2s;
+}
+
+.line-dot:nth-child(6) {
+  animation-delay: 1.5s;
+}
+
+/* ── Register step indicators ────────────────────── */
+.reg-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.reg-step {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-secondary);
+  opacity: 0.4;
+  transition: all var(--transition);
+}
+
+.reg-step.active {
+  opacity: 1;
+  border-color: var(--accent);
+  background: var(--accent-glow);
+}
+
+.reg-step.completed {
+  opacity: 0.7;
+  border-color: var(--success);
+}
+
+.step-num {
+  font-family: var(--font-orb);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--accent);
+  width: 28px;
+}
+
+.reg-step.completed .step-num {
+  color: var(--success);
+}
+
+.step-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--text-secondary);
+}
+
+.reg-step.active .step-label {
+  color: var(--text-primary);
+}
+
+.step-connector {
+  width: 1px;
+  height: 12px;
+  background: var(--border-secondary);
+  margin-left: 27px;
+}
+
+/* ── Right form panel ────────────────────────────── */
+.auth-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 60px 60px 48px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.auth-right--wide {
+  align-items: flex-start;
+  padding-top: 48px;
+}
+
+/* ── Form panel card ─────────────────────────────── */
+.form-panel {
+  width: 100%;
+  max-width: 440px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-xl);
+  padding: 36px;
+  box-shadow: var(--shadow-glow), var(--shadow-card);
+  animation: fadeInUp 0.5s ease both;
+}
+
+.auth-right--wide .form-panel {
+  max-width: 600px;
+}
+
+/* ── Panel header ────────────────────────────────── */
+.panel-header {
+  margin-bottom: 28px;
+}
+
+.panel-title {
+  font-family: var(--font-orb);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--text-primary);
+  margin-top: 6px;
+  margin-bottom: 12px;
+}
+
+.panel-underline {
+  height: 2px;
+  width: 60px;
+  background: var(--accent);
+  border-radius: 1px;
+  box-shadow: 0 0 8px var(--accent);
+}
+
+/* ── Login form fields gap ───────────────────────── */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* ── Form options row (remember me + forgot) ─────── */
+.form-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+/* ── Custom checkbox ─────────────────────────────── */
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkbox-input {
+  display: none;
+}
+
+.checkbox-custom {
+  width: 18px;
+  height: 18px;
+  border: 1px solid var(--border-input);
+  border-radius: var(--radius-sm);
+  background: var(--bg-input);
+  position: relative;
+  flex-shrink: 0;
+  transition: all var(--transition);
+}
+
+.checkbox-input:checked+.checkbox-custom {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.checkbox-input:checked+.checkbox-custom::after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 1px;
+  width: 6px;
+  height: 10px;
+  border-right: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  transform: rotate(45deg);
+}
+
+.checkbox-text {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+}
+
+/* ── Forgot password link ────────────────────────── */
+.forgot-link {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  opacity: 0.7;
+  transition: opacity var(--transition);
+  white-space: nowrap;
+}
+
+.forgot-link:hover {
+  opacity: 1;
+}
+
+/* ── Remember me warning ─────────────────────────── */
+.remember-warning {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: var(--danger-bg);
+  border: 1px solid rgba(255, 68, 68, 0.3);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--danger);
+  animation: fadeInUp 0.2s ease;
+}
+
+/* ── OTP row ─────────────────────────────────────── */
+.otp-row {
+  gap: 0;
+  flex-wrap: wrap;
+}
+
+.btn-otp {
+  padding: 0 16px;
+  height: 46px;
+  background: var(--accent-glow);
+  border-left: 1px solid var(--border-input);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all var(--transition);
+}
+
+.btn-otp:hover {
+  background: rgba(0, 180, 255, 0.15);
+}
+
+.btn-otp:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ── OTP verify row ──────────────────────────────── */
+.otp-verify-row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  background: rgba(0, 180, 255, 0.04);
+  border: 1px solid var(--border-secondary);
+  border-radius: var(--radius-md);
+  animation: fadeInUp 0.25s ease;
+}
+
+.otp-input {
+  letter-spacing: 0.3em;
+  text-align: center;
+  font-size: 16px !important;
+}
+
+.otp-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-verify {
+  padding: 8px 16px;
+  background: var(--accent-glow);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  transition: all var(--transition);
+}
+
+.btn-verify:hover {
+  background: rgba(0, 180, 255, 0.2);
+}
+
+.btn-resend {
+  padding: 8px 16px;
+  background: transparent;
+  border: 1px solid var(--border-secondary);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  transition: all var(--transition);
+}
+
+.btn-resend:hover {
+  border-color: var(--border-primary);
+  color: var(--text-secondary);
+}
+
+.btn-resend:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.otp-timer {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--warning);
+  letter-spacing: 0.06em;
+}
+
+/* ── Verify badge ────────────────────────────────── */
+.verify-badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 14px;
+  height: 46px;
+  color: var(--success);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+  border-left: 1px solid var(--success);
+  background: var(--success-bg);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  flex-shrink: 0;
+}
+
+/* ── Password strength bar ───────────────────────── */
+.password-strength {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.strength-bar {
+  flex: 1;
+  height: 3px;
+  background: var(--border-secondary);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.strength-fill {
+  height: 100%;
+  width: 0%;
+  border-radius: 2px;
+  transition: width 0.4s ease, background 0.3s ease;
+}
+
+.strength-fill.weak {
+  width: 25%;
+  background: var(--danger);
+}
+
+.strength-fill.fair {
+  width: 50%;
+  background: var(--warning);
+}
+
+.strength-fill.good {
+  width: 75%;
+  background: var(--orange);
+}
+
+.strength-fill.strong {
+  width: 100%;
+  background: var(--success);
+}
+
+.strength-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  white-space: nowrap;
+  min-width: 80px;
+  text-align: right;
+}
+
+/* ── Password criteria list ──────────────────────── */
+.password-criteria {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-secondary);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+}
+
+.criteria-title {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.criteria-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.criteria-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  transition: color var(--transition);
+}
+
+.criteria-item.met {
+  color: var(--success);
+}
+
+.crit-icon {
+  font-size: 10px;
+  font-weight: bold;
+  flex-shrink: 0;
+  transition: color var(--transition);
+}
+
+.crit-fail {
+  color: var(--danger);
+}
+
+.crit-pass {
+  color: var(--success);
+}
+
+/* ── Forgot password modal extras ───────────────── */
+.modal-feedback {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--success);
+  text-align: center;
+  margin-top: 12px;
+  min-height: 16px;
+}
+
+/* ── Responsive ──────────────────────────────────── */
+/* Tablet: 768px–900px */
+@media (max-width: 900px) {
+
+  .auth-container,
+  .auth-container--register {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-left {
+    padding: 80px 32px 32px;
+    border-right: none;
+    border-bottom: 1px solid var(--border-secondary);
+  }
+
+  .auth-tagline .tagline-line {
+    font-size: 20px;
+  }
+
+  .auth-right {
+    padding: 32px;
+  }
+
+  .auth-right--wide {
+    padding: 24px 16px;
+  }
+
+  .form-panel {
+    padding: 24px;
+  }
+}
+
+/* Large phones */
+@media (max-width: 575px) {
+  .auth-left {
+    gap: 20px;
+    padding: 68px 20px 20px;
+  }
+
+  .form-panel {
+    padding: 20px 16px;
+  }
+
+  .auth-right {
+    padding: 20px 16px;
+  }
+
+  .auth-right--wide {
+    padding: 18px 14px;
+  }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+  .auth-left {
+    gap: 18px;
+    padding: 66px 16px 18px;
+  }
+
+  .form-panel {
+    padding: 18px 14px;
+  }
+
+  .auth-right {
+    padding: 18px 14px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .otp-actions {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .btn-verify,
+  .btn-resend {
+    flex: 1;
+    text-align: center;
+    justify-content: center;
+  }
+}
+
+/* Very small phones (Galaxy Z Fold 5 folded, S8+) */
+@media (max-width: 380px) {
+  .auth-left {
+    gap: 14px;
+    padding: 60px 12px 16px;
+  }
+
+  .form-panel {
+    padding: 16px 12px;
+  }
+
+  .auth-right {
+    padding: 14px 10px;
+  }
+
+  .gender-options {
+    gap: 6px;
+  }
+
+  .gender-btn {
+    padding: 6px 8px;
+    font-size: 9px;
+  }
+
+  .otp-row {
+    flex-wrap: wrap;
+  }
+
+  .btn-otp {
+    width: 100%;
+    border-left: none;
+    border-top: 1px solid var(--border-input);
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+    height: 36px;
+  }
+
+  .reg-steps {
+    display: none;
+  }
+}

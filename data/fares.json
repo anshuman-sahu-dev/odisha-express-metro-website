@@ -1,0 +1,113 @@
+{
+  "tiers": [
+    { "id": 1, "minKm": 0,   "maxKm": 2,   "fare": 5,  "label": "0 – 2 km",      "description": "Short hop fare" },
+    { "id": 2, "minKm": 2,   "maxKm": 5,   "fare": 10, "label": "2 – 5 km",      "description": "Local fare" },
+    { "id": 3, "minKm": 5,   "maxKm": 10,  "fare": 15, "label": "5 – 10 km",     "description": "Medium distance fare" },
+    { "id": 4, "minKm": 10,  "maxKm": 20,  "fare": 20, "label": "10 – 20 km",    "description": "Cross-city fare" },
+    { "id": 5, "minKm": 20,  "maxKm": 9999,"fare": 25, "label": "Above 20 km",   "description": "Long distance fare" }
+  ],
+
+  "smartcard_discount": 0,
+  "concession": {
+    "senior": 50,
+    "student": 25,
+    "divyang": 75
+  },
+
+  "minimum_fare": 5,
+  "maximum_fare": 25,
+  "currency": "INR",
+  "currency_symbol": "₹",
+
+  "payment_modes": [
+    { "id": "smart_card", "name": "Smart Card",  "accepted": true  },
+    { "id": "upi",        "name": "UPI",          "accepted": true  },
+    { "id": "cash",       "name": "Cash",         "accepted": true  },
+    { "id": "card",       "name": "Debit/Credit", "accepted": true  },
+    { "id": "qr",         "name": "QR Ticket",    "accepted": true  }
+  ],
+
+  "line_distances": {
+    "blue": {
+      "total_km": 30.5,
+      "stations": 25,
+      "avg_station_gap_km": 1.27,
+      "sample_fares": [
+        { "from": "BN01", "to": "BN05", "km": 6.3,  "fare": 15 },
+        { "from": "BN01", "to": "BN12", "km": 15.2, "fare": 20 },
+        { "from": "BN01", "to": "BN25", "km": 30.5, "fare": 25 },
+        { "from": "BN05", "to": "BN15", "km": 12.5, "fare": 20 },
+        { "from": "BN10", "to": "BN20", "km": 11.9, "fare": 20 }
+      ]
+    },
+    "green": {
+      "total_km": 30.6,
+      "stations": 25,
+      "avg_station_gap_km": 1.28,
+      "sample_fares": [
+        { "from": "GR01", "to": "GR05", "km": 5.7,  "fare": 15 },
+        { "from": "GR01", "to": "GR12", "km": 14.8, "fare": 20 },
+        { "from": "GR01", "to": "GR25", "km": 30.6, "fare": 25 },
+        { "from": "GR07", "to": "GR15", "km": 9.9,  "fare": 15 },
+        { "from": "GR10", "to": "GR22", "km": 14.7, "fare": 20 }
+      ]
+    },
+    "orange": {
+      "total_km": 29.7,
+      "stations": 25,
+      "avg_station_gap_km": 1.24,
+      "sample_fares": [
+        { "from": "OR01", "to": "OR05", "km": 5.4,  "fare": 15 },
+        { "from": "OR01", "to": "OR14", "km": 16.6, "fare": 20 },
+        { "from": "OR01", "to": "OR25", "km": 29.7, "fare": 25 },
+        { "from": "OR08", "to": "OR16", "km": 9.9,  "fare": 15 },
+        { "from": "OR12", "to": "OR22", "km": 11.9, "fare": 20 }
+      ]
+    },
+    "purple": {
+      "total_km": 30.4,
+      "stations": 25,
+      "avg_station_gap_km": 1.27,
+      "sample_fares": [
+        { "from": "PR01", "to": "PR05", "km": 5.9,  "fare": 15 },
+        { "from": "PR01", "to": "PR12", "km": 14.8, "fare": 20 },
+        { "from": "PR01", "to": "PR25", "km": 30.4, "fare": 25 },
+        { "from": "PR07", "to": "PR15", "km": 9.9,  "fare": 15 },
+        { "from": "PR10", "to": "PR20", "km": 12.1, "fare": 20 }
+      ]
+    },
+    "yellow": {
+      "total_km": 28.6,
+      "stations": 25,
+      "avg_station_gap_km": 1.19,
+      "sample_fares": [
+        { "from": "YL01", "to": "YL06", "km": 6.1,  "fare": 15 },
+        { "from": "YL01", "to": "YL14", "km": 15.5, "fare": 20 },
+        { "from": "YL01", "to": "YL25", "km": 28.6, "fare": 25 },
+        { "from": "YL06", "to": "YL14", "km": 9.4,  "fare": 15 },
+        { "from": "YL10", "to": "YL21", "km": 12.9, "fare": 20 }
+      ]
+    },
+    "pink": {
+      "total_km": 30.6,
+      "stations": 25,
+      "avg_station_gap_km": 1.28,
+      "sample_fares": [
+        { "from": "PK01", "to": "PK05", "km": 5.5,  "fare": 15 },
+        { "from": "PK01", "to": "PK13", "km": 15.7, "fare": 20 },
+        { "from": "PK01", "to": "PK25", "km": 30.6, "fare": 25 },
+        { "from": "PK08", "to": "PK15", "km": 9.0,  "fare": 15 },
+        { "from": "PK12", "to": "PK22", "km": 12.5, "fare": 20 }
+      ]
+    }
+  },
+
+  "recharge_denominations": [50, 100, 200, 500, 1000, 2000],
+
+  "token_validity_hours": 2,
+  "smart_card_min_balance": 10,
+  "smart_card_max_balance": 5000,
+
+  "last_updated": "2025-01-01",
+  "effective_from": "2025-01-01"
+}

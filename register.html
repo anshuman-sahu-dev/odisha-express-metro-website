@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#080c14" />
+  <title>Odisha Express - Registration Page</title>
+  <link rel="icon" type="image/svg+xml" href="assets/images/Odisha Express Logo.svg" />
+  <!-- Bootstrap 5.3 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <!-- Custom CSS (after Bootstrap so we can override) -->
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/auth.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+
+<body class="auth-body">
+
+  <!-- Animated grid background -->
+  <div class="bg-grid"></div>
+  <div class="bg-scanline"></div>
+
+  <!-- Corner decorations -->
+  <div class="corner corner-tl"></div>
+  <div class="corner corner-tr"></div>
+  <div class="corner corner-bl"></div>
+  <div class="corner corner-br"></div>
+
+  <!-- Status bar top -->
+  <div class="status-bar">
+    <span class="status-item">SYSTEM STATUS: <span class="status-online">ONLINE</span></span>
+    <span class="status-item brand-title">ODISHA EXPRESS</span>
+    <span class="status-item">REGISTRATION MODULE: <span class="status-online">ACTIVE</span></span>
+  </div>
+
+  <!-- Main register container -->
+  <main class="auth-container auth-container--register">
+
+    <!-- Left panel — branding (same as login) -->
+    <div class="auth-left">
+      <div class="auth-logo-block">
+        <div class="logo-icon logo-icon--img">
+          <img src="assets/images/Odisha Express Logo.svg" alt="ODISHA EXPRESS">
+        </div>
+        <div class="logo-text">
+          <h1 class="logo-heading">ODISHA<span class="logo-slash">//</span>EXPRESS</h1>
+          <p class="logo-sub">BHUBANESWAR METRO NETWORK</p>
+        </div>
+      </div>
+
+      <div class="auth-tagline">
+        <p class="tagline-line">CREATE YOUR</p>
+        <p class="tagline-line accent">METRO ACCOUNT</p>
+      </div>
+
+      <div class="reg-steps">
+        <div class="reg-step active" id="step1Indicator">
+          <span class="step-num">01</span>
+          <span class="step-label">PERSONAL INFO</span>
+        </div>
+        <div class="step-connector"></div>
+        <div class="reg-step" id="step2Indicator">
+          <span class="step-num">02</span>
+          <span class="step-label">VERIFICATION</span>
+        </div>
+        <div class="step-connector"></div>
+        <div class="reg-step" id="step3Indicator">
+          <span class="step-num">03</span>
+          <span class="step-label">SECURITY</span>
+        </div>
+      </div>
+
+      <div class="auth-line-indicators">
+        <span class="line-dot" style="background:#00b4ff;"></span>
+        <span class="line-dot" style="background:#00e676;"></span>
+        <span class="line-dot" style="background:#ff9100;"></span>
+        <span class="line-dot" style="background:#d500f9;"></span>
+        <span class="line-dot" style="background:#ffea00;"></span>
+        <span class="line-dot" style="background:#ff4081;"></span>
+      </div>
+    </div>
+
+    <!-- Right panel — register form -->
+    <div class="auth-right auth-right--wide">
+      <div class="form-panel">
+
+        <!-- Panel header -->
+        <div class="panel-header">
+          <span class="panel-tag">[REGISTER_MODULE]</span>
+          <h2 class="panel-title">NEW USER REGISTRATION</h2>
+          <div class="panel-underline"></div>
+        </div>
+
+        <!-- Registration form -->
+        <form class="register-form" id="registerForm" novalidate>
+
+          <!-- Row 1: Name + DOB -->
+          <div class="form-row">
+
+            <!-- Full Name -->
+            <div class="field-group">
+              <label class="field-label" for="fullName">FULL NAME <span class="required">*</span></label>
+              <div class="field-wrapper">
+                <span class="field-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                    <circle cx="12" cy="7" r="4" />
+                  </svg>
+                </span>
+                <input type="text" id="fullName" name="fullName" class="field-input" placeholder="YOUR FULL NAME"
+                  required />
+              </div>
+              <span class="field-error" id="nameError"></span>
+            </div>
+
+            <!-- Date of Birth -->
+            <div class="field-group">
+              <label class="field-label" for="dob">DATE OF BIRTH <span class="required">*</span></label>
+              <div class="field-wrapper">
+                <span class="field-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                    <line x1="16" y1="2" x2="16" y2="6" />
+                    <line x1="8" y1="2" x2="8" y2="6" />
+                    <line x1="3" y1="10" x2="21" y2="10" />
+                  </svg>
+                </span>
+                <input type="date" id="dob" name="dob" class="field-input" required />
+              </div>
+              <span class="field-error" id="dobError"></span>
+            </div>
+
+          </div>
+
+          <!-- Row 2: Gender -->
+          <div class="field-group">
+            <label class="field-label">GENDER <span class="required">*</span></label>
+            <div class="gender-options">
+              <label class="gender-option">
+                <input type="radio" name="gender" value="male" required />
+                <span class="gender-btn">MALE</span>
+              </label>
+              <label class="gender-option">
+                <input type="radio" name="gender" value="female" />
+                <span class="gender-btn">FEMALE</span>
+              </label>
+              <label class="gender-option">
+                <input type="radio" name="gender" value="other" />
+                <span class="gender-btn">OTHER</span>
+              </label>
+              <label class="gender-option">
+                <input type="radio" name="gender" value="prefer_not" />
+                <span class="gender-btn">PREFER NOT TO SAY</span>
+              </label>
+            </div>
+            <span class="field-error" id="genderError"></span>
+          </div>
+
+          <!-- Phone Number + OTP -->
+          <div class="field-group" id="phoneGroup">
+            <label class="field-label" for="phone">PHONE NUMBER <span class="required">*</span></label>
+            <div class="field-wrapper otp-row">
+              <span class="field-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.56a16 16 0 0 0 6.29 6.29l.94-.94a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+                </svg>
+              </span>
+              <input type="tel" id="phone" name="phone" class="field-input" placeholder="+91 XXXXXXXXXX" maxlength="13"
+                required />
+              <button type="button" class="btn-otp" id="sendPhoneOtp">GET OTP</button>
+            </div>
+            <span class="field-error" id="phoneError"></span>
+
+            <!-- Phone OTP input (initially hidden) -->
+            <div class="otp-verify-row" id="phoneOtpRow" style="display:none;">
+              <div class="field-wrapper">
+                <span class="field-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="11" width="18" height="11" rx="2" />
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                  </svg>
+                </span>
+                <input type="text" id="phoneOtp" name="phoneOtp" class="field-input otp-input"
+                  placeholder="ENTER 6-DIGIT OTP" maxlength="6" />
+                <span class="verify-badge" id="phoneVerified" style="display:none;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                  VERIFIED
+                </span>
+              </div>
+              <div class="otp-actions">
+                <button type="button" class="btn-verify" id="verifyPhoneOtp">VERIFY OTP</button>
+                <button type="button" class="btn-resend" id="resendPhoneOtp">RESEND</button>
+                <span class="otp-timer" id="phoneTimer"></span>
+              </div>
+              <span class="field-error" id="phoneOtpError"></span>
+            </div>
+          </div>
+
+          <!-- Email + OTP -->
+          <div class="field-group" id="emailGroup">
+            <label class="field-label" for="email">EMAIL ADDRESS <span class="required">*</span></label>
+            <div class="field-wrapper otp-row">
+              <span class="field-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                  <polyline points="22,6 12,13 2,6" />
+                </svg>
+              </span>
+              <input type="email" id="email" name="email" class="field-input" placeholder="YOUR@EMAIL.COM" required />
+              <button type="button" class="btn-otp" id="sendEmailOtp">GET OTP</button>
+            </div>
+            <span class="field-error" id="emailError"></span>
+
+            <!-- Email OTP input (initially hidden) -->
+            <div class="otp-verify-row" id="emailOtpRow" style="display:none;">
+              <div class="field-wrapper">
+                <span class="field-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="11" width="18" height="11" rx="2" />
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                  </svg>
+                </span>
+                <input type="text" id="emailOtp" name="emailOtp" class="field-input otp-input"
+                  placeholder="ENTER 6-DIGIT OTP" maxlength="6" />
+                <span class="verify-badge" id="emailVerified" style="display:none;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                  VERIFIED
+                </span>
+              </div>
+              <div class="otp-actions">
+                <button type="button" class="btn-verify" id="verifyEmailOtp">VERIFY OTP</button>
+                <button type="button" class="btn-resend" id="resendEmailOtp">RESEND</button>
+                <span class="otp-timer" id="emailTimer"></span>
+              </div>
+              <span class="field-error" id="emailOtpError"></span>
+            </div>
+          </div>
+
+          <!-- Row: Password + Confirm -->
+          <div class="form-row">
+
+            <!-- Password -->
+            <div class="field-group">
+              <label class="field-label" for="regPassword">PASSWORD <span class="required">*</span></label>
+              <div class="field-wrapper">
+                <span class="field-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                  </svg>
+                </span>
+                <input type="password" id="regPassword" name="regPassword" class="field-input"
+                  placeholder="CREATE PASSWORD" required />
+                <button type="button" class="field-toggle" id="toggleRegPassword" aria-label="Toggle">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                    <circle cx="12" cy="12" r="3" />
+                  </svg>
+                </button>
+              </div>
+              <!-- Password strength bar -->
+              <div class="password-strength" id="passwordStrength">
+                <div class="strength-bar">
+                  <div class="strength-fill" id="strengthFill"></div>
+                </div>
+                <span class="strength-label" id="strengthLabel">ENTER PASSWORD</span>
+              </div>
+              <span class="field-error" id="regPasswordError"></span>
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="field-group">
+              <label class="field-label" for="confirmPassword">CONFIRM PASSWORD <span class="required">*</span></label>
+              <div class="field-wrapper">
+                <span class="field-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                  </svg>
+                </span>
+                <input type="password" id="confirmPassword" name="confirmPassword" class="field-input"
+                  placeholder="REPEAT PASSWORD" required />
+                <button type="button" class="field-toggle" id="toggleConfirmPassword" aria-label="Toggle">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                    <circle cx="12" cy="12" r="3" />
+                  </svg>
+                </button>
+              </div>
+              <span class="field-error" id="confirmPasswordError"></span>
+            </div>
+
+          </div>
+
+          <!-- Password criteria checklist -->
+          <div class="password-criteria" id="passwordCriteria">
+            <p class="criteria-title">PASSWORD REQUIREMENTS:</p>
+            <ul class="criteria-list">
+              <li class="criteria-item" id="crit-length">
+                <span class="crit-icon crit-fail">&#10005;</span> MIN 8 CHARACTERS
+              </li>
+              <li class="criteria-item" id="crit-upper">
+                <span class="crit-icon crit-fail">&#10005;</span> UPPERCASE LETTER (A-Z)
+              </li>
+              <li class="criteria-item" id="crit-lower">
+                <span class="crit-icon crit-fail">&#10005;</span> LOWERCASE LETTER (a-z)
+              </li>
+              <li class="criteria-item" id="crit-number">
+                <span class="crit-icon crit-fail">&#10005;</span> NUMBER (0-9)
+              </li>
+              <li class="criteria-item" id="crit-special">
+                <span class="crit-icon crit-fail">&#10005;</span> SPECIAL CHARACTER (!@#$%^&amp;*)
+              </li>
+            </ul>
+          </div>
+
+          <!-- Register button -->
+          <button type="submit" class="btn-primary btn-full" id="registerBtn">
+            <span class="btn-text">CREATE ACCOUNT</span>
+            <span class="btn-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                <circle cx="8.5" cy="7" r="4" />
+                <line x1="20" y1="8" x2="20" y2="14" />
+                <line x1="23" y1="11" x2="17" y2="11" />
+              </svg>
+            </span>
+          </button>
+
+          <!-- Login link -->
+          <p class="auth-switch">
+            ALREADY REGISTERED? <a href="index.html" class="auth-link">LOGIN HERE</a>
+          </p>
+
+        </form>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="auth-footer">
+    <span>&#169; 2026 BHUBANESWAR METRO. ALL RIGHTS RESERVED.</span>
+    <span class="footer-divider">|</span>
+    <span>HELP LINE: <a href="tel:1073" class="footer-link">1073</a> / <a href="tel:1074"
+        class="footer-link">1074</a></span>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/auth.js"></script>
+  <!-- Bootstrap 5.3 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc4s9bIOgUxi8T/jzmE5Q5yKyg5F9+QLpfFpQ7tF9gTWV"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
