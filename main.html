@@ -1901,13 +1901,14 @@
       const hamburger = document.getElementById('navHamburger');
       const drawer = document.getElementById('mobileNavDrawer');
       const overlay = document.getElementById('mobileNavOverlay');
+      const body = document.body;
 
       function openMobileNav() {
         hamburger.classList.add('active');
         drawer.classList.add('open');
         overlay.classList.add('open');
         hamburger.setAttribute('aria-expanded', 'true');
-        document.body.style.overflow = 'hidden';
+        body.classList.add('mobile-nav-open');
       }
 
       window.closeMobileNav = function () {
@@ -1915,7 +1916,7 @@
         drawer.classList.remove('open');
         overlay.classList.remove('open');
         hamburger.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
+        body.classList.remove('mobile-nav-open');
       };
 
       hamburger.addEventListener('click', function () {
