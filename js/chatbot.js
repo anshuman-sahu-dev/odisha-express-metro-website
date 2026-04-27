@@ -9,6 +9,10 @@ const Chatbot = {
 
   isOpen:   false,
   history:  [],   /* Conversation history for context */
+  fabStorageKey: 'oe_chatbot_fab_position',
+  fabPosition: null,
+  dragThreshold: 8,
+  suppressFabClick: false,
   GEMINI_URL: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent',
   data: {
     loaded: false,
@@ -404,12 +408,202 @@ Tip: ask fare within a single line, or ask me <strong>which interchanges</strong
   },
 
   /* ── Toggle panel ─────────────────────────────────── */
+  getFab() {
+    return document.getElementById('chatbotFab');
+  },
+
+  getPanel() {
+    return document.getElementById('chatbotPanel');
+  },
+
+  clampFabPosition(x, y, fab) {
+    if (!fab) return { x, y };
+
+    const margin = 12;
+    const width = fab.offsetWidth || 52;
+    const height = fab.offsetHeight || 52;
+    const maxX = Math.max(margin, window.innerWidth - width - margin);
+    const maxY = Math.max(margin, window.innerHeight - height - margin);
+
+    return {
+      x: Math.min(Math.max(x, margin), maxX),
+      y: Math.min(Math.max(y, margin), maxY),
+    };
+  },
+
+  applyFabPosition(x, y, save = false) {
+    const fab = this.getFab();
+    if (!fab) return null;
+
+    const pos = this.clampFabPosition(x, y, fab);
+    fab.style.left = `${pos.x}px`;
+    fab.style.top = `${pos.y}px`;
+    fab.style.right = 'auto';
+    fab.style.bottom = 'auto';
+    this.fabPosition = pos;
+
+    if (save) {
+      try {
+        localStorage.setItem(this.fabStorageKey, JSON.stringify(pos));
+      } catch (error) {
+        console.warn('Unable to save chatbot position:', error);
+      }
+    }
+
+    return pos;
+  },
+
+  loadFabPosition() {
+    try {
+      const saved = localStorage.getItem(this.fabStorageKey);
+      if (!saved) return;
+
+      const parsed = JSON.parse(saved);
+      if (!parsed || typeof parsed.x !== 'number' || typeof parsed.y !== 'number') return;
+
+      this.applyFabPosition(parsed.x, parsed.y);
+    } catch (error) {
+      console.warn('Unable to restore chatbot position:', error);
+    }
+  },
+
+  resetPanelPosition() {
+    const panel = this.getPanel();
+    if (!panel) return;
+
+    panel.style.left = '';
+    panel.style.top = '';
+    panel.style.right = '';
+    panel.style.bottom = '';
+  },
+
+  syncPanelPosition() {
+    const panel = this.getPanel();
+    const fab = this.getFab();
+    if (!panel || !fab) return;
+
+    if (!this.fabPosition) {
+      this.resetPanelPosition();
+      return;
+    }
+
+    const fabRect = fab.getBoundingClientRect();
+    const gap = 14;
+    const margin = 12;
+    const panelWidth = Math.min(panel.offsetWidth || 340, window.innerWidth - margin * 2);
+    const panelHeight = Math.min(panel.offsetHeight || 480, window.innerHeight - margin * 2);
+
+    let left = fabRect.right - panelWidth;
+    left = Math.min(Math.max(left, margin), Math.max(margin, window.innerWidth - panelWidth - margin));
+
+    let top = fabRect.top - panelHeight - gap;
+    if (top < margin) {
+      top = fabRect.bottom + gap;
+    }
+    top = Math.min(Math.max(top, margin), Math.max(margin, window.innerHeight - panelHeight - margin));
+
+    panel.style.left = `${left}px`;
+    panel.style.top = `${top}px`;
+    panel.style.right = 'auto';
+    panel.style.bottom = 'auto';
+  },
+
+  handleViewportChange() {
+    if (this.fabPosition) {
+      const pos = this.applyFabPosition(this.fabPosition.x, this.fabPosition.y, true);
+      if (pos && this.isOpen) {
+        requestAnimationFrame(() => this.syncPanelPosition());
+      }
+      return;
+    }
+
+    if (this.isOpen) {
+      this.resetPanelPosition();
+    }
+  },
+
+  setupDraggableFab(fab) {
+    if (!fab) return;
+
+    const drag = {
+      active: false,
+      pointerId: null,
+      startX: 0,
+      startY: 0,
+      originX: 0,
+      originY: 0,
+      moved: false,
+    };
+
+    const stopDrag = (event) => {
+      if (!drag.active || (event && event.pointerId !== drag.pointerId)) return;
+
+      if (fab.hasPointerCapture?.(drag.pointerId)) {
+        fab.releasePointerCapture(drag.pointerId);
+      }
+
+      fab.classList.remove('chatbot-fab--dragging');
+
+      if (drag.moved) {
+        const finalX = parseFloat(fab.style.left);
+        const finalY = parseFloat(fab.style.top);
+        this.applyFabPosition(finalX, finalY, true);
+        this.suppressFabClick = true;
+        window.setTimeout(() => {
+          this.suppressFabClick = false;
+        }, 0);
+      }
+
+      drag.active = false;
+      drag.pointerId = null;
+      drag.moved = false;
+    };
+
+    fab.addEventListener('pointerdown', (event) => {
+      if (event.pointerType === 'mouse' && event.button !== 0) return;
+
+      const rect = fab.getBoundingClientRect();
+      drag.active = true;
+      drag.pointerId = event.pointerId;
+      drag.startX = event.clientX;
+      drag.startY = event.clientY;
+      drag.originX = rect.left;
+      drag.originY = rect.top;
+      drag.moved = false;
+      fab.setPointerCapture?.(event.pointerId);
+    });
+
+    fab.addEventListener('pointermove', (event) => {
+      if (!drag.active || event.pointerId !== drag.pointerId) return;
+
+      const deltaX = event.clientX - drag.startX;
+      const deltaY = event.clientY - drag.startY;
+
+      if (!drag.moved) {
+        const distance = Math.hypot(deltaX, deltaY);
+        if (distance < this.dragThreshold) return;
+
+        drag.moved = true;
+        fab.classList.add('chatbot-fab--dragging');
+        this.applyFabPosition(drag.originX, drag.originY);
+      }
+
+      event.preventDefault();
+      this.applyFabPosition(drag.originX + deltaX, drag.originY + deltaY);
+      if (this.isOpen) this.syncPanelPosition();
+    });
+
+    fab.addEventListener('pointerup', stopDrag);
+    fab.addEventListener('pointercancel', stopDrag);
+  },
+
   toggle() {
     this.isOpen = !this.isOpen;
-    const panel = document.getElementById('chatbotPanel');
+    const panel = this.getPanel();
     if (panel) {
       panel.style.display = this.isOpen ? 'flex' : 'none';
       if (this.isOpen) {
+        requestAnimationFrame(() => this.syncPanelPosition());
         const input = document.getElementById('chatbotInput');
         input?.focus();
       }
@@ -419,7 +613,7 @@ Tip: ask fare within a single line, or ask me <strong>which interchanges</strong
   /* ── Close panel ──────────────────────────────────── */
   close() {
     this.isOpen = false;
-    const panel = document.getElementById('chatbotPanel');
+    const panel = this.getPanel();
     if (panel) panel.style.display = 'none';
   },
 
@@ -550,7 +744,18 @@ Tip: ask fare within a single line, or ask me <strong>which interchanges</strong
     const sendBtn  = document.getElementById('chatbotSend');
     const input    = document.getElementById('chatbotInput');
 
-    fab?.addEventListener('click',   () => this.toggle());
+    this.loadFabPosition();
+    this.setupDraggableFab(fab);
+
+    fab?.addEventListener('click', (event) => {
+      if (this.suppressFabClick) {
+        event.preventDefault();
+        event.stopPropagation();
+        this.suppressFabClick = false;
+        return;
+      }
+      this.toggle();
+    });
     closeBtn?.addEventListener('click', () => this.close());
     sendBtn?.addEventListener('click',  () => this.send(input?.value));
 
@@ -560,6 +765,8 @@ Tip: ask fare within a single line, or ask me <strong>which interchanges</strong
         this.send(input.value);
       }
     });
+
+    window.addEventListener('resize', () => this.handleViewportChange());
 
     window.Chatbot = this;
   },

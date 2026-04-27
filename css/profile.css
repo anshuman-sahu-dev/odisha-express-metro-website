@@ -485,8 +485,18 @@
   box-shadow: 0 4px 20px rgba(0, 180, 255, 0.4);
   transition: transform var(--transition), box-shadow var(--transition);
   border: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+  cursor: grab;
 }
 .chatbot-fab:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(0, 180, 255, 0.6); }
+.chatbot-fab svg { pointer-events: none; }
+.chatbot-fab.chatbot-fab--dragging {
+  cursor: grabbing;
+  transform: none;
+  transition: none;
+}
 
 .chatbot-panel {
   position: fixed;
