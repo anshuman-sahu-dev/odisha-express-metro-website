@@ -160,39 +160,56 @@
   border-radius: 50%;
   border: 3px solid var(--accent);
   background: var(--bg-secondary);
-  transition: all var(--transition);
-  box-shadow: 0 0 0 0 var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  transition: transform var(--transition), background var(--transition), box-shadow var(--transition);
+  box-shadow: none;
 }
-.station-node:hover .station-dot,
-.station-dot.active {
-  background: var(--accent);
-  box-shadow: 0 0 10px var(--accent);
+
+.station-dot--origin {
+  width: 22px;
+  height: 22px;
+}
+
+.station-dot--origin,
+.station-dot--terminal {
+  background: var(--bg-secondary);
+  box-shadow: none;
+}
+
+.station-origin-train {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+  pointer-events: none;
 }
 
 /* Per-line dot colours */
-#track-blue   .station-dot { border-color: var(--blue);   }
-#track-blue   .station-dot.active,
-#track-blue   .station-node:hover .station-dot { background: var(--blue); box-shadow: 0 0 10px var(--blue); }
+#track-blue   .station-dot { border-color: var(--blue); color: var(--blue); }
+#track-blue   .station-node:hover .station-dot:not(.station-dot--origin):not(.station-dot--terminal) { background: var(--blue); box-shadow: 0 0 10px var(--blue); }
 
-#track-green  .station-dot { border-color: var(--green);  }
-#track-green  .station-dot.active,
-#track-green  .station-node:hover .station-dot { background: var(--green); box-shadow: 0 0 10px var(--green); }
+#track-green  .station-dot { border-color: var(--green); color: var(--green); }
+#track-green  .station-node:hover .station-dot:not(.station-dot--origin):not(.station-dot--terminal) { background: var(--green); box-shadow: 0 0 10px var(--green); }
 
-#track-orange .station-dot { border-color: var(--orange); }
-#track-orange .station-dot.active,
-#track-orange .station-node:hover .station-dot { background: var(--orange); box-shadow: 0 0 10px var(--orange); }
+#track-orange .station-dot { border-color: var(--orange); color: var(--orange); }
+#track-orange .station-node:hover .station-dot:not(.station-dot--origin):not(.station-dot--terminal) { background: var(--orange); box-shadow: 0 0 10px var(--orange); }
 
-#track-purple .station-dot { border-color: var(--purple); }
-#track-purple .station-dot.active,
-#track-purple .station-node:hover .station-dot { background: var(--purple); box-shadow: 0 0 10px var(--purple); }
+#track-purple .station-dot { border-color: var(--purple); color: var(--purple); }
+#track-purple .station-node:hover .station-dot:not(.station-dot--origin):not(.station-dot--terminal) { background: var(--purple); box-shadow: 0 0 10px var(--purple); }
 
-#track-yellow .station-dot { border-color: var(--yellow); }
-#track-yellow .station-dot.active,
-#track-yellow .station-node:hover .station-dot { background: var(--yellow); box-shadow: 0 0 10px var(--yellow); }
+#track-yellow .station-dot { border-color: var(--yellow); color: var(--yellow); }
+#track-yellow .station-node:hover .station-dot:not(.station-dot--origin):not(.station-dot--terminal) { background: var(--yellow); box-shadow: 0 0 10px var(--yellow); }
 
-#track-pink   .station-dot { border-color: var(--pink); }
-#track-pink   .station-dot.active,
-#track-pink   .station-node:hover .station-dot { background: var(--pink); box-shadow: 0 0 10px var(--pink); }
+#track-pink   .station-dot { border-color: var(--pink); color: var(--pink); }
+#track-pink   .station-node:hover .station-dot:not(.station-dot--origin):not(.station-dot--terminal) { background: var(--pink); box-shadow: 0 0 10px var(--pink); }
+
+.station-node:hover .station-dot--origin,
+.station-node:hover .station-dot--terminal {
+  transform: scale(1.06);
+  box-shadow: none;
+}
 
 .station-code {
   font-family: var(--font-mono);
