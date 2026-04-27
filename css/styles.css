@@ -1,3 +1,11 @@
+/* ── Footer Social (centered for profile/footer) ── */
+.profile-footer .footer-social {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 16px;
+}
 /* ═══════════════════════════════════════════════════
    ODISHA EXPRESS — styles.css
    Global resets, base typography, shared utilities
