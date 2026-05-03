@@ -51,7 +51,7 @@
     if (registrationForm) {
         registrationForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            
+
             // Basic validation check for required fields
             const requiredFields = registrationForm.querySelectorAll('[required]');
             let isValid = true;
@@ -67,7 +67,7 @@
             // Simulate success
             const submitBtn = registrationForm.querySelector('.btn-submit');
             const originalText = submitBtn.innerHTML;
-            
+
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<span class="btn-text">PROCESSING...</span>';
 
