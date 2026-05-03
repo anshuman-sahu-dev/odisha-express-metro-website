@@ -769,276 +769,255 @@
        PAGE: FARE
   ═══════════════════════════════════════════ -->
   <section class="page-section" id="page-fare">
-
-    <div class="page-header">
-      <div class="page-header-left">
-        <h1 class="page-title">ODISHA METRO</h1>
-        <div class="page-subtitle-row">
-          <span class="page-tag">[FARE]</span>
-          <span class="page-cursor"></span>
-        </div>
-        <div class="page-underline"></div>
-      </div>
-      <div class="page-header-right">
-        <div class="status-badge">
-          <span class="sb-label">MODULE STATUS:</span>
-          <span class="sb-value online">ONLINE</span>
-        </div>
-        <div class="status-badge">
-          <span class="sb-label">LINES INDEXED:</span>
-          <span class="sb-value">06</span>
-        </div>
-      </div>
+    <div class="fare-intro">
+      <div class="fare-intro-aegis">AEGIS//FARE_ENGINE V2.1</div>
+      <h1 class="fare-intro-title">FARE CALCULATOR</h1>
+      <p class="fare-intro-desc">Distance-based fare computation across all six lines. Smart Card holders receive 10%<br>discount on all journeys.</p>
     </div>
 
-    <!-- Fare line accordions -->
-    <div class="fare-container" id="fareContainer">
+    <!-- Fare line grid -->
+    <div class="fare-grid" id="fareContainer">
 
-      <!-- L1 Blue Line Fare -->
-      <div class="fare-card" data-line="blue">
-        <div class="fare-card-header" onclick="toggleFare('blue')">
-          <div class="fare-header-left">
-            <span class="route-line-badge blue">L1</span>
-            <span class="fare-line-name">BLUE LINE MATRIX</span>
-          </div>
-          <span class="fare-toggle-icon" id="fareBlueIcon">&#9660;</span>
+      <!-- L1 Blue Line -->
+      <div class="fare-line-card" data-line="blue">
+        <div class="fare-card-top">
+          <div class="fare-card-title"><span class="route-line-badge blue">L1</span> Blue Line</div>
+          <div class="fare-card-badge">ACTIVE</div>
         </div>
-        <div class="fare-panel" id="fare-blue" style="display:none;">
-          <div class="fare-uplink-bar">
-            <div class="fare-uplink-left">
-              <p class="fare-uplink-label">ROUTE UPLINK</p>
-              <p class="fare-uplink-route">
-                <span class="fare-origin-display" id="blueOriginDisplay">AWAITING INPUT</span>
-                <span class="fare-route-arrow">&gt;&gt;</span>
-                <span class="fare-dest-display" id="blueDestDisplay">AWAITING INPUT</span>
-              </p>
-            </div>
-            <div class="fare-uplink-right">
-              <p class="fare-computed-label">COMPUTED FARE</p>
-              <p class="fare-amount" id="blueAmount"><span class="fare-dash">-- --</span></p>
-            </div>
+        <div class="fare-selectors">
+          <div class="fare-select-group">
+            <label>FROM</label>
+            <select id="blueOriginSelect" class="fare-dropdown">
+              <option value="">Select</option>
+            </select>
           </div>
-          <div class="fare-selector-grid">
-            <div class="fare-selector">
-              <div class="fare-selector-header">
-                <span class="fare-sel-num">[01]</span>
-                <span class="fare-sel-title">SELECT ORIGIN</span>
-              </div>
-              <div class="fare-station-grid" id="blueOriginGrid">
-                <!-- Populated by fare.js -->
-              </div>
-            </div>
-            <div class="fare-selector">
-              <div class="fare-selector-header">
-                <span class="fare-sel-num">[02]</span>
-                <span class="fare-sel-title">SELECT TARGET</span>
-              </div>
-              <div class="fare-station-grid" id="blueDestGrid">
-                <!-- Populated by fare.js -->
-              </div>
-            </div>
+          <div class="fare-select-group">
+            <label>TO</label>
+            <select id="blueDestSelect" class="fare-dropdown">
+              <option value="">Select</option>
+            </select>
+          </div>
+        </div>
+        <div class="fare-result-box" id="blueResultBox">
+          <div class="fare-result-left">
+            <div class="fare-result-amount" id="blueAmount"><span class="fare-dash">--</span> <span class="fare-rupee">&#8377;</span></div>
+            <div class="fare-result-subtext" id="blueSubtext">select stations</div>
+          </div>
+          <div class="fare-result-right">
+            <div class="fare-smart-card-text">smart card</div>
+            <div id="bluePayBtnContainer"></div>
           </div>
         </div>
       </div>
 
-      <!-- L2 Green Line Fare -->
-      <div class="fare-card" data-line="green">
-        <div class="fare-card-header" onclick="toggleFare('green')">
-          <div class="fare-header-left">
-            <span class="route-line-badge green">L2</span>
-            <span class="fare-line-name">GREEN LINE MATRIX</span>
-          </div>
-          <span class="fare-toggle-icon" id="fareGreenIcon">&#9660;</span>
+      <!-- L2 Green Line -->
+      <div class="fare-line-card" data-line="green">
+        <div class="fare-card-top">
+          <div class="fare-card-title"><span class="route-line-badge green">L2</span> Green Line</div>
+          <div class="fare-card-badge">ACTIVE</div>
         </div>
-        <div class="fare-panel" id="fare-green" style="display:none;">
-          <div class="fare-uplink-bar">
-            <div class="fare-uplink-left">
-              <p class="fare-uplink-label">ROUTE UPLINK</p>
-              <p class="fare-uplink-route">
-                <span class="fare-origin-display" id="greenOriginDisplay">AWAITING INPUT</span>
-                <span class="fare-route-arrow">&gt;&gt;</span>
-                <span class="fare-dest-display" id="greenDestDisplay">AWAITING INPUT</span>
-              </p>
-            </div>
-            <div class="fare-uplink-right">
-              <p class="fare-computed-label">COMPUTED FARE</p>
-              <p class="fare-amount" id="greenAmount"><span class="fare-dash">-- --</span></p>
-            </div>
+        <div class="fare-selectors">
+          <div class="fare-select-group">
+            <label>FROM</label>
+            <select id="greenOriginSelect" class="fare-dropdown">
+              <option value="">Select</option>
+            </select>
           </div>
-          <div class="fare-selector-grid">
-            <div class="fare-selector">
-              <div class="fare-selector-header"><span class="fare-sel-num">[01]</span><span
-                  class="fare-sel-title">SELECT ORIGIN</span></div>
-              <div class="fare-station-grid" id="greenOriginGrid"></div>
-            </div>
-            <div class="fare-selector">
-              <div class="fare-selector-header"><span class="fare-sel-num">[02]</span><span
-                  class="fare-sel-title">SELECT TARGET</span></div>
-              <div class="fare-station-grid" id="greenDestGrid"></div>
-            </div>
+          <div class="fare-select-group">
+            <label>TO</label>
+            <select id="greenDestSelect" class="fare-dropdown">
+              <option value="">Select</option>
+            </select>
+          </div>
+        </div>
+        <div class="fare-result-box" id="greenResultBox">
+          <div class="fare-result-left">
+            <div class="fare-result-amount" id="greenAmount"><span class="fare-dash">--</span> <span class="fare-rupee">&#8377;</span></div>
+            <div class="fare-result-subtext" id="greenSubtext">select stations</div>
+          </div>
+          <div class="fare-result-right">
+            <div class="fare-smart-card-text">smart card</div>
+            <div id="greenPayBtnContainer"></div>
           </div>
         </div>
       </div>
 
-      <!-- L3 Orange Line Fare -->
-      <div class="fare-card" data-line="orange">
-        <div class="fare-card-header" onclick="toggleFare('orange')">
-          <div class="fare-header-left">
-            <span class="route-line-badge orange">L3</span>
-            <span class="fare-line-name">ORANGE LINE MATRIX</span>
-          </div>
-          <span class="fare-toggle-icon" id="fareOrangeIcon">&#9660;</span>
+      <!-- L3 Orange Line -->
+      <div class="fare-line-card" data-line="orange">
+        <div class="fare-card-top">
+          <div class="fare-card-title"><span class="route-line-badge orange">L3</span> Orange Line</div>
+          <div class="fare-card-badge">ACTIVE</div>
         </div>
-        <div class="fare-panel" id="fare-orange" style="display:none;">
-          <div class="fare-uplink-bar">
-            <div class="fare-uplink-left">
-              <p class="fare-uplink-label">ROUTE UPLINK</p>
-              <p class="fare-uplink-route">
-                <span class="fare-origin-display" id="orangeOriginDisplay">AWAITING INPUT</span>
-                <span class="fare-route-arrow">&gt;&gt;</span>
-                <span class="fare-dest-display" id="orangeDestDisplay">AWAITING INPUT</span>
-              </p>
-            </div>
-            <div class="fare-uplink-right">
-              <p class="fare-computed-label">COMPUTED FARE</p>
-              <p class="fare-amount" id="orangeAmount"><span class="fare-dash">-- --</span></p>
-            </div>
+        <div class="fare-selectors">
+          <div class="fare-select-group">
+            <label>FROM</label>
+            <select id="orangeOriginSelect" class="fare-dropdown">
+              <option value="">Select</option>
+            </select>
           </div>
-          <div class="fare-selector-grid">
-            <div class="fare-selector">
-              <div class="fare-selector-header"><span class="fare-sel-num">[01]</span><span
-                  class="fare-sel-title">SELECT ORIGIN</span></div>
-              <div class="fare-station-grid" id="orangeOriginGrid"></div>
-            </div>
-            <div class="fare-selector">
-              <div class="fare-selector-header"><span class="fare-sel-num">[02]</span><span
-                  class="fare-sel-title">SELECT TARGET</span></div>
-              <div class="fare-station-grid" id="orangeDestGrid"></div>
-            </div>
+          <div class="fare-select-group">
+            <label>TO</label>
+            <select id="orangeDestSelect" class="fare-dropdown">
+              <option value="">Select</option>
+            </select>
+          </div>
+        </div>
+        <div class="fare-result-box" id="orangeResultBox">
+          <div class="fare-result-left">
+            <div class="fare-result-amount" id="orangeAmount"><span class="fare-dash">--</span> <span class="fare-rupee">&#8377;</span></div>
+            <div class="fare-result-subtext" id="orangeSubtext">select stations</div>
+          </div>
+          <div class="fare-result-right">
+            <div class="fare-smart-card-text">smart card</div>
+            <div id="orangePayBtnContainer"></div>
           </div>
         </div>
       </div>
 
-      <!-- L4 Purple Line Fare -->
-      <div class="fare-card" data-line="purple">
-        <div class="fare-card-header" onclick="toggleFare('purple')">
-          <div class="fare-header-left">
-            <span class="route-line-badge purple">L4</span>
-            <span class="fare-line-name">PURPLE LINE MATRIX</span>
-          </div>
-          <span class="fare-toggle-icon" id="farePurpleIcon">&#9660;</span>
+      <!-- L4 Purple Line -->
+      <div class="fare-line-card" data-line="purple">
+        <div class="fare-card-top">
+          <div class="fare-card-title"><span class="route-line-badge purple">L4</span> Purple Line</div>
+          <div class="fare-card-badge">ACTIVE</div>
         </div>
-        <div class="fare-panel" id="fare-purple" style="display:none;">
-          <div class="fare-uplink-bar">
-            <div class="fare-uplink-left">
-              <p class="fare-uplink-label">ROUTE UPLINK</p>
-              <p class="fare-uplink-route">
-                <span class="fare-origin-display" id="purpleOriginDisplay">AWAITING INPUT</span>
-                <span class="fare-route-arrow">&gt;&gt;</span>
-                <span class="fare-dest-display" id="purpleDestDisplay">AWAITING INPUT</span>
-              </p>
-            </div>
-            <div class="fare-uplink-right">
-              <p class="fare-computed-label">COMPUTED FARE</p>
-              <p class="fare-amount" id="purpleAmount"><span class="fare-dash">-- --</span></p>
-            </div>
+        <div class="fare-selectors">
+          <div class="fare-select-group">
+            <label>FROM</label>
+            <select id="purpleOriginSelect" class="fare-dropdown">
+              <option value="">Select</option>
+            </select>
           </div>
-          <div class="fare-selector-grid">
-            <div class="fare-selector">
-              <div class="fare-selector-header"><span class="fare-sel-num">[01]</span><span
-                  class="fare-sel-title">SELECT ORIGIN</span></div>
-              <div class="fare-station-grid" id="purpleOriginGrid"></div>
-            </div>
-            <div class="fare-selector">
-              <div class="fare-selector-header"><span class="fare-sel-num">[02]</span><span
-                  class="fare-sel-title">SELECT TARGET</span></div>
-              <div class="fare-station-grid" id="purpleDestGrid"></div>
-            </div>
+          <div class="fare-select-group">
+            <label>TO</label>
+            <select id="purpleDestSelect" class="fare-dropdown">
+              <option value="">Select</option>
+            </select>
+          </div>
+        </div>
+        <div class="fare-result-box" id="purpleResultBox">
+          <div class="fare-result-left">
+            <div class="fare-result-amount" id="purpleAmount"><span class="fare-dash">--</span> <span class="fare-rupee">&#8377;</span></div>
+            <div class="fare-result-subtext" id="purpleSubtext">select stations</div>
+          </div>
+          <div class="fare-result-right">
+            <div class="fare-smart-card-text">smart card</div>
+            <div id="purplePayBtnContainer"></div>
           </div>
         </div>
       </div>
 
-      <!-- L5 Yellow Line Fare -->
-      <div class="fare-card" data-line="yellow">
-        <div class="fare-card-header" onclick="toggleFare('yellow')">
-          <div class="fare-header-left">
-            <span class="route-line-badge yellow">L5</span>
-            <span class="fare-line-name">YELLOW LINE MATRIX</span>
-          </div>
-          <span class="fare-toggle-icon" id="fareYellowIcon">&#9660;</span>
+      <!-- L5 Yellow Line -->
+      <div class="fare-line-card" data-line="yellow">
+        <div class="fare-card-top">
+          <div class="fare-card-title"><span class="route-line-badge yellow">L5</span> Yellow Line</div>
+          <div class="fare-card-badge">ACTIVE</div>
         </div>
-        <div class="fare-panel" id="fare-yellow" style="display:none;">
-          <div class="fare-uplink-bar">
-            <div class="fare-uplink-left">
-              <p class="fare-uplink-label">ROUTE UPLINK</p>
-              <p class="fare-uplink-route">
-                <span class="fare-origin-display" id="yellowOriginDisplay">AWAITING INPUT</span>
-                <span class="fare-route-arrow">&gt;&gt;</span>
-                <span class="fare-dest-display" id="yellowDestDisplay">AWAITING INPUT</span>
-              </p>
-            </div>
-            <div class="fare-uplink-right">
-              <p class="fare-computed-label">COMPUTED FARE</p>
-              <p class="fare-amount" id="yellowAmount"><span class="fare-dash">-- --</span></p>
-            </div>
+        <div class="fare-selectors">
+          <div class="fare-select-group">
+            <label>FROM</label>
+            <select id="yellowOriginSelect" class="fare-dropdown">
+              <option value="">Select</option>
+            </select>
           </div>
-          <div class="fare-selector-grid">
-            <div class="fare-selector">
-              <div class="fare-selector-header"><span class="fare-sel-num">[01]</span><span
-                  class="fare-sel-title">SELECT ORIGIN</span></div>
-              <div class="fare-station-grid" id="yellowOriginGrid"></div>
-            </div>
-            <div class="fare-selector">
-              <div class="fare-selector-header"><span class="fare-sel-num">[02]</span><span
-                  class="fare-sel-title">SELECT TARGET</span></div>
-              <div class="fare-station-grid" id="yellowDestGrid"></div>
-            </div>
+          <div class="fare-select-group">
+            <label>TO</label>
+            <select id="yellowDestSelect" class="fare-dropdown">
+              <option value="">Select</option>
+            </select>
+          </div>
+        </div>
+        <div class="fare-result-box" id="yellowResultBox">
+          <div class="fare-result-left">
+            <div class="fare-result-amount" id="yellowAmount"><span class="fare-dash">--</span> <span class="fare-rupee">&#8377;</span></div>
+            <div class="fare-result-subtext" id="yellowSubtext">select stations</div>
+          </div>
+          <div class="fare-result-right">
+            <div class="fare-smart-card-text">smart card</div>
+            <div id="yellowPayBtnContainer"></div>
           </div>
         </div>
       </div>
 
-      <!-- L6 Pink Line Fare -->
-      <div class="fare-card" data-line="pink">
-        <div class="fare-card-header" onclick="toggleFare('pink')">
-          <div class="fare-header-left">
-            <span class="route-line-badge pink">L6</span>
-            <span class="fare-line-name">PINK LINE MATRIX</span>
-          </div>
-          <span class="fare-toggle-icon" id="farePinkIcon">&#9660;</span>
+      <!-- L6 Pink Line -->
+      <div class="fare-line-card" data-line="pink">
+        <div class="fare-card-top">
+          <div class="fare-card-title"><span class="route-line-badge pink">L6</span> Pink Line</div>
+          <div class="fare-card-badge">ACTIVE</div>
         </div>
-        <div class="fare-panel" id="fare-pink" style="display:none;">
-          <div class="fare-uplink-bar">
-            <div class="fare-uplink-left">
-              <p class="fare-uplink-label">ROUTE UPLINK</p>
-              <p class="fare-uplink-route">
-                <span class="fare-origin-display" id="pinkOriginDisplay">AWAITING INPUT</span>
-                <span class="fare-route-arrow">&gt;&gt;</span>
-                <span class="fare-dest-display" id="pinkDestDisplay">AWAITING INPUT</span>
-              </p>
-            </div>
-            <div class="fare-uplink-right">
-              <p class="fare-computed-label">COMPUTED FARE</p>
-              <p class="fare-amount" id="pinkAmount"><span class="fare-dash">-- --</span></p>
-            </div>
+        <div class="fare-selectors">
+          <div class="fare-select-group">
+            <label>FROM</label>
+            <select id="pinkOriginSelect" class="fare-dropdown">
+              <option value="">Select</option>
+            </select>
           </div>
-          <div class="fare-selector-grid">
-            <div class="fare-selector">
-              <div class="fare-selector-header"><span class="fare-sel-num">[01]</span><span
-                  class="fare-sel-title">SELECT ORIGIN</span></div>
-              <div class="fare-station-grid" id="pinkOriginGrid"></div>
-            </div>
-            <div class="fare-selector">
-              <div class="fare-selector-header"><span class="fare-sel-num">[02]</span><span
-                  class="fare-sel-title">SELECT TARGET</span></div>
-              <div class="fare-station-grid" id="pinkDestGrid"></div>
-            </div>
+          <div class="fare-select-group">
+            <label>TO</label>
+            <select id="pinkDestSelect" class="fare-dropdown">
+              <option value="">Select</option>
+            </select>
+          </div>
+        </div>
+        <div class="fare-result-box" id="pinkResultBox">
+          <div class="fare-result-left">
+            <div class="fare-result-amount" id="pinkAmount"><span class="fare-dash">--</span> <span class="fare-rupee">&#8377;</span></div>
+            <div class="fare-result-subtext" id="pinkSubtext">select stations</div>
+          </div>
+          <div class="fare-result-right">
+            <div class="fare-smart-card-text">smart card</div>
+            <div id="pinkPayBtnContainer"></div>
           </div>
         </div>
       </div>
 
+    </div>
+
+    <!-- Fare Reference Table -->
+    <div class="fare-reference">
+      <div class="fare-ref-header">
+        <h2 class="fare-ref-title">// FARE REFERENCE TABLE</h2>
+        <div class="fare-ref-line"></div>
+      </div>
+      <div class="fare-ref-table-wrapper">
+        <table class="fare-ref-table">
+          <thead>
+            <tr>
+              <th>DISTANCE SLAB</th>
+              <th>TOKEN FARE</th>
+              <th>SMART CARD (10% OFF)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>0 - 5 km</td>
+              <td>&#8377; 10.00</td>
+              <td>&#8377; 9.00</td>
+            </tr>
+            <tr>
+              <td>5 - 10 km</td>
+              <td>&#8377; 20.00</td>
+              <td>&#8377; 18.00</td>
+            </tr>
+            <tr>
+              <td>10 - 20 km</td>
+              <td>&#8377; 30.00</td>
+              <td>&#8377; 27.00</td>
+            </tr>
+            <tr>
+              <td>20 - 30 km</td>
+              <td>&#8377; 40.00</td>
+              <td>&#8377; 36.00</td>
+            </tr>
+            <tr>
+              <td>Above 30 km</td>
+              <td>+ &#8377; 10.00 / 10km</td>
+              <td>+ &#8377; 9.00 / 10km</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </section>
-
 
   <!-- ═══════════════════════════════════════════
        PAGE: PROFILE

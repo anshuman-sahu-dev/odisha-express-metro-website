@@ -1,6 +1,6 @@
 /* ═══════════════════════════════════════════════════
    ODISHA EXPRESS — fare.js
-   Accordion fare panels · Station grids · Fare calc
+   Grid layout fare computation and payment
 ═══════════════════════════════════════════════════ */
 
 'use strict';
@@ -8,83 +8,53 @@
 /* Track selection state per line */
 const fareState = {};
 
-/* ── Toggle fare accordion ───────────────────────── */
-function toggleFare(lineId) {
-  const panel = document.getElementById('fare-' + lineId);
-  const icon  = document.getElementById('fare' + capitalize(lineId) + 'Icon');
-  if (!panel) return;
+/* ── Render station selects ─────────── */
+function renderStationSelects() {
+  const lines = ['blue', 'green', 'orange', 'purple', 'yellow', 'pink'];
+  lines.forEach(lineId => {
+    const line = window.OE_DATA?.lines[lineId];
+    if (!line) return;
 
-  const isOpen = panel.style.display !== 'none';
-  panel.style.display = isOpen ? 'none' : 'block';
-  if (icon) icon.classList.toggle('open', !isOpen);
+    fareState[lineId] = { origin: null, dest: null };
 
-  /* Render station grids on first open */
-  if (!isOpen) {
-    const originGrid = document.getElementById(lineId + 'OriginGrid');
-    const destGrid   = document.getElementById(lineId + 'DestGrid');
-    if (originGrid && originGrid.childElementCount === 0) {
-      renderStationGrid(lineId, originGrid, 'origin');
-      renderStationGrid(lineId, destGrid,   'dest');
+    const originSelect = document.getElementById(lineId + 'OriginSelect');
+    const destSelect = document.getElementById(lineId + 'DestSelect');
+
+    if (originSelect && destSelect) {
+      let optionsHtml = '<option value="">Select</option>';
+      line.stations.forEach((st, i) => {
+        optionsHtml += `<option value="${i}">${st.name}</option>`;
+      });
+
+      originSelect.innerHTML = optionsHtml;
+      destSelect.innerHTML = optionsHtml;
+
+      originSelect.addEventListener('change', (e) => handleSelectChange(lineId, 'origin', e.target.value));
+      destSelect.addEventListener('change', (e) => handleSelectChange(lineId, 'dest', e.target.value));
     }
-  }
+  });
 }
 
-function capitalize(str) {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-}
-
-/* ── Render station grid (origin or dest) ─────────── */
-function renderStationGrid(lineId, container, role) {
-  const line = window.OE_DATA?.lines[lineId];
-  if (!line || !container) return;
-
-  container.innerHTML = line.stations.map((st, i) => `
-    <button
-      class="fare-station-btn"
-      data-line="${lineId}"
-      data-role="${role}"
-      data-index="${i}"
-      onclick="selectFareStation('${lineId}', '${role}', ${i})"
-      title="${st.name} (${st.km} km)"
-    >
-      <span class="fare-station-code">${st.code}</span>
-      <span class="fare-station-name">${st.name}</span>
-    </button>
-  `).join('');
-}
-
-/* ── Select a station ────────────────────────────── */
-function selectFareStation(lineId, role, index) {
-  const line = window.OE_DATA?.lines[lineId];
-  if (!line) return;
-
-  /* Ensure state object exists */
+function handleSelectChange(lineId, role, value) {
   if (!fareState[lineId]) fareState[lineId] = { origin: null, dest: null };
-  fareState[lineId][role] = index;
+  fareState[lineId][role] = value === '' ? null : parseInt(value, 10);
 
-  /* Update selected class in grid */
-  const gridId = lineId + capitalize(role) + 'Grid';
-  const grid   = document.getElementById(gridId);
-  if (grid) {
-    grid.querySelectorAll('.fare-station-btn').forEach(btn => {
-      btn.classList.toggle('selected', parseInt(btn.dataset.index) === index);
-    });
-  }
-
-  /* Update route display */
-  const st = line.stations[index];
-  const displayId = lineId + capitalize(role) + 'Display';
-  const display   = document.getElementById(displayId);
-  if (display) display.textContent = st.code;
-
-  /* Compute fare if both selected */
   const state = fareState[lineId];
   if (state.origin !== null && state.dest !== null && state.origin !== state.dest) {
     computeFare(lineId);
   } else {
-    const amountEl = document.getElementById(lineId + 'Amount');
-    if (amountEl) amountEl.innerHTML = '<span class="fare-dash">-- --</span>';
+    resetFareDisplay(lineId);
   }
+}
+
+function resetFareDisplay(lineId) {
+  const amountEl = document.getElementById(lineId + 'Amount');
+  const subtextEl = document.getElementById(lineId + 'Subtext');
+  const payBtnContainer = document.getElementById(lineId + 'PayBtnContainer');
+
+  if (amountEl) amountEl.innerHTML = '<span class="fare-dash">--</span> <span class="fare-rupee">&#8377;</span>';
+  if (subtextEl) subtextEl.textContent = 'select stations';
+  if (payBtnContainer) payBtnContainer.innerHTML = '';
 }
 
 /* ── Compute & display fare ──────────────────────── */
@@ -94,6 +64,9 @@ function computeFare(lineId) {
   if (!result) return;
 
   const amountEl = document.getElementById(lineId + 'Amount');
+  const subtextEl = document.getElementById(lineId + 'Subtext');
+  const payBtnContainer = document.getElementById(lineId + 'PayBtnContainer');
+
   if (!amountEl) return;
 
   /* Animate the number */
@@ -101,16 +74,13 @@ function computeFare(lineId) {
   amountEl.style.transform = 'scale(0.8)';
 
   setTimeout(() => {
-    amountEl.innerHTML = `
-      <div style="display:flex; flex-direction:column; align-items:flex-end; gap:8px;">
-        <div style="display:flex; align-items:center; gap:6px;">
-          <span class="fare-rupee-icon">&#8377;</span>
-          ${result.fare}.00
-          <span style="font-size:12px;color:var(--text-muted);margin-left:6px;">(${result.dist} km)</span>
-        </div>
-        <button class="fare-collect-btn" onclick="openPaymentModal('${lineId}', ${result.fare})">Pay</button>
-      </div>
-    `;
+    amountEl.innerHTML = `${result.fare}.00 <span class="fare-rupee">&#8377;</span>`;
+    if (subtextEl) subtextEl.textContent = `(${result.dist} km)`;
+    
+    if (payBtnContainer) {
+      payBtnContainer.innerHTML = `<button class="fare-collect-btn" onclick="openPaymentModal('${lineId}', ${result.fare})">Pay</button>`;
+    }
+
     amountEl.style.transition = 'opacity 0.3s, transform 0.3s';
     amountEl.style.opacity = '1';
     amountEl.style.transform = 'scale(1)';
@@ -211,10 +181,11 @@ function collectTicket(lineId, fare) {
 document.addEventListener('DOMContentLoaded', () => {
   function tryInit() {
     if (!window.OE_DATA) { setTimeout(tryInit, 100); return; }
-    window.toggleFare         = toggleFare;
-    window.selectFareStation  = selectFareStation;
     window.openPaymentModal   = openPaymentModal;
     window.processPayment     = processPayment;
+
+    // Render dropdowns
+    renderStationSelects();
 
     // Attach close listener
     const closeBtn = document.getElementById('closePaymentModal');
